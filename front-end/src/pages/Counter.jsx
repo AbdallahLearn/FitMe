@@ -1,6 +1,6 @@
 import React from 'react'
 
-function HeightWeight() {
+function Counter() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function HeightWeight() {
   )
 }
 
-export default HeightWeight
+export default Counter

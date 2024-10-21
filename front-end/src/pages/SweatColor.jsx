@@ -1,7 +1,11 @@
-export default function SweatColor() {
-    return (
-        <>
-        
-        </>
-    )
-};
+import React from 'react'
+
+function SweatColor() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default SweatColor

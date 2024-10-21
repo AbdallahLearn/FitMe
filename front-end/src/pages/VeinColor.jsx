@@ -1,7 +1,11 @@
-export default function VeinColor() {
-    return (
-        <>
-        
-        </>
-    )
-};
+import React from 'react'
+
+function VeinColor() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default VeinColor

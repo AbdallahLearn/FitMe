@@ -1,7 +1,11 @@
-export default function Character() {
-    return (
-        <>
-        
-        </>
-    )
-};
+import React from 'react'
+
+function Character() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default Character
