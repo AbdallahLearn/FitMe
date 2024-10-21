@@ -7,6 +7,13 @@ export default {
   daisyui: {
     themes: ["light"],
   },
+  theme: {
+    extend: {
+      fontFamily: {
+        abril: ['"Abril Fatface"', 'cursive'],
+      },
+    },
+  },
   plugins: [
     require('daisyui'),
   ],
