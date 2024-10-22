@@ -1,5 +1,10 @@
 // import React from 'react'
-import { RouterProvider,createBrowserRouter } from 'react-router-dom'
+import { 
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  createRoutesFromElements
+} from 'react-router-dom'
 import LandingPage from '../pages/LandingPage';
 
 // Imports Pages //
@@ -11,49 +16,69 @@ import TestQuestion from '../pages/TestQuestion';
 import Error from '../pages/Error';
 import YourModel from '../pages/YourModel';
 import ProfileForm from '../pages/ProfileForm';
+import { CommonLayout } from "../component/CommonLayout";
 
 //=== Imports Pages ===//
 
-const router = createBrowserRouter([
-    {
-        path:'/home',
-        element: <LandingPage />,
-        errorElement:<Error/>
-    },
-    {
-      path: '*', // Catch-all route for 404 errors
-      element: <Error />, // Render your error component
-    },
-    {
-      path:'/signin',
-      element: <SignIn />
-    },
-    {
-      path:'/signup',
-      element: <SignUp />
-    },
-    {
-      path:'/resetpassword',
-      element: <ResetPassword />
-    },
-    {
-      path:'/passwordchanged',
-      element: <PasswordChanged />
-    },
-    {
-      path:'exam',
-      element: <TestQuestion/>
-    },
-    {
-      path:'yourmodel',
-      element: <YourModel/>
-    }
-    ,
-    {
-      path:'ProfileForm',
-      element: <ProfileForm/>
-    }
-]);
+// const router = createBrowserRouter([
+//     {
+//         path:'/home',
+//         element: <LandingPage />,
+//         errorElement:<Error/>
+//     },
+//     {
+//       path: '*', // Catch-all route for 404 errors
+//       element: <Error />, // Render your error component
+//     },
+//     {
+//       path:'/signin',
+//       element: <SignIn />
+//     },
+//     {
+//       path:'/signup',
+//       element: <SignUp />
+//     },
+//     {
+//       path:'/resetpassword',
+//       element: <ResetPassword />
+//     },
+//     {
+//       path:'/passwordchanged',
+//       element: <PasswordChanged />
+//     },
+//     {
+//       path:'exam',
+//       element: <TestQuestion/>
+//     },
+//     {
+//       path:'yourmodel',
+//       element: <YourModel/>
+//     }
+//     ,
+//     {
+//       path:'ProfileForm',
+//       element: <ProfileForm/>
+//     }
+// ]);
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/home" element={<LandingPage />} errorElement={<Error />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/resetpassword" element={<ResetPassword />} />
+      <Route path="/passwordchanged" element={<PasswordChanged />} />
+      <Route path="/exam" element={<TestQuestion />} />
+      <Route element={<CommonLayout />}>
+        <Route path="/yourmodel" element={<YourModel />} />
+        <Route path="/ProfileForm" element={<ProfileForm />} />
+      </Route>
+      <Route path="*" element={<Error />} /> {/* Catch-all route for 404 */}
+    </>
+  )
+);
+
 
 function Router() {
   return (

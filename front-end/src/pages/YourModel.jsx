@@ -6,9 +6,8 @@ import man from "../assets/man.png";
 
 function YourModel() {
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden">
-      <Header />
-      <div className="flex flex-1 flex-col gap-4 sm:gap-6 overflow-y-auto bg-[#EEE6E6] px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
+      <div className="flex flex-1 flex-col gap-4 sm:gap-6 overflow-y-visible bg-[#EEE6E6]">
+        <div className="flex flex-1 flex-col gap-4 sm:gap-6 px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
         <div className="text-4xl font-extrabold text-[#EE8B48]">Your Model</div>
 
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
@@ -42,12 +41,12 @@ function YourModel() {
                     className="rounded-full w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 border-2 border-black"
                     style={{
                       backgroundColor: `#${Math.floor(Math.sin(i) * 128 + 128)
-                          .toString(16)
-                          .padStart(2, "0")}${Math.floor(Math.cos(i) * 128 + 128)
-                          .toString(16)
-                          .padStart(2, "0")}${Math.floor(Math.sin(i) * 128 + 128)
-                          .toString(16)
-                          .padStart(2, "0")}`,
+                        .toString(16)
+                        .padStart(2, "0")}${Math.floor(Math.cos(i) * 128 + 128)
+                        .toString(16)
+                        .padStart(2, "0")}${Math.floor(Math.sin(i) * 128 + 128)
+                        .toString(16)
+                        .padStart(2, "0")}`,
                     }}
                   />
                 </div>
@@ -63,7 +62,10 @@ function YourModel() {
                 "2. Avoid wearing too-tight jeans.",
                 "3. Playing with different textures, colors, and patterns on your upper and lower body will break up your tall.",
               ].map((advice, index) => (
-                <span key={index} className="text-sm sm:text-base md:text-lg font-semibold">
+                <span
+                  key={index}
+                  className="text-sm sm:text-base md:text-lg font-semibold"
+                >
                   {advice}
                 </span>
               ))}
@@ -71,12 +73,11 @@ function YourModel() {
           </div>
 
           <div className="flex basis-full lg:basis-1/3 flex-col border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
-            <img src={man} className="w-full sm:w-3/4 lg:w-3/4" alt="Model" /> 
+            <img src={man} className="w-full sm:w-3/4 lg:w-3/4" alt="Model" />
           </div>
         </div>
-        <Footer />
-      </div>
-    </div>
+        </div>
+        </div>
   );
 }
 
