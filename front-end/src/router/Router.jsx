@@ -9,19 +9,20 @@ import SignUp from '../pages/SignUp';
 import ResetPassword from '../pages/ResetPassword';
 import PasswordChanged from '../pages/PasswordChanged';
 import TestQuestion from '../pages/TestQuestion';
-import ProfileForm from '../pages/ProfileForm';  
-import YourModel from '../pages/YourModel';     
 
 //=== Imports Pages ===//
 
 const router = createBrowserRouter([
     {
-        path: '/home',
+        path:'/home',
         element: <LandingPage />
     },
     {
-        path: '/signin',
-        element: <SignIn />
+    
+    },
+    {
+      path:'/signin',
+      element: <SignIn />
     },
     {
         path: '/signup',
