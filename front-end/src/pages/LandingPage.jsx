@@ -22,12 +22,6 @@ function LandingPage() {
           <div className="flex justify-center items-center mt-12">
             <img src={FitMeLP} className="w-[68rem]" />
           </div>
-          {/* <div className="flex justify-center items-center gap-56 ">
-            <p className="text-[22rem] font-abril">Fit</p>
-            <p className="text-[black] outline-white text-[23rem] font-abril">
-              Me
-            </p>
-          </div> */}
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[12rem]">
             <img src={man} />
           </div>
