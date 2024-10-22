@@ -103,7 +103,7 @@ function Header({ blackHeader, profile }) {
                     </summary>
                     <ul
                       tabIndex={0}
-                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-40 mt-3 w-36 p-2 shadow-white shadow-sm"
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-36 p-2 shadow-white shadow-sm"
                     >
                       <li>
                         <Link
