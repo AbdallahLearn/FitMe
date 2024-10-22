@@ -1,5 +1,6 @@
 // Gender.js
 import React from "react";
+import ManSvg from "../svg-component/ManSvg";
 
 function Gender({ onSelect }) {
   return (
@@ -32,6 +33,7 @@ function Gender({ onSelect }) {
           </button>
         </div>
       </div>
+
     </div>
   );
 }

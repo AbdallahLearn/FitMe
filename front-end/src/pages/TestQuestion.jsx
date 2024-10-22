@@ -1,8 +1,12 @@
-// TestQuestion.js
 import React, { useState } from "react";
 import Gender from "./Gender";
 import HeightWeight from "./HeightWeight";
 import VeinColor from "./VeinColor";
+import SkinColor from "./SkinColor";
+import Counter from "./Counter"; // Import the Counter component
+import EditModel from "./EditModel";
+import Footer from "../component/Footer";
+
 
 function TestQuestion() {
   const [currentStep, setCurrentStep] = useState("start");
@@ -17,7 +21,19 @@ function TestQuestion() {
   };
 
   const handleNextClick = () => {
-    setCurrentStep("vienColor"); // Transition to the VienColor component
+    setCurrentStep("vienColor"); // Transition to the VeinColor component
+  };
+
+  const handleVeinNextClick = () => {
+    setCurrentStep("skinColor"); // Transition to the SkinColor component
+  };
+
+  const handleSkinColorNextClick = () => {
+    setCurrentStep("counter"); // Transition to the Counter component
+  };
+
+  const handleCounterEnd = () => {
+    setCurrentStep("nextComponent"); // Transition to the desired next component
   };
 
   return (
@@ -42,11 +58,18 @@ function TestQuestion() {
             <Gender onSelect={handleGenderSelect} />
           ) : currentStep === "weightAndHeight" ? (
             <HeightWeight onNext={handleNextClick} />
+          ) : currentStep === "vienColor" ? (
+            <VeinColor onNext={handleVeinNextClick} />
+          ) : currentStep === "skinColor" ? (
+            <SkinColor onNext={handleSkinColorNextClick} />
+          ) : currentStep === "counter" ? (
+            <Counter onEnd={handleCounterEnd} />
           ) : (
-            <VeinColor />
+            <EditModel/>
           )}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
