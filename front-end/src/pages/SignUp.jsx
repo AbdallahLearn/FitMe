@@ -8,7 +8,7 @@ export default function SignUp() {
             <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
                 <div className="min-w-full min-h-full flex justify-center items-center flex-wrap gap-20">
                     <div className="flex justify-center w-[30%] md:mr-10">
-                        <h1 className="text-[#EE8B48] title-font text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[13rem] text-center mb-10 md:mb-0">FitMe</h1>
+                        <Link to='/home' className="text-[#EE8B48] title-font text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[13rem] text-center mb-10 md:mb-0">FitMe</Link>
                     </div>
 
                     <div className="flex min-h-full">
