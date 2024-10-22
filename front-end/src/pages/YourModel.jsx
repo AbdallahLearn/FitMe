@@ -62,7 +62,6 @@ function YourModel() {
                 "1. Skip the vertical stripes, because it will make you appear taller than you are.",
                 "2. Avoid wearing too-tight jeans.",
                 "3. Playing with different textures, colors, and patterns on your upper and lower body will break up your tall.",
-                "4. Enter your details and get clothes tailored to your body shape and skin tone."
               ].map((advice, index) => (
                 <span key={index} className="text-sm sm:text-base md:text-lg font-semibold">
                   {advice}
