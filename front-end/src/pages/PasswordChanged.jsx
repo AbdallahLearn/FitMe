@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function PasswordChanged() {
     return (
         <>
@@ -5,7 +7,7 @@ export default function PasswordChanged() {
             <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
                 <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row">
                     <div className="w-full md:w-2/5 xl:w-1/2 flex justify-center">
-                        <h1 className="text-[#EE8B48] max-sm:text-7xl text-8xl font-bold text-center mb-10 md:mb-0">Fit Me</h1>
+                        <Link to='/home'   className="text-[#EE8B48] max-sm:text-7xl text-8xl font-bold text-center mb-10 md:mb-0">Fit Me</Link>
                     </div>
 
                     <div className="flex min-h-full flex-1 flex-col justify-center md:items-center xl:items-start w-full lg:w-1/2 px-10 md:pr-10 lg:pr-0">

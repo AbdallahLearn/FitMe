@@ -1,7 +1,6 @@
-import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+// import React from 'react'
+import { RouterProvider,createBrowserRouter } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage';
-
 
 // Imports Pages //
 import SignIn from '../pages/SignIn';
@@ -9,31 +8,31 @@ import SignUp from '../pages/SignUp';
 import ResetPassword from '../pages/ResetPassword';
 import PasswordChanged from '../pages/PasswordChanged';
 import TestQuestion from '../pages/TestQuestion';
-import ProfileForm from '../pages/ProfileForm';  
-import YourModel from '../pages/YourModel';     
-
+import Error from '../pages/Error';
+import YourModel from '../pages/YourModel';
 //=== Imports Pages ===//
 
 const router = createBrowserRouter([
     {
-        path: '/home',
-        element: <LandingPage />
+        path:'/home',
+        element: <LandingPage />,
+        errorElement:<Error/>
     },
     {
-        path: '/signin',
-        element: <SignIn />
+      path: '*', // Catch-all route for 404 errors
+      element: <Error />, // Render your error component
     },
     {
-        path: '/signup',
-        element: <SignUp />
+      path:'/signin',
+      element: <SignIn />
     },
     {
-        path: '/resetpassword',
-        element: <ResetPassword />
+      path:'/signup',
+      element: <SignUp />
     },
     {
-        path: '/passwordchanged',
-        element: <PasswordChanged />
+      path:'/resetpassword',
+      element: <ResetPassword />
     },
     {
       path:'/passwordchanged',
@@ -44,12 +43,8 @@ const router = createBrowserRouter([
       element: <TestQuestion/>
     },
     {
-        path: '/profileform',      
-        element: <ProfileForm />
-    },
-    {
-        path: '/yourmodel',       
-        element: <YourModel />
+      path:'yourmodel',
+      element: <YourModel/>
     }
 ]);
 
@@ -58,7 +53,7 @@ function Router() {
     <div>
       <RouterProvider router={router}/>
     </div>
-  );
+  )
 }
 
-export default Router;
+export default Router

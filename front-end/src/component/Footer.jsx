@@ -2,7 +2,7 @@ import Logo from "../assets/fitmerm.png";
 export default function Footer() {
   return (
     <>
-      <footer className="pt-24 pb-10 flex flex-col justify-center items-center bg-[#EEE6E6] border-t-2 border-dashed border-black">
+      <footer className="pt-24 pb-10 flex flex-col justify-center mt-20 items-center bg-[#EEE6E6] border-t-2 border-dashed border-black">
         <div className="w-3/4 flex flex-col justify-center items-center text-center">
           <h2 className="text-4xl text-[#1D1B1B] italic">
             Personalized. Stylish. Inspire.
