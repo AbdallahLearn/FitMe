@@ -39,7 +39,7 @@ export default function SignIn() {
                                     <div className="flex flex-col justify-center items-center">
                                         <div>
                                             <label htmlFor="password" className="block max-sm:text-lg font-medium leading-6 text-white text-left w-80">
-                                            Password
+                                                Password
                                             </label>
                                         </div>
 
