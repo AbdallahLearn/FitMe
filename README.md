@@ -8,7 +8,8 @@
 - **Abdullah Saad**
 
 ## Project Overview:
-FitMe is an innovative web application designed to empower users in their fashion choices by creating a personalized virtual character. The app enables users to select clothing colors that best suit their skin tones while providing tailored clothing recommendations based on their body shapes, heights, and weights. 
+FitMe is an innovative website designed to empower users in their fashion choices by creating a personalized virtual character. 
+The website enables users to select clothing colors that best suit their skin tones while providing tailored clothing recommendations based on their body shapes, heights, and weights. 
 
 Our goal is to help users choose outfits that not only reflect their individual styles but also enhance their confidence by showcasing their unique body types.
 
