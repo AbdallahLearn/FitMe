@@ -1,6 +1,5 @@
 // Gender.js
 import React from "react";
-import ManSvg from "../svg-component/ManSvg";
 
 function Gender({ onSelect }) {
   return (
@@ -10,11 +9,12 @@ function Gender({ onSelect }) {
       </h2>
       <div className="card-actions w-96 justify-around flex-wrap">
         <div className="img-container flex flex-col items-center max-sm:w-1/2">
-          <div className="img w-32 max-sm:w-20">
+          <div className="img w-32 h-40 max-sm:w-20">
             <img src="./public/images/male.png" alt="Male" />
+           
           </div>
           <button
-            className="btn bg-[#EE8B48] text-2xl text-white font-bold max-sm:text-sm w-full"
+            className="btn bg-[#EE8B48] text-2xl  border-none  text-white font-bold max-sm:text-sm w-full"
             onClick={() => onSelect("Male")} // Trigger onSelect for Male
           >
             Male
@@ -22,11 +22,11 @@ function Gender({ onSelect }) {
         </div>
 
         <div className="img-container flex flex-col items-center max-sm:w-1/2">
-          <div className="img w-32 max-sm:w-20">
+          <div className="img w-32 h-40 max-sm:w-20">
             <img src="./public/images/female.png" alt="Female" />
           </div>
           <button
-            className="btn bg-[#EE8B48] text-2xl text-white font-bold max-sm:text-sm w-full"
+            className="btn bg-[#EE8B48] text-2xl border-none  text-white font-bold max-sm:text-sm w-full"
             onClick={() => onSelect("Female")} // Trigger onSelect for Female
           >
             Female
