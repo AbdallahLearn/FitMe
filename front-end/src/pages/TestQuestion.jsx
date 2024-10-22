@@ -50,7 +50,7 @@ function TestQuestion() {
   return (
     <>
     <div className="header fixed w-full z-10 overflow-hidden">
-    <Header />
+    <Header profile="true" />
     </div>
     
        <div className="bg-[#EEE6E6] h-screen pt-28">
