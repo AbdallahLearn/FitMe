@@ -59,29 +59,33 @@ function Header({ blackHeader }) {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu-horizontal px-1 items-center gap-10 text-lg font-bold">
-          <li className="hover:cursor-pointer">
-            <Link to="/home">Home</Link>
-          </li>
-          {blackHeader ? (
+          <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
             <li className="hover:cursor-pointer">
-              <ScrollLink to="aboutSection" smooth={true} duration={500}>
-                About
-              </ScrollLink>
+              <Link to="/home">Home</Link>
             </li>
-          ) : (
-            ""
-          )}
-          <li className="px-48">
+            {blackHeader ? (
+              <li className="hover:cursor-pointer">
+                <ScrollLink to="aboutSection" smooth={true} duration={500}>
+                  About
+                </ScrollLink>
+              </li>
+            ) : (
+              ""
+            )}
+          </div>
+          <li className="px-44">
             <Link to="/home" className="text-4xl title-font">
               FitMe
             </Link>
           </li>
-          <li className="hover:cursor-pointer">
-            <Link to="/signup">Sign Up</Link>
-          </li>
-          <li className="hover:cursor-pointer">
-            <Link to="/signin">Sign In</Link>
-          </li>
+          <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
+            <li className="hover:cursor-pointer">
+              <Link to="/signup">Sign Up</Link>
+            </li>
+            <li className="hover:cursor-pointer">
+              <Link to="/signin">Sign In</Link>
+            </li>
+          </div>
         </ul>
       </div>
       <div className="navbar-center lg:hidden">
