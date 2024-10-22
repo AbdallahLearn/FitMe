@@ -7,6 +7,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import ResetPassword from '../pages/ResetPassword';
 import PasswordChanged from '../pages/PasswordChanged';
+import TestQuestion from '../pages/TestQuestion';
 
 //=== Imports Pages ===//
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     {
       path:'/passwordchanged',
       element: <PasswordChanged />
+    },
+    {
+      path:'exam',
+      element: <TestQuestion/>
     }
 ]);
 
