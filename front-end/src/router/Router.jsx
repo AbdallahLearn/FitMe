@@ -10,6 +10,8 @@ import PasswordChanged from '../pages/PasswordChanged';
 import TestQuestion from '../pages/TestQuestion';
 import Error from '../pages/Error';
 import YourModel from '../pages/YourModel';
+import ProfileForm from '../pages/ProfileForm';
+
 //=== Imports Pages ===//
 
 const router = createBrowserRouter([
@@ -45,6 +47,11 @@ const router = createBrowserRouter([
     {
       path:'yourmodel',
       element: <YourModel/>
+    }
+    ,
+    {
+      path:'ProfileForm',
+      element: <ProfileForm/>
     }
 ]);
 

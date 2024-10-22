@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 function ProfileForm() {
   const handleDeleteAccount = () => {
     Swal.fire({
-      title: 'Are You Sure?',
+      title: 'Are You Sure ?',
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
@@ -29,8 +29,6 @@ function ProfileForm() {
     });
   };
 
-
-  
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden">
       <Header />
@@ -50,7 +48,7 @@ function ProfileForm() {
             <input
               type="email"
               id="email"
-              placeholder="example@gmail.com"
+              placeholder="abdullah@gmail.com"
               className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
               disabled
             />
@@ -59,7 +57,7 @@ function ProfileForm() {
             <input
               type="password"
               id="password"
-              placeholder="Enter password"
+              placeholder="●●●●●●●●"
               className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
               disabled
             />
