@@ -3,7 +3,7 @@
 
 ## Group Members:
 - **Lama Abdullah**
-- **Ashwaq Mubarak**
+- **Ashwag Mubarak**
 - **Faraj Basel**
 - **Abdullah Saad**
 
