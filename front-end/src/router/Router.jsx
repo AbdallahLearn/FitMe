@@ -8,16 +8,18 @@ import SignUp from '../pages/SignUp';
 import ResetPassword from '../pages/ResetPassword';
 import PasswordChanged from '../pages/PasswordChanged';
 import TestQuestion from '../pages/TestQuestion';
-
+import Error from '../pages/Error';
 //=== Imports Pages ===//
 
 const router = createBrowserRouter([
     {
         path:'/home',
-        element: <LandingPage />
+        element: <LandingPage />,
+        errorElement:<Error/>
     },
     {
-    
+      path: '*', // Catch-all route for 404 errors
+      element: <Error />, // Render your error component
     },
     {
       path:'/signin',
