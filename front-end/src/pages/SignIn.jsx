@@ -5,15 +5,15 @@ export default function SignIn() {
         <>
             {/* Begin: Sign In */}
             <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
-                <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row md:gap-20">
-                    <div className="flex justify-center w-[30%] md:mr-10">
-                        <h1 className="text-[#EE8B48] title-font text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[13rem] text-center mb-10 md:mb-0">FitMe</h1>
+                <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row">
+                    <div className="w-full md:w-2/5 xl:w-1/2 flex justify-center">
+                        <Link to='/home'  className="text-[#EE8B48] max-sm:text-7xl text-8xl font-bold text-center mb-10 md:mb-0">Fit Me</Link>
                     </div>
 
                     <div className="flex min-h-full">
                         <div className="w-full h-[80vh] md:w-[30rem] min-md-h-[90vh] bg-[#1D1B1B] px-10 rounded-2xl flex flex-col items-center justify-center">
                             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                                <h2 className="text-font text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
+                                <h2  className="mt-10 text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
                                     Sign In 
                                 </h2>
                             </div>

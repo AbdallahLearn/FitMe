@@ -10,19 +10,55 @@ import FeaturesBox from "../component/FeaturesBox";
 import WorkStepsBox from "../component/WorkStepsBox";
 import dashedLine from "../../public/images/dashedLine.png";
 import "../App.css"
+import { useTypewriter, Cursor } from 'react-simple-typewriter';
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
+
+    const [text] = useTypewriter({
+        words: ['it'],
+        loop:1 , 
+        typeSpeed: 300, 
+        deleteSpeed: 50, 
+        // delaySpeed: 1000,
+      });
+      const [text2] = useTypewriter({
+        words: ['e'],
+        loop: 1,
+        typeSpeed: 300, 
+        deleteSpeed: 50, 
+        // delaySpeed: 1000
+      });
+   
+      const [text6] = useTypewriter({
+        words: ['ET’S GET STARTED'],
+        loop: 0, 
+        typeSpeed: 100, 
+        deleteSpeed: 50, 
+        // delaySpeed: 1000, 
+      });
   return (
     <div className="min-h-screen flex flex-col">
       <Header blackHeader="true" />
       <div className="flex-grow flex flex-col justify-center items-center gap-5">
-        {/* 1st section */}
-        <div className="relative w-full bg-[#1D1B1B] text-white text-center pb-20 max-sm:pb-3">
+       
+        <motion.div
+      
+
+        className="relative w-full bg-[#1D1B1B] text-white text-center pb-20 max-sm:pb-3">
           <hr className="border-white" />
-          <div className="flex justify-center items-center mt-12">
-            <img src={FitMeLP} className="w-[68rem]" />
+         <div className="flex justify-center items-center gap-56 ">
+                    <p className="flex items-center text-[22rem] title-font gap-60 font-bold max-sm:text-[7rem] max-sm:gap-20">
+                    F{text}  
+                    <span className="text-black outline-white text-[23rem] title-font font-bold max-sm:text-[7rem] pl-4" style={{ WebkitTextStroke: '1px White' }}>
+                        M{text2}
+                    </span>
+                    </p>
+
           </div>
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[12rem]">
+
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[11rem] ">
             <img src={man} />
           </div>
           <div className="flex justify-between items-center lg:px-16 -mt-10 max-sm:mt-0">
@@ -30,18 +66,24 @@ function LandingPage() {
               <p className="text-left text-xl font-bold text-[#cccbcb] max-sm:text-[0.55rem]">
                 Tired of choosing colors that don't fit quite right?
               </p>
-              <button className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white">
-                LET’S GET STARTED
-              </button>
+              <Link to='/exam' className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white">
+                L{text6}
+              </Link>
             </div>
             <div className="relative">
               <img src={circleWords} className="w-36 max-sm:w-20" />
               <img src={manImage} className="absolute top-10 -left-6 w-32 max-sm:w-16" />
             </div>
           </div>
-        </div>
-        {/* 2nd section */}
-        <div id="aboutSection" className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10">
+        </motion.div>
+      
+        <motion.div
+       initial={{ opacity: 0, translateY: '100%' }}
+       whileInView={{ opacity: 1, translateY: 0 }}
+       transition={{ duration: 2 }}
+
+        
+        id="aboutSection" className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10">
           <div className="flex flex-col gap-5 lg:w-[50%] md:w-[70%] pt-28 max-sm:pt-0 max-sm:w-full justify-center items-center text-center lg:text-left">
             <h1 className="text-[#EE8B48] title-font text-7xl max-sm:text-5xl  w-[82%]">Who We Are?</h1>
             <p className="text-[#1D1B1B] font-medium text-xl w-[82%]">
@@ -50,17 +92,33 @@ function LandingPage() {
               making shopping a vibrant style journey.
             </p>
           </div>
-          <div className="relative w-[33%] flex flex-col justify-center items-start max-sm:w-[60%]">
+          <motion.div
+            initial={{opacity: 0, translateY:'100%'}}
+            whileInView={{opacity:1, translateY:0}}
+            transition={{duration:1}}
+    
+
+          className="relative w-[33%] flex flex-col justify-center items-start max-sm:w-[60%]">
             <img src={clothes} className="w-96 z-10" />
             <div className="bg-[#685547] w-52 h-32 absolute -bottom-8 -left-8"></div>
-          </div>
-        </div>
-        {/* 3rd section */}
-        <div className="w-full bg-[#EEE6E6] py-28 flex flex-col justify-evenly items-center gap-24">
+          </motion.div>
+        </motion.div>
+       
+        <div
+         
+  
+
+
+        className="w-full bg-[#EEE6E6] py-28 flex flex-col justify-evenly items-center gap-24">
           <h1 className="title-font text-[#EE8B48] text-7xl text-center max-sm:text-5xl">
             All-in-one platform
           </h1>
-          <div className="flex justify-center items-center gap-8 flex-wrap max-sm:flex-col">
+          <motion.div
+           initial={{opacity: 0, translateY:'-100%'}}
+           whileInView={{opacity:1, translateY:0}}
+           transition={{duration:2}}
+          
+          className="flex justify-center items-center gap-8 flex-wrap max-sm:flex-col">
             <FeaturesBox
               icon={
                 <svg
@@ -133,14 +191,19 @@ function LandingPage() {
               }
               text="Get the colors that are suitable for your skin tone"
             />
-          </div>
+          </motion.div>
         </div>
-        {/* 4th section */}
+      
         <div className="w-full py-32 max-sm:py-10 flex flex-col justify-evenly items-center gap-28 max-sm:gap-12">
           <h1 className="title-font text-[#EE8B48] text-7xl text-center max-sm:text-5xl">
             How FitMe works?
           </h1>
-          <div className="lg:w-[80%] px-5 flex justify-center items-start max-sm:flex-col max-sm:items-center max-sm:gap-16">
+          <motion.div
+          initial={{opacity: 0, translateY:'100%'}}
+        whileInView={{opacity:1, translateY:0}}
+        transition={{duration:1}}
+          
+          className="lg:w-[80%] px-5 flex justify-center items-start max-sm:flex-col max-sm:items-center max-sm:gap-16">
             <WorkStepsBox
               step="1"
               title="Color"
@@ -158,7 +221,7 @@ function LandingPage() {
               title="Model Creation"
               desc="Generate a personalized model based on your inputs"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
       <Footer />
