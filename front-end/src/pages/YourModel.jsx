@@ -74,7 +74,6 @@ function YourModel() {
             <img src={man} className="w-full sm:w-3/4 lg:w-3/4" alt="Model" /> 
           </div>
         </div>
-
         <Footer />
       </div>
     </div>
