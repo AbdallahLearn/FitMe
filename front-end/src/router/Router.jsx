@@ -35,10 +35,7 @@ const router = createBrowserRouter([
         path: '/passwordchanged',
         element: <PasswordChanged />
     },
-    {
-      path:'/passwordchanged',
-      element: <PasswordChanged />
-    },
+
     {
       path:'exam',
       element: <TestQuestion/>

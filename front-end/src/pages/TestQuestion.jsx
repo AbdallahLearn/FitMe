@@ -6,9 +6,13 @@ import SkinColor from "./SkinColor";
 import Counter from "./Counter"; // Import the Counter component
 import EditModel from "./EditModel";
 import Footer from "../component/Footer";
+import YourModel from "./YourModel";
+import { useNavigate } from "react-router-dom";
+import Header from "../component/Header";
 
 
 function TestQuestion() {
+    const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState("start");
 
   const handleStartClick = () => {
@@ -37,7 +41,12 @@ function TestQuestion() {
   };
 
   return (
-    <div className="bg-[#EEE6E6] h-screen pt-28">
+    <>
+    <div className="header fixed w-full z-10 overflow-hidden">
+    <Header/>
+    </div>
+    
+       <div className="bg-[#EEE6E6] h-screen pt-28">
       <div className="card w-[70%] h-[70vh] m-auto shadow-xl" style={{ border: '1px solid rgba(0,0,0,0.2)' }}>
         <div className="card-body flex justify-center">
           {currentStep === "start" ? (
@@ -65,12 +74,16 @@ function TestQuestion() {
           ) : currentStep === "counter" ? (
             <Counter onEnd={handleCounterEnd} />
           ) : (
-            <EditModel/>
+            navigate('/yourmodel')
           )}
         </div>
       </div>
+      
       <Footer/>
     </div>
+    </>
+    
+ 
   );
 }
 

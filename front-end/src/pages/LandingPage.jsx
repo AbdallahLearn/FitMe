@@ -10,6 +10,7 @@ import FeaturesBox from "../component/FeaturesBox";
 import WorkStepsBox from "../component/WorkStepsBox";
 import dashedLine from "../../public/images/dashedLine.png";
 import "../App.css"
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   return (
@@ -30,9 +31,9 @@ function LandingPage() {
               <p className="text-left text-xl font-bold text-[#cccbcb] max-sm:text-[0.55rem]">
                 Tired of choosing colors that don't fit quite right?
               </p>
-              <button className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white">
+              <Link to='/exam' className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white">
                 LET’S GET STARTED
-              </button>
+              </Link>
             </div>
             <div className="relative">
               <img src={circleWords} className="w-36 max-sm:w-20" />
