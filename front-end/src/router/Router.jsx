@@ -1,7 +1,6 @@
-import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+// import React from 'react'
+import { RouterProvider,createBrowserRouter } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage';
-
 
 // Imports Pages //
 import SignIn from '../pages/SignIn';
@@ -9,45 +8,43 @@ import SignUp from '../pages/SignUp';
 import ResetPassword from '../pages/ResetPassword';
 import PasswordChanged from '../pages/PasswordChanged';
 import TestQuestion from '../pages/TestQuestion';
-
+import Error from '../pages/Error';
+import YourModel from '../pages/YourModel';
 //=== Imports Pages ===//
 
 const router = createBrowserRouter([
     {
         path:'/home',
-        element: <LandingPage />
+        element: <LandingPage />,
+        errorElement:<Error/>
     },
     {
-    
+      path: '*', // Catch-all route for 404 errors
+      element: <Error />, // Render your error component
     },
     {
       path:'/signin',
       element: <SignIn />
     },
     {
-        path: '/signup',
-        element: <SignUp />
+      path:'/signup',
+      element: <SignUp />
     },
     {
-        path: '/resetpassword',
-        element: <ResetPassword />
+      path:'/resetpassword',
+      element: <ResetPassword />
     },
     {
-        path: '/passwordchanged',
-        element: <PasswordChanged />
+      path:'/passwordchanged',
+      element: <PasswordChanged />
     },
-
     {
       path:'exam',
       element: <TestQuestion/>
     },
     {
-        path: '/profileform',      
-        element: <ProfileForm />
-    },
-    {
-        path: '/yourmodel',       
-        element: <YourModel />
+      path:'yourmodel',
+      element: <YourModel/>
     }
 ]);
 
@@ -56,7 +53,7 @@ function Router() {
     <div>
       <RouterProvider router={router}/>
     </div>
-  );
+  )
 }
 
-export default Router;
+export default Router
