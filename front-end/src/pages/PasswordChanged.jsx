@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function PasswordChanged() {
     return (
         <>
@@ -21,12 +23,14 @@ export default function PasswordChanged() {
                             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-full flex flex-col items-center justify-center">
                                 <form method="POST" className="space-y-6">
                                     <div className="flex flex-col justify-center items-center">
+                                        <Link to="/signin">
                                         <button
                                             type="submit"
                                             className="flex w-80 h-12 justify-center items-center rounded-lg bg-[#EE8B48] px-3 py-1.5 max-sm:text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#EE8B30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                                         >
                                             Back To Login
                                         </button>
+                                        </Link>
                                     </div>
                                 </form>
                             </div>
