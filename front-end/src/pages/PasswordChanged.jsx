@@ -13,21 +13,23 @@ export default function PasswordChanged() {
                     <div className="flex min-h-full flex-1 flex-col justify-center md:items-center xl:items-start w-full lg:w-1/2 px-10 md:pr-10 lg:pr-0">
                         <div className="w-full lg:w-2/3 bg-[#1D1B1B] py-12 px-10 rounded-2xl">
                             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                                <h2 className="mt-10 mb-3 text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
-                                    Reset Password 
+                                <h2 className="text-font text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
+                                    Password Changed
                                 </h2>
 
-                                <p className="text-white max-sm:text-lg md:text-xl text-center">
-                                    Your password has been changed succesfully
-                                </p>
+                                <div className="w-full flex justify-center items-center max-sm:mt-8">
+                                    <p className="text-white max-sm:text- text-center w-72">
+                                        Your password has been changed succesfully
+                                    </p>
+                                </div>
                             </div>
 
-                            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-full">
+                            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-full flex flex-col items-center justify-center">
                                 <form method="POST" className="space-y-6">
-                                    <div>
+                                    <div className="flex flex-col justify-center items-center">
                                         <button
                                             type="submit"
-                                            className="flex w-full justify-center rounded-md bg-[#EE8B48] px-3 py-1.5 max-sm:text-lg md:text-2xl font-semibold leading-6 text-white shadow-sm hover:bg-[#EE8B30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                                            className="flex w-80 h-12 justify-center items-center rounded-lg bg-[#EE8B48] px-3 py-1.5 max-sm:text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#EE8B30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                                         >
                                             Back To Login
                                         </button>

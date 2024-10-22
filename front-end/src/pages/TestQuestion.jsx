@@ -4,16 +4,23 @@ import HeightWeight from "./HeightWeight";
 import VeinColor from "./VeinColor";
 import SkinColor from "./SkinColor";
 import Counter from "./Counter"; // Import the Counter component
-import EditModel from "./EditModel";
 import Footer from "../component/Footer";
-import YourModel from "./YourModel";
-import { useNavigate } from "react-router-dom";
+import { useTypewriter, Cursor } from 'react-simple-typewriter';
+import { useNavigate } from "react-router";
 import Header from "../component/Header";
-
 
 function TestQuestion() {
     const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState("start");
+
+  // Set up the typewriter effect
+  const [text] = useTypewriter({
+    words: ['Ready To Get Started?'],
+    loop: 0, // Change to a number for a specific number of loops or set to 0 for infinite
+    typeSpeed: 100, // Speed of typing in ms
+    deleteSpeed: 50, // Speed of deleting in ms (if looping)
+    delaySpeed: 1000, // Delay before deleting
+  });
 
   const handleStartClick = () => {
     setCurrentStep("gender"); // Show the Gender component
@@ -25,7 +32,7 @@ function TestQuestion() {
   };
 
   const handleNextClick = () => {
-    setCurrentStep("vienColor"); // Transition to the VeinColor component
+    setCurrentStep("veinColor"); // Transition to the VeinColor component
   };
 
   const handleVeinNextClick = () => {
@@ -52,11 +59,12 @@ function TestQuestion() {
           {currentStep === "start" ? (
             <>
               <h2 className="card-title flex justify-center text-4xl max-sm:text-lg">
-                Ready To Get Started?
+                {text} {/* Display the typewriter text */}
+                <Cursor /> {/* Display the cursor */}
               </h2>
               <div className="card-actions justify-end">
                 <button
-                  className="btn bg-[#EE8B48] m-auto mt-20 text-2xl text-white font-bold max-sm:text-sm"
+                  className="btn bg-[#EE8B48] border-none m-auto mt-20 text-2xl text-white font-bold max-sm:text-sm"
                   onClick={handleStartClick}
                 >
                   Start
@@ -67,7 +75,7 @@ function TestQuestion() {
             <Gender onSelect={handleGenderSelect} />
           ) : currentStep === "weightAndHeight" ? (
             <HeightWeight onNext={handleNextClick} />
-          ) : currentStep === "vienColor" ? (
+          ) : currentStep === "veinColor" ? (
             <VeinColor onNext={handleVeinNextClick} />
           ) : currentStep === "skinColor" ? (
             <SkinColor onNext={handleSkinColorNextClick} />

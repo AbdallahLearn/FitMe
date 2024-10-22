@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "framer-motion": "^11.11.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
     "react-scroll": "^1.9.0",
-    "sweetalert2": "^11.14.4"
+    "sweetalert2": "^11.14.4",
+    "react-simple-typewriter": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
