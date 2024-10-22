@@ -3,7 +3,7 @@ import { Link as ScrollLink } from "react-scroll";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-function Header({ blackHeader }) {
+function Header({ blackHeader, profile }) {
   return (
     <div
       className={`navbar ${
@@ -48,40 +48,93 @@ function Header({ blackHeader }) {
             ) : (
               ""
             )}
-            <li className="hover:cursor-pointer">
-              <Link to="/signup">Sign Up</Link>
-            </li>
-            <li className="hover:cursor-pointer">
-              <Link to="/signin">Sign In</Link>
-            </li>
+            {profile ? (
+              <>
+                <li className="hover:cursor-pointer">
+                  <Link to="/profileform">Abdullah's Profile</Link>
+                </li>
+                <li className="hover:cursor-pointer">
+                  <Link to="/signin" className="text-red-700">
+                    Log Out
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="hover:cursor-pointer">
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+                <li className="hover:cursor-pointer">
+                  <Link to="/signin">Sign In</Link>
+                </li>
+              </>
+            )}
           </ul>
         </details>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu-horizontal px-1 items-center gap-10 text-lg font-bold">
-          <li className="hover:cursor-pointer">
-            <Link to="/home">Home</Link>
-          </li>
-          {blackHeader ? (
+          <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
             <li className="hover:cursor-pointer">
-              <ScrollLink to="aboutSection" smooth={true} duration={500}>
-                About
-              </ScrollLink>
+              <Link to="/home">Home</Link>
             </li>
-          ) : (
-            ""
-          )}
-          <li className="px-48">
+            {blackHeader ? (
+              <li className="hover:cursor-pointer">
+                <ScrollLink to="aboutSection" smooth={true} duration={500}>
+                  About
+                </ScrollLink>
+              </li>
+            ) : (
+              ""
+            )}
+          </div>
+          <li className="px-44">
             <Link to="/home" className="text-4xl title-font">
               FitMe
             </Link>
           </li>
-          <li className="hover:cursor-pointer">
-            <Link to="/signup">Sign Up</Link>
-          </li>
-          <li className="hover:cursor-pointer">
-            <Link to="/signin">Sign In</Link>
-          </li>
+          <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
+            {profile ? (
+              <>
+                <div className="hidden lg:flex">
+                  <details className="dropdown">
+                    <summary tabIndex={0} role="button" className=" lg:flex">
+                      <p>Hi, Abdullah</p>
+                    </summary>
+                    <ul
+                      tabIndex={0}
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-40 mt-3 w-36 p-2 shadow-white shadow-sm"
+                    >
+                      <li>
+                        <Link
+                          to="/profileform"
+                          className="flex justify-center items-center text-black"
+                        >
+                          My Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <div className="flex justify-center items-center">
+                          <Link to="/signin" className="text-red-700">
+                            Log Out
+                          </Link>
+                        </div>
+                      </li>
+                    </ul>
+                  </details>
+                </div>
+              </>
+            ) : (
+              <>
+                <li className="hover:cursor-pointer">
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+                <li className="hover:cursor-pointer">
+                  <Link to="/signin">Sign In</Link>
+                </li>
+              </>
+            )}
+          </div>
         </ul>
       </div>
       <div className="navbar-center lg:hidden">
