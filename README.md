@@ -1,7 +1,7 @@
 
-# FitMe
+# FitMe Project
 
-## Group Members
+## Group Members:
 - **Lama Abdullah**
 - **Ashwaq Mubarak**
 - **Faraj Basel**
