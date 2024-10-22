@@ -50,7 +50,7 @@ function ProfileForm() {
             <input
               type="email"
               id="email"
-              placeholder="example@gmail.com"
+              placeholder="abdullah@gmail.com"
               className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
               disabled
             />
@@ -59,7 +59,7 @@ function ProfileForm() {
             <input
               type="password"
               id="password"
-              placeholder="Enter password"
+              placeholder="●●●●●●●●"
               className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
               disabled
             />
