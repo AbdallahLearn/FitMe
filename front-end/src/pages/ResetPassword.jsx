@@ -5,16 +5,12 @@ export default function ResetPassword() {
         <>
             {/* Begin: Reset Password */}
             <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
-                <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row">
-                    <div className="w-full md:w-2/5 xl:w-1/2 flex justify-center">
-                        <h1 className="text-[#EE8B48] max-sm:text-7xl text-8xl font-bold mb-10 md:mb-0">Fit Me</h1>
-                    </div>
-
-                    <div className="flex min-h-full flex-1 flex-col justify-center md:items-center xl:items-start w-full lg:w-1/2 px-10 md:pr-10 lg:pr-0">
-                        <div className="w-full lg:w-2/3 bg-[#1D1B1B] py-12 px-10 rounded-2xl">
-                            <div>
+                <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row md:gap-20">
+                    <div className="flex min-h-full">
+                        <div className="w-full h-[80vh] md:w-[30rem] min-md-h-[90vh] bg-[#1D1B1B] px-10 rounded-2xl flex flex-col items-center justify-center gap-5">
+                            <div className="flex justify-start items-cente w-full">
                                 <Link to="/signin">
-                                    <div className="w-fit p-3 border-2 border-white rounded-xl">
+                                    <div className="w-fit p-1 border-2 border-white rounded-xl">
                                         <i className="fa-solid fa-chevron-left fa-fw text-white text-xl"></i>
                                     </div>
                                 </Link>
@@ -22,75 +18,63 @@ export default function ResetPassword() {
 
 
                             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                                <h2 className="mt-10 mb-3 text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
+                                <h2 className="text-font text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white -mt-10">
                                     Reset Password 
                                 </h2>
-
-                                <p className="text-white max-sm:text-lg md:text-xl text-center">
-                                    Please type something you’ll remember
-                                </p>
+                                
+                                <div className="w-full flex justify-center items-center">
+                                    <p className="text-white max-sm:text- text-center w-72">
+                                        Please type something you’ll remember
+                                    </p>
+                                </div>
                             </div>
 
-                            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-full">
+                            <div className="mt-1 sm:mx-auto sm:w-full sm:max-w-full flex flex-col items-center justify-center">
                                 <form method="POST" className="space-y-6">
-                                    <div>
+                                    <div className="flex flex-col justify-center items-center">
                                         <div>
-                                            <label htmlFor="password" className="block max-sm:text-lg md:text-2xl font-medium leading-6 text-white">
+                                            <label htmlFor="password" className="block max-sm:text-lg font-medium leading-6 text-white text-left w-80">
                                                 New  Password
                                             </label>
                                         </div>
 
-                                        <div className="mt-2 relative">
+                                        <div className="mt-2 w-80">
                                             <input
                                                 id="password"
                                                 name="password"
                                                 type="password"
                                                 required
                                                 autoComplete="current-password"
-                                                className="pl-3 block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#EE8B30] sm:text-sm sm:leading-6"
+                                                className="pl-3 block w-80 h-12 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#EE8B30] sm:text-sm sm:leading-6"
                                                 placeholder="Must Be 8 Characters"
                                             />
-
-                                            
-                                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                                <button type="button"  className="focus:outline-none border-2 px-1 border-[#EE8B48]">
-                                                    <i className="fa-solid fa-eye text-lg fa-fw text-[#EE8B48]"></i>
-                                                </button>
-                                            </div>
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className="flex flex-col justify-center items-center">
                                         <div>
-                                            <label htmlFor="password" className="block max-sm:text-lg md:text-2xl font-medium leading-6 text-white">
+                                            <label htmlFor="password" className="block max-sm:text-lg font-medium leading-6 text-white text-left w-80">
                                                 Confirm New Password
                                             </label>
                                         </div>
 
-                                        <div className="mt-2 relative">
+                                        <div className="mt-2 w-80">
                                             <input
                                                 id="password"
                                                 name="password"
                                                 type="password"
                                                 required
                                                 autoComplete="current-password"
-                                                className="pl-3 block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring- sm:text-sm sm:leading-6"
+                                                className="pl-3 block w-80 h-12 rounded-lg border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring- sm:text-sm sm:leading-6"
                                                 placeholder="Repeat Password"
                                             />
-
-                                            
-                                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                                <button type="button"  className="focus:outline-none border-2 px-1 border-[#EE8B48]">
-                                                    <i className="fa-solid fa-eye text-lg fa-fw text-[#EE8B48]"></i>
-                                                </button>
-                                            </div>
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className="flex flex-col justify-center items-center">
                                         <button
                                             type="submit"
-                                            className="flex w-full justify-center rounded-md bg-[#EE8B48] px-3 py-1.5 max-sm:text-lg md:text-2xl font-semibold leading-6 text-white shadow-sm hover:bg-[#EE8B30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                                            className="flex w-80 h-12 justify-center items-center rounded-lg bg-[#EE8B48] px-3 py-1.5 max-sm:text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#EE8B30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                                         >
                                             Reset Password
                                         </button>
