@@ -9,6 +9,7 @@ import clothes from "../../public/images/clothes.jpg";
 import FeaturesBox from "../component/FeaturesBox";
 import WorkStepsBox from "../component/WorkStepsBox";
 import dashedLine from "../../public/images/dashedLine.png";
+import "../App.css"
 
 function LandingPage() {
   return (
@@ -27,15 +28,15 @@ function LandingPage() {
               Me
             </p>
           </div> */}
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-sm:w-[12rem]">
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[12rem]">
             <img src={man} />
           </div>
           <div className="flex justify-between items-center lg:px-16 -mt-10 max-sm:mt-0">
-            <div className="flex flex-col w-60 items-start gap-3 ml-12 lg:-mt-20 max-sm:w-24 max-sm:ml-3 max-sm:justify-end">
+            <div className="flex flex-col w-60 items-start gap-3 ml-12 lg:-mt-20 max-sm:w-24 max-md:w-44 max-sm:ml-3 max-sm:justify-end">
               <p className="text-left text-xl font-bold text-[#cccbcb] max-sm:text-[0.55rem]">
                 Tired of choosing colors that don't fit quite right?
               </p>
-              <button className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-sm:text-[0.5rem] border-none text-white">
+              <button className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white">
                 LET’S GET STARTED
               </button>
             </div>
@@ -48,7 +49,7 @@ function LandingPage() {
         {/* 2nd section */}
         <div className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10">
           <div className="flex flex-col gap-5 lg:w-[50%] md:w-[70%] pt-28 max-sm:pt-0 max-sm:w-full justify-center items-center text-center lg:text-left">
-            <h1 className="text-[#EE8B48] font-abril text-7xl max-sm:text-5xl">Who We Are?</h1>
+            <h1 className="text-[#EE8B48] title-font text-7xl max-sm:text-5xl">Who We Are?</h1>
             <p className="text-[#1D1B1B] font-medium text-xl w-[82%]">
               FitMe Team helps you find your perfect colors by creating a
               personalized model based on your skin tone and measurements,
@@ -62,7 +63,7 @@ function LandingPage() {
         </div>
         {/* 3rd section */}
         <div className="w-full bg-[#EEE6E6] py-28 flex flex-col justify-evenly items-center gap-24">
-          <h1 className="font-abril text-[#EE8B48] text-7xl text-center max-sm:text-5xl">
+          <h1 className="title-font text-[#EE8B48] text-7xl text-center max-sm:text-5xl">
             All-in-one platform
           </h1>
           <div className="flex justify-center items-center gap-8 flex-wrap max-sm:flex-col">
@@ -142,7 +143,7 @@ function LandingPage() {
         </div>
         {/* 4th section */}
         <div className="w-full py-32 max-sm:py-10 flex flex-col justify-evenly items-center gap-28 max-sm:gap-12">
-          <h1 className="font-abril text-[#EE8B48] text-7xl text-center max-sm:text-5xl">
+          <h1 className="title-font text-[#EE8B48] text-7xl text-center max-sm:text-5xl">
             How FitMe works?
           </h1>
           <div className="lg:w-[80%] px-5 flex justify-center items-start max-sm:flex-col max-sm:items-center max-sm:gap-16">

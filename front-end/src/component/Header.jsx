@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../App.css"
 function Header({blackHeader}) {
   return (
     <div className={`navbar ${blackHeader ? "bg-[#1D1B1B]" : "bg-[#EE8B48]"}  text-white`}>
@@ -48,7 +48,7 @@ function Header({blackHeader}) {
           <li>
             <a>About</a>
           </li>
-          <a className="text-4xl px-48 font-abril">FitMe</a>
+          <a className="text-4xl px-48 title-font">FitMe</a>
           <li>
             <a>Sign Up</a>
           </li>
@@ -58,7 +58,7 @@ function Header({blackHeader}) {
         </ul>
       </div>
       <div className="navbar-center lg:hidden">
-        <span className="text-4xl font-abril">FitMe</span>
+        <span className="text-4xl title-font">FitMe</span>
       </div>
       <div className="navbar-end"></div>
     </div>
