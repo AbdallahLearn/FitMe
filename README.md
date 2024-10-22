@@ -4,7 +4,7 @@
 ## Group Members:
 - **Lama Abdullah**
 - **Ashwag Mubarak**
-- **Faraj Basel**
+- **Faraj Saad**
 - **Abdullah Saad**
 
 ## Project Overview:
