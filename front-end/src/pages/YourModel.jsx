@@ -7,6 +7,8 @@ import man from "../assets/man.png";
 function YourModel() {
   return (
       <div className="flex flex-1 flex-col gap-4 sm:gap-6 overflow-y-visible bg-[#EEE6E6]">
+            <Header profile="true" />
+
         <div className="flex flex-1 flex-col gap-4 sm:gap-6 px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
         <div className="text-4xl font-extrabold text-[#EE8B48]">Your Model</div>
 
