@@ -7,7 +7,7 @@ function Counter({ onEnd }) {
     if (count > 0) {
       const timer = setInterval(() => {
         setCount(prevCount => prevCount - 1);
-      }, 100); // Decrease count every 2 seconds
+      }, 1000); // Decrease count every 2 seconds
 
       return () => clearInterval(timer); // Cleanup interval on unmount
     } else {
