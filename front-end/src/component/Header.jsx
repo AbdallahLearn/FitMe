@@ -1,5 +1,8 @@
 import React from "react";
+import { Link as ScrollLink } from "react-scroll";
+import { Link } from "react-router-dom";
 import "../App.css";
+
 function Header({ blackHeader }) {
   return (
     <div
@@ -9,7 +12,11 @@ function Header({ blackHeader }) {
     >
       <div className="navbar-start">
         <details className="dropdown">
-          <summary tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <summary
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost lg:hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -27,42 +34,60 @@ function Header({ blackHeader }) {
           </summary>
           <ul
             tabIndex={0}
-            className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black font-semibold"
+            className="menu dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-white text-black font-semibold"
           >
             <li>
-              <a>Home</a>
+              <Link to="/home">Home</Link>
             </li>
-            <li>
-              <a>About</a>
+            {blackHeader ? (
+              <li>
+                <ScrollLink to="aboutSection" smooth={true} duration={500}>
+                  About
+                </ScrollLink>
+              </li>
+            ) : (
+              ""
+            )}
+            <li className="hover:cursor-pointer">
+              <Link to="/signup">Sign Up</Link>
             </li>
-            <li>
-              <a>Sign Up</a>
-            </li>
-            <li>
-              <a>Sign In</a>
+            <li className="hover:cursor-pointer">
+              <Link to="/signin">Sign In</Link>
             </li>
           </ul>
         </details>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 items-center gap-3 text-lg font-bold">
-          <li>
-            <a>Home</a>
+        <ul className="menu-horizontal px-1 items-center gap-10 text-lg font-bold">
+          <li className="hover:cursor-pointer">
+            <Link to="/home">Home</Link>
           </li>
-          <li>
-            <a>About</a>
+          {blackHeader ? (
+            <li className="hover:cursor-pointer">
+              <ScrollLink to="aboutSection" smooth={true} duration={500}>
+                About
+              </ScrollLink>
+            </li>
+          ) : (
+            ""
+          )}
+          <li className="px-48">
+            <Link to="/home" className="text-4xl title-font">
+              FitMe
+            </Link>
           </li>
-          <a className="text-4xl px-48 title-font">FitMe</a>
-          <li>
-            <a>Sign Up</a>
+          <li className="hover:cursor-pointer">
+            <Link to="/signup">Sign Up</Link>
           </li>
-          <li>
-            <a>Sign In</a>
+          <li className="hover:cursor-pointer">
+            <Link to="/signin">Sign In</Link>
           </li>
         </ul>
       </div>
       <div className="navbar-center lg:hidden">
-        <span className="text-4xl title-font">FitMe</span>
+        <Link to="/home" className="text-4xl title-font">
+          FitMe
+        </Link>
       </div>
       <div className="navbar-end"></div>
     </div>

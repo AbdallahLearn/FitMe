@@ -41,9 +41,9 @@ function LandingPage() {
           </div>
         </div>
         {/* 2nd section */}
-        <div className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10">
+        <div id="aboutSection" className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10">
           <div className="flex flex-col gap-5 lg:w-[50%] md:w-[70%] pt-28 max-sm:pt-0 max-sm:w-full justify-center items-center text-center lg:text-left">
-            <h1 className="text-[#EE8B48] title-font text-7xl max-sm:text-5xl">Who We Are?</h1>
+            <h1 className="text-[#EE8B48] title-font text-7xl max-sm:text-5xl  w-[82%]">Who We Are?</h1>
             <p className="text-[#1D1B1B] font-medium text-xl w-[82%]">
               FitMe Team helps you find your perfect colors by creating a
               personalized model based on your skin tone and measurements,
