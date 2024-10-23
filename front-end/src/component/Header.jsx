@@ -37,7 +37,7 @@ function Header({ blackHeader, profile }) {
             className="menu dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-white text-black font-semibold"
           >
             <li>
-              <Link to="/home">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             {blackHeader ? (
               <li>
@@ -76,7 +76,7 @@ function Header({ blackHeader, profile }) {
         <ul className="menu-horizontal px-1 items-center gap-10 text-lg font-bold">
           <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
             <li className="hover:cursor-pointer">
-              <Link to="/home">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             {blackHeader ? (
               <li className="hover:cursor-pointer">
@@ -89,7 +89,7 @@ function Header({ blackHeader, profile }) {
             )}
           </div>
           <li className="px-44">
-            <Link to="/home" className="text-4xl title-font">
+            <Link to="/" className="text-4xl title-font">
               FitMe
             </Link>
           </li>
@@ -103,11 +103,11 @@ function Header({ blackHeader, profile }) {
                     </summary>
                     <ul
                       tabIndex={0}
-                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-40 mt-3 w-36 p-2 shadow-white shadow-sm"
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-36 p-2 shadow-white shadow-sm"
                     >
                       <li>
                         <Link
-                          to="/profileform"
+                          to="/user-profile"
                           className="flex justify-center items-center text-black"
                         >
                           My Profile
@@ -138,7 +138,7 @@ function Header({ blackHeader, profile }) {
         </ul>
       </div>
       <div className="navbar-center lg:hidden">
-        <Link to="/home" className="text-4xl title-font">
+        <Link to="/" className="text-4xl title-font">
           FitMe
         </Link>
       </div>
