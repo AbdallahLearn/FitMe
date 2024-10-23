@@ -32,6 +32,7 @@ export default function SignIn() {
                                                 required
                                                 autoComplete="email"
                                                 className="pl-3 block w-80 h-12 rounded-lg border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring- sm:text-sm sm:leading-6"
+                                                placeholder="Enter Your Email"
                                             />
                                         </div>
                                     </div>
@@ -51,6 +52,7 @@ export default function SignIn() {
                                                 required
                                                 autoComplete="current-password"
                                                 className="pl-3 block w-80 h-12 rounded-lg border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring- sm:text-sm sm:leading-6"
+                                                placeholder="Enter Your Password"
                                             />
                                         </div>
 
