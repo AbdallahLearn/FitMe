@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Gender from "./Gender";
 import HeightWeight from "./HeightWeight";
 import VeinColor from "./VeinColor";
@@ -46,6 +46,10 @@ function TestQuestion() {
   const handleCounterEnd = () => {
     setCurrentStep("nextComponent"); // Transition to the desired next component
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
