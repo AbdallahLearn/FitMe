@@ -7,7 +7,7 @@ export default function SignIn() {
             <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
                 <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row md:gap-20">
                     <div className="flex justify-center w-[30%] md:mr-10">
-                        <Link to='/home' className="text-[#EE8B48] title-font text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[13rem] text-center mb-10 md:mb-0">FitMe</Link>
+                        <Link to='/' className="text-[#EE8B48] title-font text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[13rem] text-center mb-10 md:mb-0">FitMe</Link>
                     </div>
 
                     <div className="flex min-h-full">
@@ -55,7 +55,7 @@ export default function SignIn() {
                                         </div>
 
                                         <div className="text-sm mt-2 w-80">
-                                            <Link to="/resetpassword" className="font-medium text-white max-sm:text-xs md:text-sm">
+                                            <Link to="/reset-password" className="font-medium text-white max-sm:text-xs md:text-sm">
                                                 Forgot password?
                                             </Link>
                                         </div>

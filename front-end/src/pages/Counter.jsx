@@ -13,7 +13,7 @@ function Counter({ onEnd }) {
     } else {
       onEnd(); // Call the onEnd function when count reaches 0
     }
-  }, [count, onEnd]);
+  }, [count]);
 
   return (
     <div className="flex flex-col items-center justify-center h-full">

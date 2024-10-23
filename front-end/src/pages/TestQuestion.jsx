@@ -86,7 +86,7 @@ function TestQuestion() {
             ) : currentStep === "counter" ? (
               <Counter onEnd={handleCounterEnd} />
             ) : (
-              navigate("/yourmodel")
+              navigate("/user-model")
             )}
           </div>
         </div>

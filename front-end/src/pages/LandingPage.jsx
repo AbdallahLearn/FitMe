@@ -64,7 +64,7 @@ function LandingPage() {
                 Tired of choosing colors that don't fit quite right?
               </p>
               <Link
-                to="/exam"
+                to="/generate-model"
                 className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white"
               >
                 L{text6}
@@ -80,7 +80,7 @@ function LandingPage() {
           </div>
         </motion.div>
 
-        <div className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10">
+        <div id="aboutSection" className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10">
           <div className="flex flex-col gap-5 lg:w-[50%] md:w-[70%] pt-28 max-sm:pt-0 max-sm:w-full justify-center items-center text-center lg:text-left">
             <h1 className="title-font text-[#EE8B48] font-abril text-7xl max-sm:text-4xl w-[82%] max-sm:w-[90%]">
               Who We Are?

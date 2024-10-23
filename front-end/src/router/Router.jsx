@@ -64,15 +64,15 @@ import { CommonLayout } from "../component/CommonLayout";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/home" element={<LandingPage />} errorElement={<Error />} />
+      <Route path="/" element={<LandingPage />} errorElement={<Error />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/resetpassword" element={<ResetPassword />} />
-      <Route path="/passwordchanged" element={<PasswordChanged />} />
-      <Route path="/exam" element={<TestQuestion />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/password-changed" element={<PasswordChanged />} />
+      <Route path="/generate-model" element={<TestQuestion />} />
       <Route element={<CommonLayout />}>
-        <Route path="/yourmodel" element={<YourModel />} />
-        <Route path="/ProfileForm" element={<ProfileForm />} />
+        <Route path="/user-model" element={<YourModel />} />
+        <Route path="/user-profile" element={<ProfileForm />} />
       </Route>
       <Route path="*" element={<Error />} /> {/* Catch-all route for 404 */}
     </>
