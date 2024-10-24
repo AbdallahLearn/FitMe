@@ -6,76 +6,87 @@ import axios from "axios";
 
 export default function SignIn() {
 
-    const getUser = () => {
-        axios.get('/http://localhost:4000/api/users/signin')
-        .then(function (response) {
-            console.log(response.data);
-        });
-    };
 
 
     // Variables //
-  const navigate = useNavigate();
-  //=== Variables ===//
+    const navigate = useNavigate();
+    //=== Variables ===//
 
-  // Use State Variables //
-  const [email, setEmail] = useState("");
-  const [emailErr, setEmailErr] = useState("");
+    // Use State Variables //
+    const [email, setEmail]             = useState("");
+    const [emailErr, setEmailErr]       = useState("");
 
-  const [password, setPassword] = useState("");
-  const [passwordErr, setPasswordErr] = useState("");
+    const [password, setPassword]       = useState("");
+    const [passwordErr, setPasswordErr] = useState("");
 
-  //== Use State Variables ==//
-  
-  // Use Effect //
-  useEffect(() => {
-    // Check If User Is Logged In //
-    if (localStorage.getItem("userId") !== null) {
-      localStorage.removeItem("userId"); // LogIn
-    };
-    //== Check If User Is Logged In ==//
-
-    getUser()
-  }, []);  
-  //=== Use Effect ===//
-
-  // Sign Up Function //
-  const schema = z.object({
-    name: z
-      .string()
-      .min(4, { message: "Name should be more than 3 characters." })
-      .regex(/^[A-Za-z\u0600-\u06FF ]+$/, { message: "Name should only contain Arabic or English letters." }),
-      
-    email: z
-      .string()
-      .email({ message: "Please enter a valid email address." }),
-      
-    password: z
-      .string()
-      .min(8, { message: "Password must be at least 8 characters long." })
-      .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/, {
-        message: "Password must include uppercase, lowercase, a number, and a special character."
-      }),
-  });
-  
-    const signIn = () => {
-      const validationResult = schema.safeParse({ email, password });
+    const [userErr, setUserErr]         = useState("");
+    //== Use State Variables ==//
     
-      if (!validationResult.success) {
-        const firstError = validationResult.error.errors[0];
-        const { path, message } = firstError;
-
-        if (path[0] === "email") {
-          setEmailErr(message);
-          setTimeout(() => setEmailErr(""), 3000);
-        } else if (path[0] === "password") {
-          setPasswordErr(message);
-          setTimeout(() => setPasswordErr(""), 5000);
+    // Use Effect //
+    useEffect(() => {
+        // Check If User Is Logged In //
+        if (localStorage.getItem("userId") !== null) {
+            navigate("/");
         };
-      } else {
-        console.log("yes");
-        navigate("/home")
-      };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);  
+    //=== Use Effect ===//
+
+    // Sign Up Function //
+    const schema = z.object({
+        email: z
+        .string()
+        .email({ message: "Please enter a valid email address." }),
+        
+        password: z
+        .string()
+        .min(8, { message: "Password must be at least 8 characters long." })
+        .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/, {
+            message: "Password must include uppercase, lowercase, a number, and a special character."
+        }),
+    });
+    
+    const signIn = () => {
+        const validationResult = schema.safeParse({ email, password });
+        
+        if (!validationResult.success) {
+            const firstError = validationResult.error.errors[0];
+            const { path, message } = firstError;
+
+            if (path[0] === "email") {
+            setEmailErr(message);
+            setTimeout(() => setEmailErr(""), 3000);
+            } else if (path[0] === "password") {
+            setPasswordErr(message);
+            setTimeout(() => setPasswordErr(""), 3000);
+            };
+        } else {
+            axios.post('http://localhost:4000/users/signin', {
+                email: email,
+                password: password,
+            })
+            .then((response) => {
+                const result = response.data;
+                console.log('result', response.data)
+                if (typeof(result) === 'object') {
+                    console.log(typeof(result))
+                    localStorage.setItem('userId', result.user._id);
+                    localStorage.setItem('name', result.user.name);
+                    localStorage.setItem('email', result.user.email);
+
+                    // localStorage.setItem("token", result.token );
+
+                    navigate("/generate-model")
+                }
+            })
+            .catch((error) => {
+                console.error('خطأ:', error);
+                setUserErr("Invalid Email Or Password");
+                setTimeout(() => setUserErr(""), 3000);
+            });
+
+            
+        };
     };
   
     return (
@@ -88,14 +99,20 @@ export default function SignIn() {
                     </div>
 
                     <div className="flex min-h-full">
-                        <div className="w-full h-[80vh] md:w-[30rem] min-md-h-[90vh] bg-[#1D1B1B] px-10 rounded-2xl flex flex-col items-center justify-center">
+                        <div className="w-full md:w-[30rem] bg-[#1D1B1B]  p-10 rounded-2xl flex flex-col items-center justify-center">
                             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                                 <h2 className="text-font text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
                                     Sign In 
                                 </h2>
                             </div>
 
+                        
+
                             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-full flex flex-col items-center justify-center">
+                                <span className="text-red-600 text-sm text-center w-72 rounded-md mb-2 p-1">
+                                    {userErr}
+                                </span>
+                                
                                 <div className="space-y-6">
                                     <div className="flex flex-col justify-center items-center">
                                         <label htmlFor="email" className="block max-sm:text-lg font-medium leading-6 text-white text-left w-80">
@@ -115,7 +132,7 @@ export default function SignIn() {
                                             />
 
                                             <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
-                                            {emailErr}
+                                                {emailErr}
                                             </span>
                                         </div>
                                     </div>
