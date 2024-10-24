@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 async function connectDB() {
   try {
     mongoose.set("debug", true);

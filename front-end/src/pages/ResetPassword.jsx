@@ -1,3 +1,4 @@
+import "../App.css";
 import { Link } from "react-router-dom"
 
 export default function ResetPassword() {
@@ -30,7 +31,25 @@ export default function ResetPassword() {
                             </div>
 
                             <div className="mt-1 sm:mx-auto sm:w-full sm:max-w-full flex flex-col items-center justify-center">
-                                <form method="POST" className="space-y-6">
+                                <div className="space-y-6">
+                                    <div className="flex flex-col justify-center items-center">
+                                        <label htmlFor="email" className="block max-sm:text-lg font-medium leading-6 text-white text-left w-80">
+                                            Email address
+                                        </label>
+
+                                        <div className="mt-2 w-80">
+                                            <input
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                required
+                                                autoComplete="email"
+                                                className="pl-3 block w-80 h-12 rounded-lg border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring- sm:text-sm sm:leading-6"
+                                                placeholder="Enter Your Email"
+                                            />
+                                        </div>
+                                    </div>
+
                                     <div className="flex flex-col justify-center items-center">
                                         <div>
                                             <label htmlFor="password" className="block max-sm:text-lg font-medium leading-6 text-white text-left w-80">
@@ -79,7 +98,7 @@ export default function ResetPassword() {
                                             Reset Password
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,83 @@
-import { Link } from "react-router-dom";
+import "../App.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { z } from 'zod';
+import axios from "axios";
 
 export default function SignIn() {
+
+    const getUser = () => {
+        axios.get('/http://localhost:4000/api/users/signin')
+        .then(function (response) {
+            console.log(response.data);
+        });
+    };
+
+
+    // Variables //
+  const navigate = useNavigate();
+  //=== Variables ===//
+
+  // Use State Variables //
+  const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState("");
+
+  const [password, setPassword] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
+
+  //== Use State Variables ==//
+  
+  // Use Effect //
+  useEffect(() => {
+    // Check If User Is Logged In //
+    if (localStorage.getItem("userId") !== null) {
+      localStorage.removeItem("userId"); // LogIn
+    };
+    //== Check If User Is Logged In ==//
+
+    getUser()
+  }, []);  
+  //=== Use Effect ===//
+
+  // Sign Up Function //
+  const schema = z.object({
+    name: z
+      .string()
+      .min(4, { message: "Name should be more than 3 characters." })
+      .regex(/^[A-Za-z\u0600-\u06FF ]+$/, { message: "Name should only contain Arabic or English letters." }),
+      
+    email: z
+      .string()
+      .email({ message: "Please enter a valid email address." }),
+      
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters long." })
+      .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/, {
+        message: "Password must include uppercase, lowercase, a number, and a special character."
+      }),
+  });
+  
+    const signIn = () => {
+      const validationResult = schema.safeParse({ email, password });
+    
+      if (!validationResult.success) {
+        const firstError = validationResult.error.errors[0];
+        const { path, message } = firstError;
+
+        if (path[0] === "email") {
+          setEmailErr(message);
+          setTimeout(() => setEmailErr(""), 3000);
+        } else if (path[0] === "password") {
+          setPasswordErr(message);
+          setTimeout(() => setPasswordErr(""), 5000);
+        };
+      } else {
+        console.log("yes");
+        navigate("/home")
+      };
+    };
+  
     return (
         <>
             {/* Begin: Sign In */}
@@ -19,13 +96,15 @@ export default function SignIn() {
                             </div>
 
                             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-full flex flex-col items-center justify-center">
-                                <form method="POST" className="space-y-6">
+                                <div className="space-y-6">
                                     <div className="flex flex-col justify-center items-center">
                                         <label htmlFor="email" className="block max-sm:text-lg font-medium leading-6 text-white text-left w-80">
                                             Email address
                                         </label>
                                         <div className="mt-2 w-80">
                                             <input
+                                                onChange={(e) => {setEmail(e.target.value)}}
+                                                value={email}
                                                 id="email"
                                                 name="email"
                                                 type="email"
@@ -34,6 +113,10 @@ export default function SignIn() {
                                                 className="pl-3 block w-80 h-12 rounded-lg border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring- sm:text-sm sm:leading-6"
                                                 placeholder="Enter Your Email"
                                             />
+
+                                            <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                                            {emailErr}
+                                            </span>
                                         </div>
                                     </div>
 
@@ -46,6 +129,8 @@ export default function SignIn() {
 
                                         <div className="mt-2 w-80">
                                             <input
+                                                onChange={(e) => {setPassword(e.target.value)}}
+                                                value={password}
                                                 id="password"
                                                 name="password"
                                                 type="password"
@@ -56,6 +141,10 @@ export default function SignIn() {
                                             />
                                         </div>
 
+                                        <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                                            {passwordErr}
+                                        </span>
+
                                         <div className="text-sm mt-2 w-80">
                                             <Link to="/reset-password" className="font-medium text-white max-sm:text-xs md:text-sm">
                                                 Forgot password?
@@ -65,13 +154,14 @@ export default function SignIn() {
 
                                     <div className="flex flex-col justify-center items-center">
                                         <button
+                                            onClick={signIn}
                                             type="submit"
                                             className="flex w-80 h-12 justify-center items-center rounded-lg bg-[#EE8B48] px-3 py-1.5 max-sm:text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#EE8B30] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                                         >
                                             Sign in
                                         </button>
                                     </div>
-                                </form>
+                                </div>
 
                                 <p className="mt-5 text-center max-sm:text-xs md:text-base text-white">
                                     have{"'"}t an account?{" "}
