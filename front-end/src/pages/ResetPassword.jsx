@@ -75,7 +75,7 @@ export default function ResetPassword() {
 
                 if (result) {
                     setSuccessMsg("Password Reset Successful! Redirecting to sign in...");
-                    setTimeout(() => navigate("/signin"), 3000);
+                    setTimeout(() => navigate("/password-changed"), 3000);
                 } else {
                     setUserErr("Failed to Reset Password. Please Try Again.");
                     setTimeout(() => setUserErr(""), 3000);
@@ -96,15 +96,15 @@ export default function ResetPassword() {
     let displayUserErr = "none";
     let displayMsg = "none";
 
-    if (setEmailErr != "") {
+    if (emailErr != "") {
         displayEmErr = "block";
     };
 
-    if (setPasswordErr != "") {
+    if (passwordErr != "") {
         displayPassErr = "block";
     };
 
-    if (setConfirmPasswordErr != "") {
+    if (confirmPasswordErr != "") {
         displayConfPassErr = "block";
     };
 
@@ -117,14 +117,13 @@ export default function ResetPassword() {
     };
     //=== Display ===//
 
-
     return (
         <>
             {/* Begin: Reset Password */}
             <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
                 <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row md:gap-20">
                     <div className="flex min-h-full">
-                        <div className="w-full md:w-[30rem] bg-[#1D1B1B] p-10 rounded-2xl flex flex-col items-center justify-center gap-5">
+                        <div className="w-full h-[80vh] md:w-[30rem] bg-[#1D1B1B] min-md-h-[90vh] px-10 rounded-2xl flex flex-col items-center justify-center gap-5">
                             <div className="flex justify-start items-center w-full">
                                 <Link to="/signin">
                                     <div className="w-fit p-1 border-2 border-white rounded-xl">
@@ -239,4 +238,4 @@ export default function ResetPassword() {
             {/* End: Reset Password */}
         </>
     );
-}
+};

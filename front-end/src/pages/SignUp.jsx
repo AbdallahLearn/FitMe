@@ -95,6 +95,29 @@ export default function SignUp() {
       };
     };
 
+    // Display //
+    let displayNameErr = "none";
+    let displayEmErr = "none";
+    let displayPassErr = "none";
+    let displayConfPassErr = "none";
+
+    if (nameErr != "") {
+      displayNameErr = "block";
+    };
+
+    if (emailErr != "") {
+      displayEmErr = "block";
+    };
+
+    if (passwordErr != "") {
+      displayPassErr = "block";
+    };
+
+    if (conPasswordErr != "") {
+      displayConfPassErr = "block";
+    };
+    //=== Display ===//
+
     return (
       <>
         {/* Begin: Sign Up */}
@@ -110,7 +133,7 @@ export default function SignUp() {
             </div>
 
             <div className="flex min-h-full">
-              <div className="w-full md:w-[30rem] bg-[#1D1B1B] p-10 my-5 rounded-2xl flex flex-col items-center justify-center">
+              <div className="w-full md:w-[30rem] bg-[#1D1B1B] py-12 px-10 my-5 rounded-2xl flex flex-col items-center justify-center">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                   <h2 className="text-font text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
                     Sign Up
@@ -142,7 +165,7 @@ export default function SignUp() {
                         />
                       </div>
 
-                      <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                      <span style={{"display": displayNameErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
                         {nameErr}
                       </span>
                     </div>
@@ -169,7 +192,7 @@ export default function SignUp() {
                         />
                       </div>
 
-                      <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                      <span style={{"display": displayEmErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
                         {emailErr}
                       </span>
                     </div>
@@ -198,8 +221,7 @@ export default function SignUp() {
                         />
                       </div>
 
-                      
-                      <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                      <span style={{"display": displayPassErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
                         {passwordErr}
                       </span>
                     </div>
@@ -228,7 +250,7 @@ export default function SignUp() {
                           />
                       </div>
 
-                      <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                      <span style={{"display": displayConfPassErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
                         {conPasswordErr}
                       </span>
                     </div>

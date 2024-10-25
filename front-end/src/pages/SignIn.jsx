@@ -6,8 +6,6 @@ import axios from "axios";
 
 export default function SignIn() {
 
-
-
     // Variables //
     const navigate = useNavigate();
     //=== Variables ===//
@@ -76,7 +74,7 @@ export default function SignIn() {
 
                     // localStorage.setItem("token", result.token );
 
-                    navigate("/generate-model")
+                    navigate("/user-profile");
                 }
             })
             .catch((error) => {
@@ -89,6 +87,24 @@ export default function SignIn() {
         };
     };
   
+    // Display //
+    let displayEmErr = "none";
+    let displayPassErr = "none";
+    let displayUserErr = "none";
+
+    if (emailErr != "") {
+        displayEmErr = "block";
+    };
+
+    if (passwordErr != "") {
+        displayPassErr = "block";
+    };
+
+    if (userErr != "") {
+        displayUserErr = "block";
+    };
+    //=== Display ===//
+
     return (
         <>
             {/* Begin: Sign In */}
@@ -99,17 +115,15 @@ export default function SignIn() {
                     </div>
 
                     <div className="flex min-h-full">
-                        <div className="w-full md:w-[30rem] bg-[#1D1B1B]  p-10 rounded-2xl flex flex-col items-center justify-center">
+                        <div className="w-full h-[80vh] md:w-[30rem] bg-[#1D1B1B] min-md-h-[90vh] px-10 rounded-2xl flex flex-col items-center justify-center">
                             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                                 <h2 className="text-font text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
                                     Sign In 
                                 </h2>
                             </div>
 
-                        
-
                             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-full flex flex-col items-center justify-center">
-                                <span className="text-red-600 text-sm text-center w-72 rounded-md mb-2 p-1">
+                                <span style={{"display": displayUserErr}} className="text-red-600 text-sm text-center w-72 rounded-md mb-2 p-1">
                                     {userErr}
                                 </span>
                                 
@@ -131,7 +145,7 @@ export default function SignIn() {
                                                 placeholder="Enter Your Email"
                                             />
 
-                                            <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                                            <span style={{"display": displayEmErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
                                                 {emailErr}
                                             </span>
                                         </div>
@@ -158,7 +172,7 @@ export default function SignIn() {
                                             />
                                         </div>
 
-                                        <span className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                                        <span style={{"display": displayPassErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
                                             {passwordErr}
                                         </span>
 
