@@ -1,8 +1,14 @@
 import OpenAI from 'openai';
 
 export const suggestColors = async (req, res) => {
-    const skinTone = '#C88F71'; // Fixed skin tone color for the prompt
-    const prompt = `List 15 colors suitable for skin tone color ${skinTone} and let the colors such red,green and blue avoid skin color in JSON format. Example: { "Color 1": "#FFDAB9", "Color 2": "#6D351A", ... }`;
+    const { veinColor, skinColor, gender } = req.body;
+
+    console.log('Received veinColor:', veinColor);
+    console.log('Received skinColor:', skinColor);
+    console.log('Received gender:', gender);
+    
+    
+    const prompt = `List 15 unique clothing colors that are suitable for ${gender} with ${veinColor}-toned and ${skinColor}-toned skin. Make sure to include a wide variety of colors (like green, blue, purple, yellow, red, orange, etc.) and avoid suggesting different shades of the same color in JSON format. Example: { "Color 1": "#FFDAB9", "Color 2": "#6D351A", ... }`;
 
     try {
         const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

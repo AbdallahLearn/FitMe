@@ -26,16 +26,16 @@ function SkinColor({ onNext }) {
           <div
             key={index}
             className={`relative box rounded-lg text-center cursor-pointer`}
-            onClick={() => handleSelect(color.name.toLowerCase())}
+            onClick={() => handleSelect(color)}
           >
             <h1 className="text-lg max-sm:text-base mb-2">{color.name}</h1>
             <div
               className={`circle w-20 h-20 rounded-lg transition-all duration-300 ${
-                selectedColor === color.name.toLowerCase() ? 'border-4 border-blue-500' : ''
+                selectedColor.name === color.name ? 'border-4 border-blue-500' : ''
               }`}
               style={{
                 backgroundColor: color.code,
-                border: selectedColor === color.name.toLowerCase() 
+                border: selectedColor.name === color.name 
                   ? '4px solid #EE8B48' // Change to your preferred color
                   : '1px solid rgba(0,0,0,0.3)',
               }}
@@ -46,7 +46,7 @@ function SkinColor({ onNext }) {
       <div className="container-btn mt-10">
         <button
           className='btn border-none bg-[#EE8B48] text-white font-bold text-2xl max-sm:text-lg'
-          onClick={onNext}
+          onClick={() => onNext(selectedColor.code)}
           disabled={!selectedColor} // Disable button if no color is selected
         >
           Next
