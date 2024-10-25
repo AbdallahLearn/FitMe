@@ -65,7 +65,7 @@ export default function ResetPassword() {
             setTimeout(() => setConfirmPasswordErr(""), 3000);
         } else {
             // Send request to reset password
-            axios.post('http://localhost:4000/users/reset-password', {
+            axios.post('http://localhost:5050/users/reset-password', {
                 email: email,
                 newPassword: password,
             })

@@ -12,6 +12,13 @@ import Header from "../component/Header";
 function TestQuestion() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState("start");
+  const [userData, setUserData] = useState({
+    veinColor: null,
+    skinColor: null,
+    gender: null,
+    // height: null,
+    // width: null,
+  });
 
   // Set up the typewriter effect
   const [text] = useTypewriter({
@@ -29,22 +36,30 @@ function TestQuestion() {
   const handleGenderSelect = (gender) => {
     console.log("Selected gender:", gender); // Log selected gender
     setCurrentStep("weightAndHeight"); // Transition to the WeightAndHeight component
+    setUserData((prev) => ({ ...prev, gender: gender }));
   };
 
   const handleNextClick = () => {
     setCurrentStep("veinColor"); // Transition to the VeinColor component
   };
 
-  const handleVeinNextClick = () => {
+  const handleVeinNextClick = (color) => {
+    console.log("Selected vein color:", color);
+    setUserData((prev) => ({ ...prev, veinColor: color }));
     setCurrentStep("skinColor"); // Transition to the SkinColor component
   };
 
-  const handleSkinColorNextClick = () => {
+  const handleSkinColorNextClick = (skinColor) => {
+    console.log("Selected skin color:", skinColor);
+    setUserData((prev) => ({ ...prev, skinColor: skinColor }));
     setCurrentStep("counter"); // Transition to the Counter component
   };
 
   const handleCounterEnd = () => {
     setCurrentStep("nextComponent"); // Transition to the desired next component
+    navigate("/user-model", {
+      state: userData,
+    });
   };
 
   useEffect(() => {

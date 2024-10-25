@@ -9,14 +9,17 @@ import ManSvg2 from "../svg-component/ManSvg2";
 import ManSvg3 from "../svg-component/ManSvg3";
 import GirlSvg2 from "../svg-component/GirlSvg2";
 import GirlSvg3 from "../svg-component/GirlSvg3";
+import { useLocation } from "react-router-dom";
 
 function YourModel() {
+    const location = useLocation();
+    const { veinColor, skinColor, gender} = location.state || {};
     const [suggestions, setSuggestions] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [colorMap, setColorMap] = useState({
         '1': 'gray',
-        '2': '#C88F71',
+        '2': skinColor,
         '3': 'gray',
         '4': 'gray',
         '5': 'gray',
@@ -38,11 +41,19 @@ function YourModel() {
         setLoading(true);
         setError('');
 
-        axios.post('http://localhost:4000/api/chatgpt-suggest-colors')
+        const userData = {
+            veinColor: veinColor,
+            skinColor: skinColor,
+            gender: gender,
+          };
+
+        axios.post('http://localhost:5050/api/chatgpt-suggest-colors', userData)
             .then((response) => {
                 const colorData = response.data.suggestions; 
                 const parsedColorData = JSON.parse(colorData);
                 setSuggestions(parsedColorData);
+                console.log("userData", userData);
+                
             })
             .catch((error) => {
                 console.error('Error fetching color suggestions:', error.response ? error.response.data : error.message);
@@ -62,7 +73,7 @@ function YourModel() {
         setLoading(true);
         setError('');
 
-        axios.post('http://localhost:4000/api/chatgpt-style-advice', { weight, height, veinColor })
+        axios.post('http://localhost:5050/api/chatgpt-style-advice', { weight, height, veinColor })
             .then((response) => {
                 setStyleAdvice(response.data.advice.split('\n')); 
             })
@@ -88,6 +99,9 @@ function YourModel() {
             setSelectedPath(null); 
         }
     };
+
+    {console.log("vien and skin color=",veinColor,skinColor)
+    }
 
     return (
         <div className="flex flex-1 flex-col gap-4 sm:gap-6 overflow-y-visible bg-[#EEE6E6]">
@@ -154,13 +168,13 @@ function YourModel() {
                     </div>
 
                     <div className="flex basis-full lg:basis-1/3 flex-col border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
-                    {/* <ManSvg colorMap={colorMap} onPathClick={handlePathClick} /> */}
-                    {/* <ManSvg2 colorMap={colorMap} onPathClick={handlePathClick} /> */}
-                    {/* <ManSvg3 colorMap={colorMap} onPathClick={handlePathClick}/> */}
+                    {/* <ManSvg colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
+                    {/* <ManSvg2 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
+                    {/* <ManSvg3 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
 
-                    {/* <GirlSvg colorMap={colorMap} onPathClick={handlePathClick} /> */}
-                    <GirlSvg2 colorMap={colorMap} onPathClick={handlePathClick}/>
-                    {/* <GirlSvg3 colorMap={colorMap} onPathClick={handlePathClick}/> */}
+                    {/* <GirlSvg colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
+                    {/* <GirlSvg2 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
+                    <GirlSvg3 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/>
                     </div>
                 </div>
             </div>

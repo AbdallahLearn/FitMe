@@ -12,8 +12,7 @@ dotenv.config();
 console.log(process.env.MONGO_URI); // طباعة قيمة MONGO_URI للتحقق
 
 const app = express();
-const port = process.env.PORT || 4000;
-
+const port = process.env.PORT || 5050;
 app.use(cors());
 app.use(bodyParser.json());
 
