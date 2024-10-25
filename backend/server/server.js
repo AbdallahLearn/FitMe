@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import express from "express";
 import dotenv from 'dotenv';
+import 'dotenv/config'
 import userRoutes from '../routes/userRoutes.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -12,7 +13,7 @@ dotenv.config();
 console.log(process.env.MONGO_URI); // طباعة قيمة MONGO_URI للتحقق
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5050;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,7 +35,8 @@ connectDB();
 // }
 // main().catch(err => console.log(err));
 
-
+import chatGptStylesRouter from '../routes/api/chatgpt.js';
+app.use('/users', userRoutes);
 
 app.listen(port,()=>{
     console.log(`Server running on http://localhost:${port}`);
