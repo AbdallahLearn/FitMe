@@ -7,7 +7,7 @@ function Error() {
       <p className="text-lg text-gray-600 mb-6">
         Sorry, the page you are looking for does not exist.
       </p>
-      <a href="/home" className="text-blue-500 hover:underline text-lg">
+      <a href="/" className="text-blue-500 hover:underline text-lg">
         Go back to Home
       </a>
     </div>

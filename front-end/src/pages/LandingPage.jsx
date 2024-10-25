@@ -13,7 +13,8 @@ import "../App.css";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import ManSvg from "../svg-component/ManSvg";
+import ImageSlider from "./ImageSlider";
 function LandingPage() {
   const [text] = useTypewriter({
     words: ["it"],
@@ -55,9 +56,14 @@ function LandingPage() {
             </p>
           </div>
 
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[11rem] ">
+          {/* <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[11rem] ">
             <img src={man} />
-          </div>
+          </div> */}
+          <div>
+            <ImageSlider />
+        </div>
+
+          
           <div className="flex justify-between items-center lg:px-16 -mt-10 max-sm:mt-0">
             <div className="flex flex-col w-60 items-start gap-3 ml-12 lg:-mt-20 max-sm:w-24 max-md:w-44 max-sm:ml-3 max-sm:justify-end">
               <p className="text-left text-xl font-bold text-[#cccbcb] max-sm:text-[0.55rem]">
