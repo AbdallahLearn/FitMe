@@ -1,6 +1,5 @@
 import DeepAI from 'openai';
 
-// الدالة لتوفير نصائح الموضة
 export const provideStyleAdvice = async (req, res) => {
     const { weight, height, veinColor } = req.body;
 
@@ -18,16 +17,12 @@ export const provideStyleAdvice = async (req, res) => {
             messages: [{ role: "user", content: prompt }],
         });
 
-        // طباعة استجابة الـ API
         console.log('DeepAI API response:', completion);
         
-        // استخراج النصائح من الاستجابة
         const advice = completion.choices[0].message.content;
 
-        // إعادة النصائح في استجابة JSON
         res.json({ advice });
     } catch (error) {
         console.error('Error communicating with DeepAI API:', error);
         res.status(500).send('Error communicating with DeepAI API: ' + error.message);
     }
-};
