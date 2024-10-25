@@ -71,8 +71,8 @@ const router = createBrowserRouter(
       <Route path="/password-changed" element={<PasswordChanged />} />
       <Route path="/generate-model" element={<TestQuestion />} />
       <Route element={<CommonLayout />}>
-        <Route path="/user-model" element={<YourModel />} />
-        <Route path="/user-profile" element={<ProfileForm />} />
+      <Route path="/user-model" element={<YourModel />} />
+      <Route path="/user-profile" element={<ProfileForm />} />
       </Route>
       <Route path="*" element={<Error />} /> {/* Catch-all route for 404 */}
     </>
