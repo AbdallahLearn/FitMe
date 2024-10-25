@@ -12,7 +12,6 @@ chatGptStylesRouter.post('/chatgpt-style-advice', async (req, res) => {
     console.log(`${veinColor}`);
 
 
-
     try {
         const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",

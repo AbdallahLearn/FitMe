@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 
 function YourModel() {
     const location = useLocation();
-    const { veinColor, skinColor, gender} = location.state || {};
+    const { veinColor, skinColor, gender } = location.state || {};
     const [suggestions, setSuggestions] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -41,12 +41,11 @@ function YourModel() {
         setLoading(true);
         setError('');
 
-        axios.post('http://localhost:5050/api/chatgpt-suggest-colors')
         const userData = {
             veinColor: veinColor,
             skinColor: skinColor,
             gender: gender,
-          };
+        };
 
         axios.post('http://localhost:5050/api/chatgpt-suggest-colors', userData)
             .then((response) => {
@@ -66,11 +65,8 @@ function YourModel() {
     };
 
     const fetchStyleAdvice = () => {
-      
-        const weight = 70;
+        const weight = 70; 
         const height = 175; 
-        const veinColor = 'blue'; 
-
         setLoading(true);
         setError('');
 
@@ -101,8 +97,7 @@ function YourModel() {
         }
     };
 
-    {console.log("vien and skin color=",veinColor,skinColor)
-    }
+    console.log("vein and skin color=", veinColor, skinColor);
 
     return (
         <div className="flex flex-1 flex-col gap-4 sm:gap-6 overflow-y-visible bg-[#EEE6E6]">

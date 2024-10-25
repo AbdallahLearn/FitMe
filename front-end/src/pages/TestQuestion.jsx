@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Gender from "./Gender";
-import HeightWeight from "./HeightWeight";
+import HeightWeight from "./HeightWeight"; 
 import VeinColor from "./VeinColor";
 import SkinColor from "./SkinColor";
-import Counter from "./Counter"; // Import the Counter component
+import Counter from "./Counter"; 
 import Footer from "../component/Footer";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { useNavigate } from "react-router";
@@ -16,47 +16,53 @@ function TestQuestion() {
     veinColor: null,
     skinColor: null,
     gender: null,
-    // height: null,
-    // width: null,
+    height: null,
+    weight: null, 
   });
 
-  // Set up the typewriter effect
   const [text] = useTypewriter({
     words: ["Ready To Get Started?"],
-    loop: 0, // Change to a number for a specific number of loops or set to 0 for infinite
-    typeSpeed: 100, // Speed of typing in ms
-    deleteSpeed: 50, // Speed of deleting in ms (if looping)
-    delaySpeed: 1000, // Delay before deleting
+    loop: 0,
+    typeSpeed: 100,
+    deleteSpeed: 50,
+    delaySpeed: 1000,
   });
 
   const handleStartClick = () => {
-    setCurrentStep("gender"); // Show the Gender component
+    setCurrentStep("gender");
   };
 
   const handleGenderSelect = (gender) => {
-    console.log("Selected gender:", gender); // Log selected gender
-    setCurrentStep("weightAndHeight"); // Transition to the WeightAndHeight component
+    console.log("Selected gender:", gender);
     setUserData((prev) => ({ ...prev, gender: gender }));
+    setCurrentStep("weightAndHeight"); 
   };
 
-  const handleNextClick = () => {
-    setCurrentStep("veinColor"); // Transition to the VeinColor component
+  const handleNextClick = (height, weight) => {
+    console.log("Selected height:", height, "Selected weight:", weight);
+    setUserData((prev) => ({
+      ...prev,
+      height: height,
+      weight: weight
+    }));
+    setCurrentStep("veinColor"); 
   };
 
   const handleVeinNextClick = (color) => {
     console.log("Selected vein color:", color);
     setUserData((prev) => ({ ...prev, veinColor: color }));
-    setCurrentStep("skinColor"); // Transition to the SkinColor component
+    setCurrentStep("skinColor"); 
   };
 
   const handleSkinColorNextClick = (skinColor) => {
     console.log("Selected skin color:", skinColor);
     setUserData((prev) => ({ ...prev, skinColor: skinColor }));
-    setCurrentStep("counter"); // Transition to the Counter component
+    setCurrentStep("counter"); 
   };
 
   const handleCounterEnd = () => {
-    setCurrentStep("nextComponent"); // Transition to the desired next component
+    console.log("Navigating to /user-model with userData:", userData);
+    setCurrentStep("nextComponent"); 
     navigate("/user-model", {
       state: userData,
     });
@@ -68,12 +74,9 @@ function TestQuestion() {
 
   return (
     <>
-      {/* <div className="header fixed w-full z-10 overflow-hidden">
-    <Header profile="true" />
-    </div> */}
       <Header profile="true" />
 
-      <div className="bg-[#EEE6E6]  pt-28">
+      <div className="bg-[#EEE6E6] pt-28">
         <div
           className="card w-[70%] h-[70vh] m-auto shadow-xl"
           style={{ border: "1px solid rgba(0,0,0,0.2)" }}
@@ -82,8 +85,8 @@ function TestQuestion() {
             {currentStep === "start" ? (
               <>
                 <h2 className="card-title flex justify-center text-4xl max-sm:text-lg">
-                  {text} {/* Display the typewriter text */}
-                  <Cursor /> {/* Display the cursor */}
+                  {text}
+                  <Cursor />
                 </h2>
                 <div className="card-actions justify-end">
                   <button
@@ -97,7 +100,7 @@ function TestQuestion() {
             ) : currentStep === "gender" ? (
               <Gender onSelect={handleGenderSelect} />
             ) : currentStep === "weightAndHeight" ? (
-              <HeightWeight onNext={handleNextClick} />
+              <HeightWeight onNext={handleNextClick} /> 
             ) : currentStep === "veinColor" ? (
               <VeinColor onNext={handleVeinNextClick} />
             ) : currentStep === "skinColor" ? (

@@ -6,7 +6,8 @@ function HeightWeight({ onNext }) {
 
   const handleNext = () => {
     if (weight && height) {
-      onNext(); 
+      console.log("User input: Height:", height, "Weight:", weight); 
+      onNext(height, weight); 
     }
   };
 
