@@ -38,7 +38,7 @@ function YourModel() {
         setLoading(true);
         setError('');
 
-        axios.post('http://localhost:5000/api/chatgpt-suggest-colors')
+        axios.post('http://localhost:4000/api/chatgpt-suggest-colors')
             .then((response) => {
                 const colorData = response.data.suggestions; 
                 const parsedColorData = JSON.parse(colorData);
@@ -62,7 +62,7 @@ function YourModel() {
         setLoading(true);
         setError('');
 
-        axios.post('http://localhost:5000/api/chatgpt-style-advice', { weight, height, veinColor })
+        axios.post('http://localhost:4000/api/chatgpt-style-advice', { weight, height, veinColor })
             .then((response) => {
                 setStyleAdvice(response.data.advice.split('\n')); 
             })
