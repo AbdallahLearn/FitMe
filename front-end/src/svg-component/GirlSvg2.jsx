@@ -1,6 +1,6 @@
 import React from "react";
 
-function GirlSvg2({ colorMap, onPathClick }) {
+function GirlSvg2({ colorMap, onPathClick, skinColor }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

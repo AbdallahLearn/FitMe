@@ -56,7 +56,7 @@ function VeinColor({ onNext }) {
       
       <div className="container-btn mt-10 max-sm:mt-0">
         <button 
-          onClick={onNext} 
+          onClick={()=>onNext(selected)}
           className='btn border-none bg-[#EE8B48] text-white font-bold text-2xl max-sm:text-lg' 
           disabled={!selected} // Disable if nothing is selected
         >
