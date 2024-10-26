@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from 'dotenv';
 import 'dotenv/config'
 import userRoutes from '../routes/userRoutes.js';
+import userModelRoutes from '../routes/userModelRoutes.js'
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import connectDB from "./config/db.js"; 
@@ -37,6 +38,7 @@ connectDB();
 
 import chatGptStylesRouter from '../routes/api/chatgpt.js';
 app.use('/users', userRoutes);
+app.use('/models', userModelRoutes);
 
 app.listen(port,()=>{
     console.log(`Server running on http://localhost:${port}`);
