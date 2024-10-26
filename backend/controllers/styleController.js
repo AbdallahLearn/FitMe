@@ -1,14 +1,15 @@
 import DeepAI from 'openai';
 
 export const provideStyleAdvice = async (req, res) => {
-    const { weight, height, veinColor } = req.body;
+    const { weight, height} = req.body;
+console.log(`your weight is // ${weight}`);
+console.log(`your height is // ${height}`);
+
 
     const prompt = `Provide fashion advice for a person with the following characteristics: 
     - Weight: ${weight} kg
-    - Height: ${height} cm
-    - Vein Color: ${veinColor} 
-    Based on a person with weight ${weight}, height ${height}, and vein color ${veinColor}, suggest appropriate dress styles that would be flattering. Provide specific recommendations for dress cuts, lengths All in text format, do not use markdown.` }
-
+    - Height: ${height} cm 
+    List 3 brief tips Based on a person with weight ${weight}, height ${height} suggest appropriate dress styles and colors that would be flattering. Provide specific recommendations for dress cuts, lengths, and color palettes. All in text format, do not use markdown.`
     try {
         const openai = new DeepAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -22,7 +23,9 @@ export const provideStyleAdvice = async (req, res) => {
         const advice = completion.choices[0].message.content;
 
         res.json({ advice });
-    } catch (error) {
+    } 
+    catch (error) {
         console.error('Error communicating with DeepAI API:', error);
         res.status(500).send('Error communicating with DeepAI API: ' + error.message);
     }
+}
