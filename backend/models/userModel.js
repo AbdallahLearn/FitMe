@@ -25,9 +25,15 @@ const modelSchema = new mongoose.Schema({
         required: true,
     },
     skinColor: {
-        type: String,
-        required: true,
-    },
+        name: {
+          type: String,
+          required: true,
+        },
+        code: {
+          type: String,
+          required: true,
+        },
+      },
     generatedModel: {
         type: String, // You might store the SVG string or a reference to the generated model
     },

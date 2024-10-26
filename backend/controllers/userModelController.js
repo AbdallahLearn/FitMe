@@ -4,13 +4,19 @@ import User from '../models/User.js';
 // Function to create a new model for a user
 export const createModel = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id); 
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-    const { gender, veinsColor, weight, height, skinColor } = req.body;
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-    if ( !gender || !veinsColor || !weight || !height || !skinColor) {
+    // Check if the model already exists for this user
+    const existingModel = await Model.findOne({ userId: user._id });
+    if (existingModel) {
+      return res.status(400).json({ message: 'User already has a model.' });
+    }
+
+    const { gender, veinsColor, weight, height, skinColor } = req.body;
+    if (!gender || !veinsColor || !weight || !height || !skinColor) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
