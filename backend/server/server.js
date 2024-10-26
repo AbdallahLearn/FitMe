@@ -12,7 +12,7 @@ import styleRoutes from '../routes/styleRoutes.js';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 4000;
 app.use(cors());
 app.use(bodyParser.json());
 
