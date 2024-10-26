@@ -95,18 +95,16 @@ export const signInUser = async (req, res) => {
 };
 //=== Sign In ===//
 
-// Reset Password //
+// Reset Password By Email //
 export const resetPassword = async (req, res) => {
-  const { email, newPassword } = req.body; // إضافة newPassword بدلاً من التحقق من كلمة المرور القديمة
+  const { email, newPassword } = req.body;
 
   try {
-    // التحقق من وجود المستخدم بالبريد الإلكتروني
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: 'User Not Found' });
     }
 
-    // التحقق من صحة كلمة المرور الجديدة باستخدام zod
     const passwordSchema = z.string()
       .min(8, { message: "Password must be at least 8 characters long." })
       .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/, {
@@ -119,18 +117,137 @@ export const resetPassword = async (req, res) => {
       return res.status(400).json({ message: firstError.message });
     }
 
-    // تشفير كلمة المرور الجديدة
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // تحديث كلمة المرور في قاعدة البيانات
     user.password = hashedPassword;
     await user.save();
 
-    // إرسال استجابة بنجاح العملية
     res.status(200).json({ message: 'Password updated successfully' });
   } catch (error) {
     console.error('Error during password reset:', error);
     res.status(500).json({ message: 'Server Error' });
   }
 };
-//=== Reset Password ===//
+//=== Reset Password By Email ===//
+
+// Reset Password By Id //
+export const updatePassword = async (req, res) => {
+  const { id }          = req.params;
+  const { newPassword } = req.body;
+
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User Not Found' });
+    }
+
+    const passwordSchema = z.string()
+      .min(8, { message: "Password must be at least 8 characters long." })
+      .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/, {
+        message: "Password must include uppercase, lowercase, a number, and a special character."
+      });
+
+    const passwordValidation = passwordSchema.safeParse(newPassword);
+    if (!passwordValidation.success) {
+      const firstError = passwordValidation.error.errors[0];
+      return res.status(400).json({ message: firstError.message });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ message: 'Password updated successfully' });
+  } catch (error) {
+    console.error('Error during password update:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+//=== Reset Password By Id ===//
+
+// Reset Name //
+export const updateName = async (req, res) => {
+  const { id }      = req.params;
+  const { newName } = req.body;
+
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User Not Found' });
+    }
+
+    const nameSchema = z.string()
+      .min(4, { message: "Name should be more than 3 characters." })
+      .regex(/^[A-Za-z\u0600-\u06FF ]+$/, {
+        message: "Name should only contain Arabic or English letters."
+      });
+
+    const nameValidation = nameSchema.safeParse(newName);
+    if (!nameValidation.success) {
+      const firstError = nameValidation.error.errors[0];
+      return res.status(400).json({ message: firstError.message });
+    }
+
+    user.name = newName;
+    await user.save();
+
+    res.status(200).json({ message: 'Name Updated Successfully' });
+  } catch (error) {
+    console.error('Error During Name Update:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+//=== Reset Name ===//
+
+// Reset Email //
+export const updateEmail = async (req, res) => {
+  const { id }        = req.params;
+  const { newEmail }  = req.body;
+
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User Not Found' });
+    }
+
+    const emailSchema = z.string()
+      .email({ message: "Please Enter a Valid Email Address." });
+
+    const emailValidation = emailSchema.safeParse(newEmail);
+    if (!emailValidation.success) {
+      const firstError = emailValidation.error.errors[0];
+      return res.status(400).json({ message: firstError.message });
+    }
+
+    user.email = newEmail;
+    await user.save();
+
+    res.status(200).json({ message: 'Email Updated Successfully' });
+  } catch (error) {
+    console.error('Error during email update:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+//=== Reset Email ===//
+
+// Delete User //
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // حذف المستخدم بواسطة id
+    const user = await User.findByIdAndDelete(id);
+
+    // التحقق من وجود المستخدم
+    if (!user) {
+      return res.status(404).json({ message: 'User Not Found' });
+    }
+
+    res.status(200).json({ message: 'User Deleted Successfully' });
+  } catch (error) {
+    console.error('Error During User Deletion:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+//=== Delete User ===//

@@ -12,7 +12,6 @@ import styleRoutes from '../routes/styleRoutes.js';
 
 dotenv.config();
 
-console.log(process.env.MONGO_URI); // طباعة قيمة MONGO_URI للتحقق
 
 
 const app = express();
@@ -37,4 +36,4 @@ connectDB();
 
 app.listen(port,()=>{
     console.log(`Server running on http://localhost:${port}`);
-})
+});
