@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
-
+import Model from '../models/userModel.js';
 // Sign Up //
 const schema = z.object({
   name: z.string() // إضافة z قبل .string()
@@ -229,20 +229,28 @@ export const updateEmail = async (req, res) => {
 // Delete User //
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
+  
+  // Check if the authenticated user is deleting their own account
+  if (req.user.id !== id) {
+      return res.status(403).json({ message: 'Unauthorized to delete this account' });
+  }
 
   try {
-    // حذف المستخدم بواسطة id
-    const user = await User.findByIdAndDelete(id);
+      // Attempt to delete the user by ID
+      const user = await User.findByIdAndDelete(id);
 
-    // التحقق من وجود المستخدم
-    if (!user) {
-      return res.status(404).json({ message: 'User Not Found' });
-    }
+      // Check if the user was found
+      if (!user) {
+          return res.status(404).json({ message: 'User Not Found' });
+      }
 
-    res.status(200).json({ message: 'User Deleted Successfully' });
+      // Delete the associated model
+      await Model.deleteOne({ userId: id }); // Use deleteMany to remove all associated models
+
+      res.status(200).json({ message: 'User Deleted Successfully' });
   } catch (error) {
-    console.error('Error During User Deletion:', error);
-    res.status(500).json({ message: 'Server Error' });
+      console.error('Error During User Deletion:', error);
+      res.status(500).json({ message: 'Server Error' });
   }
 };
 //=== Delete User ===//
