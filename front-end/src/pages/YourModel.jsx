@@ -182,8 +182,6 @@ function YourModel() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }
