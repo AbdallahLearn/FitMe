@@ -10,6 +10,8 @@ import colorRoutes from '../routes/colorRoutes.js';
 import styleRoutes from '../routes/styleRoutes.js';
 
 dotenv.config();
+console.log(process.env.MONGO_URI); // طباعة قيمة MONGO_URI للتحقق
+
 
 const app = express();
 const port = process.env.PORT || 4000;
