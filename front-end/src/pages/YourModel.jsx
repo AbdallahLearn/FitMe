@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 
 function YourModel() {
     const location = useLocation();
-    const { veinColor, skinColor, gender } = location.state || {};
+    const { veinColor, skinColor, gender ,height, weight} = location.state || {};
     const [suggestions, setSuggestions] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -65,12 +65,16 @@ function YourModel() {
     };
 
     const fetchStyleAdvice = () => {
-        const weight = 70; 
-        const height = 175; 
-        setLoading(true);
-        setError('');
 
-        axios.post('http://localhost:5050/api/chatgpt-style-advice', { weight, height, veinColor })
+        setLoading(true);
+       
+        setError('');
+        const userData = {
+            weight : weight,
+            height:height
+        };
+
+        axios.post('http://localhost:5050/api/chatgpt-style-advice',  userData)
             .then((response) => {
                 setStyleAdvice(response.data.advice.split('\n')); 
             })
