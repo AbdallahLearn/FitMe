@@ -123,9 +123,6 @@ export const resetPassword = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-<<<<<<< HEAD
-//=== Reset Password ===//
-=======
 //=== Reset Password By Email ===//
 
 // Reset Password By Id //
@@ -249,4 +246,3 @@ export const deleteUser = async (req, res) => {
   }
 };
 //=== Delete User ===//
->>>>>>> faraj
