@@ -16,7 +16,7 @@ const modelSchema = new mongoose.Schema({
         enum: ['warm', 'cool','neutral'],
         required: true,
     },
-    width: {
+    weight: {
         type: Number,
         required: true,
     },
