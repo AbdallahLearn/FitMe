@@ -40,7 +40,7 @@ function ProfileForm() {
 
   // Get User //
   const getUser = () => {
-    axios.get(`http://localhost:4000/users/user/${id}`)
+    axios.get(`http://localhost:5050/users/user/${id}`)
   .then((response) => {
     setUserDetails(response.data);
   })
@@ -104,7 +104,7 @@ function ProfileForm() {
         setTimeout(() => setNameErr(""), 3000);
       }
     } else {
-      axios.put(`http://localhost:4000/users/update-name/${id}`, {
+      axios.put(`http://localhost:5050/users/update-name/${id}`, {
         newName: name,
       })
       .then((response) => {
@@ -113,7 +113,10 @@ function ProfileForm() {
 
         if (result) {
           setNameCheck("Your Name Changed");
-          setTimeout(() => setNameCheck(""), 3000);
+          getUser()
+          setTimeout(() => {setNameCheck("")
+            setDisplayName("none")
+          }, 1000);
         } else {
           setNameErr("Your Name Not Changed");
           setTimeout(() => setNameErr(""), 3000);
@@ -160,7 +163,7 @@ function ProfileForm() {
         setTimeout(() => setEmailErr(""), 3000);
       }
     } else {
-      axios.put(`http://localhost:4000/users/update-email/${id}`, {
+      axios.put(`http://localhost:5050/users/update-email/${id}`, {
         newEmail: email,
       })
       .then((response) => {
@@ -169,8 +172,11 @@ function ProfileForm() {
 
         if (result) {
           setEmailCheck("Your Email Changed");
+          getUser()
           setTimeout(() => {
-            setEmailCheck("")}, 3000);
+            setEmailCheck("")
+            setDisplayEmail('none')
+          }, 1000);
         } else {
           setEmailErr("Your Email Not Changed");
           setTimeout(() => setEmailErr(""), 3000);
@@ -220,7 +226,7 @@ function ProfileForm() {
         setTimeout(() => setPasswordErr(""), 3000);
       }
     } else {
-      axios.put(`http://localhost:4000/users/update-password/${id}`, {
+      axios.put(`http://localhost:5050/users/update-password/${id}`, {
         newPassword: password,
       })
       .then((response) => {
@@ -230,7 +236,9 @@ function ProfileForm() {
         if (result) {
           setPasswordCheck("Your Password Changed");
           setTimeout(() => {
-            setPasswordCheck("")}, 3000);
+            setPasswordCheck("")
+            setDisplayPass('none')
+          }, 1000);
         } else {
           setPasswordErr("Your Password Not Changed");
           setTimeout(() => setPasswordErr(""), 3000);
@@ -259,7 +267,7 @@ function ProfileForm() {
   };
 
   const updateDeleteTrue = () => {
-    axios.delete(`http://localhost:4000/users/delete-user/${id}`)
+    axios.delete(`http://localhost:5050/users/delete-user/${id}`)
       .then((response) => {
         const result = response.data;
         console.log('Response From Server:', result);

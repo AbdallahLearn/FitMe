@@ -170,11 +170,11 @@ function YourModel() {
                     <div className="flex basis-full lg:basis-1/3 flex-col border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
                     {/* <ManSvg colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
                     {/* <ManSvg2 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
-                    {/* <ManSvg3 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
+                    <ManSvg3 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/>
 
                     {/* <GirlSvg colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
                     {/* <GirlSvg2 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
-                    <GirlSvg3 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/>
+                    {/* <GirlSvg3 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor}/> */}
                     </div>
                 </div>
             </div>
