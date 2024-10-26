@@ -51,7 +51,7 @@ function Header({ blackHeader, profile }) {
             {profile ? (
               <>
                 <li className="hover:cursor-pointer">
-                  <Link to="/profileform">Abdullah's Profile</Link>
+                  <Link to="/user-profile">Abdullah's Profile</Link>
                 </li>
                 <li className="hover:cursor-pointer">
                   <Link to="/signin" className="text-red-700">
