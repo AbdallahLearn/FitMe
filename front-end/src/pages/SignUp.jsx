@@ -32,30 +32,29 @@ export default function SignUp() {
     //== Check If User Is Logged In ==//
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);  
-
   //=== Use Effect ===//
 
   // Sign Up Function //
   const schema = z.object({
     name: z
       .string()
-      .min(4, { message: "Name should be more than 3 characters." })
+      .min(4, { message: "Name Should Be More Than 3 Characters." })
       .regex(/^[A-Za-z\u0600-\u06FF ]+$/, { message: "Name should only contain Arabic or English letters." }),
       
     email: z
       .string()
-      .email({ message: "Please enter a valid email address." }),
+      .email({ message: "Please Enter a Valid Email Address." }),
       
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters long." })
+      .min(8, { message: "Password Must Be at Least 8 Characters Long." })
       .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/, {
         message: "Password must include uppercase, lowercase, a number, and a special character."
       }),
   
     conPassword: z.string(),
     }).refine(data => data.password === data.conPassword, {
-      message: "Passwords do not match.",
+      message: "Passwords Do Not Match.",
       path: ["conPassword"],
     });
   
@@ -85,8 +84,7 @@ export default function SignUp() {
           email: email,
           password: password,
         })
-        .then((response) => {
-            localStorage.setItem('userId', response.data.id);
+        .then(() => {
             navigate('/signin');
         })
         .catch((error) => {

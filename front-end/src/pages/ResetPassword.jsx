@@ -15,14 +15,14 @@ export default function ResetPassword() {
     const [userErr, setUserErr] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
 
-        // Use Effect //
-        useEffect(() => {
-            // Check If User Is Logged In //
-            if (localStorage.getItem("userId") !== null) {
-                navigate("/");
-            };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);  
+    // Use Effect //
+    useEffect(() => {
+        // Check If User Is Logged In //
+        if (localStorage.getItem("userId") !== null) {
+            navigate("/");
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);  
 
     const navigate = useNavigate();
 
@@ -136,6 +136,7 @@ export default function ResetPassword() {
                                 <h2 className="text-font text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white -mt-10">
                                     Reset Password 
                                 </h2>
+
                                 <div className="w-full flex justify-center items-center">
                                     <p className="text-white max-sm:text- text-center w-72">
                                         Please type something you’ll remember

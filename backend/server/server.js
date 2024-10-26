@@ -10,7 +10,11 @@ import colorRoutes from '../routes/colorRoutes.js';
 import styleRoutes from '../routes/styleRoutes.js';
 
 dotenv.config();
+<<<<<<< HEAD
 console.log(process.env.MONGO_URI); // طباعة قيمة MONGO_URI للتحقق
+=======
+
+>>>>>>> faraj
 
 const app = express();
 const port = process.env.PORT || 5050;
@@ -39,4 +43,4 @@ app.use('/users', userRoutes);
 
 app.listen(port,()=>{
     console.log(`Server running on http://localhost:${port}`);
-})
+});
