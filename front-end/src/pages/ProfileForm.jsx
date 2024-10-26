@@ -7,12 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { z } from 'zod';
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function ProfileForm() {
   // Variables //
   const id        = localStorage.getItem("userId");
-  const theName   = localStorage.getItem("name");
-  const theEmail  = localStorage.getItem("email");
   const navigate  = useNavigate();
   //=== Variables ===//
 
@@ -32,14 +31,23 @@ function ProfileForm() {
   const [passwordErr, setPasswordErr]         = useState("");
   const [passwordCheck, setPasswordCheck]     = useState("");
   const [displayPass, setDisplayPass]         = useState("none");
-  // const [currentPassword, setCurrentPassword] = useState("");
 
-  const [displayDel, setDisplayDel]           = useState("none");
-  const [DeleteErr, setDeleteErr]             = useState("");
-
-
+  const [userDetails, setUserDetails]         = useState([]);
 
   //== Use State Variables ==//
+
+  // Get User //
+  const getUser = () => {
+    axios.get(`http://localhost:5050/users/user/${id}`)
+  .then((response) => {
+    setUserDetails(response.data);
+  })
+  .catch((error) => {
+    console.error('Error Fetching User Data:', error.response ? error.response.data : error.message);
+  });
+
+  };
+  //=== Get User ===//
 
   // Use Effect //
   useEffect(() => {
@@ -47,10 +55,15 @@ function ProfileForm() {
     if (localStorage.getItem("userId") === null) {
         navigate("/");
     };
+    //=== Check If User Is Logged In ===//
+
+    // Get User Function //
+    getUser();
+    //=== Get User Function ===//
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //=== Use Effect ===//
-
   // Name //
   const showUpName = () => {
     if (displayName == "none") {
@@ -88,7 +101,7 @@ function ProfileForm() {
         setTimeout(() => setNameErr(""), 3000);
       }
     } else {
-      axios.put(`http://localhost:4000/users/update-name/${id}`, {
+      axios.put(`http://localhost:5050/users/update-name/${id}`, {
         newName: name,
       })
       .then((response) => {
@@ -97,7 +110,10 @@ function ProfileForm() {
 
         if (result) {
           setNameCheck("Your Name Changed");
-          setTimeout(() => setNameCheck(""), 3000);
+          getUser()
+          setTimeout(() => {setNameCheck("")
+            setDisplayName("none")
+          }, 1000);
         } else {
           setNameErr("Your Name Not Changed");
           setTimeout(() => setNameErr(""), 3000);
@@ -144,7 +160,7 @@ function ProfileForm() {
         setTimeout(() => setEmailErr(""), 3000);
       }
     } else {
-      axios.put(`http://localhost:4000/users/update-email/${id}`, {
+      axios.put(`http://localhost:5050/users/update-email/${id}`, {
         newEmail: email,
       })
       .then((response) => {
@@ -153,8 +169,11 @@ function ProfileForm() {
 
         if (result) {
           setEmailCheck("Your Email Changed");
+          getUser()
           setTimeout(() => {
-            setEmailCheck("")}, 3000);
+            setEmailCheck("")
+            setDisplayEmail('none')
+          }, 1000);
         } else {
           setEmailErr("Your Email Not Changed");
           setTimeout(() => setEmailErr(""), 3000);
@@ -204,7 +223,7 @@ function ProfileForm() {
         setTimeout(() => setPasswordErr(""), 3000);
       }
     } else {
-      axios.put(`http://localhost:4000/users/update-password/${id}`, {
+      axios.put(`http://localhost:5050/users/update-password/${id}`, {
         newPassword: password,
       })
       .then((response) => {
@@ -214,7 +233,9 @@ function ProfileForm() {
         if (result) {
           setPasswordCheck("Your Password Changed");
           setTimeout(() => {
-            setPasswordCheck("")}, 3000);
+            setPasswordCheck("")
+            setDisplayPass('none')
+          }, 1000);
         } else {
           setPasswordErr("Your Password Not Changed");
           setTimeout(() => setPasswordErr(""), 3000);
@@ -230,43 +251,39 @@ function ProfileForm() {
   //=== Password ===//
 
   // Delete Account //
-  const deleteAccount = () => {
-    if (displayDel == "none") {
-      setDisplayDel("block");
-    } else {
-      setDisplayDel("none");
-    };
-  };
+  const handleDeleteAccount = () => {
+    if (!id) {
+      console.error("User ID is Missing");
+      Swal.fire("Error!", "User ID is Missing.", "error");
+      return;
+    }
 
-  const updateDeletefalse = () => {
-    setDisplayDel("none");
-  };
-
-  const updateDeleteTrue = () => {
-    axios.delete(`http://localhost:4000/users/delete-user/${id}`)
-      .then((response) => {
-        const result = response.data;
-        console.log('Response From Server:', result);
-  
-        if (result) {
-          console.log("Account Deleted Successfully");
-          setDeleteErr("Account Deleted Successfully");
-
-          setTimeout(() => {
-            localStorage.removeItem("userId")
-
-            navigate("/");
-          }, 3000);
-        } else {
-          setDeleteErr("Account Deletion Failed.");
-          setTimeout(() => setDeleteErr(""), 3000);
-        }
-      })
-      .catch((error) => {
-        console.error('Error During Account Deletion:', error.response ? error.response.data : error.message);
-        setDeleteErr("An Error Occurred. Please Try Again.");
-        setTimeout(() => setDeleteErr(""), 3000);
-      });
+    Swal.fire({
+      title: "Are You Sure ?",
+      text: "You Won't Be Able to Revert This!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#BE0000",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete It!",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:5050/users/delete-user/${id}`)
+          .then((response) => {
+            console.log(response); 
+            Swal.fire("Deleted!", "Your Account Has Been Deleted.", "success").then(() => {
+              localStorage.removeItem("userId"); 
+              navigate("/");
+            });
+          })
+          .catch((error) => {
+            Swal.fire("Error!", "There Was a Problem Deleting Your Account.", "Error");
+            console.error("Delete Account Error:", error);
+          });
+      }
+    });
   };
   //=== Delete Account ===//
   
@@ -277,7 +294,6 @@ function ProfileForm() {
   let displayNameCheck  = "none";
   let displayEmailCheck = "none";
   let displayPassCheck  = "none";
-  let displayDeleteErr  = "none";
 
   if (nameErr != "") {
     displayNameErr = "block";
@@ -302,10 +318,6 @@ function ProfileForm() {
   if (passwordCheck != "") {
     displayPassCheck = "block";
   };
-
-  if (DeleteErr != "") {
-    displayDeleteErr = "block";
-  };
   //=== Display ===//
 
   return (
@@ -321,7 +333,7 @@ function ProfileForm() {
             <input
               type="text"
               id="name"
-              placeholder={theName}
+              placeholder={userDetails.name}
               className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
               disabled
             />
@@ -367,7 +379,7 @@ function ProfileForm() {
             <input
               type="email"
               id="email"
-              placeholder={theEmail}
+              placeholder={userDetails.email}
               className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
               disabled
             />
@@ -519,31 +531,11 @@ function ProfileForm() {
         </div>
 
         <button
-          onClick={deleteAccount}
+          onClick={handleDeleteAccount}
           className="bg-[#BE0000] text-white font-extrabold rounded-xl p-4 px-12 w-fit mx-auto"
         >
           Delete Account
         </button>
-        
-        <div style={{"display": displayDel}}>
-          <div>
-            <h2 className="text-red-700 text-xl text-center mb-3 font-bold">Are You Sure, We Don{"'"}t Want To Lose You?</h2>
-          </div>
-
-          <span style={{"display": displayDeleteErr}} className="text-green-600 text-sm text-center w-full rounded-md mt-1 p-1">
-            {DeleteErr}
-          </span>
-
-          <div className="flex flex-row justify-center items-center">
-            <button onClick={updateDeletefalse} className="w-full border-2 font-bold rounded-xl p-4 flex justify-center items-center bg-red-400 hover:bg-red-500">
-              <i className="fa-solid fa-x text-lg fa-fw"></i>
-            </button>
-
-            <button onClick={updateDeleteTrue} className="w-full border-2 font-bold rounded-xl p-4 flex justify-center items-center bg-green-400 hover:bg-green-500">
-              <i className="fa-solid fa-check text-lg fa-fw"></i>
-            </button>
-          </div>
-        </div>
       </div>
     </>
   );
