@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import "../App.css";
 import ManSvg from "../svg-component/ManSvg";
-import axios from "axios";
-import GirlSvg from "../svg-component/GirlSvg";
 import ManSvg2 from "../svg-component/ManSvg2";
 import ManSvg3 from "../svg-component/ManSvg3";
+import GirlSvg from "../svg-component/GirlSvg";
 import GirlSvg2 from "../svg-component/GirlSvg2";
 import GirlSvg3 from "../svg-component/GirlSvg3";
-import { useLocation } from "react-router-dom";
 
 function YourModel() {
   const location = useLocation();
@@ -17,9 +17,10 @@ function YourModel() {
   const [suggestions, setSuggestions] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [modelExists, setModelExists] = useState(false);
   const [colorMap, setColorMap] = useState({
     1: "gray",
-    2: skinColor,
+    2: skinColor.code,
     3: "gray",
     4: "gray",
     5: "gray",
@@ -31,6 +32,60 @@ function YourModel() {
   });
   const [selectedPath, setSelectedPath] = useState(null);
   const [styleAdvice, setStyleAdvice] = useState([]);
+  const userId = localStorage.getItem("userId");
+
+  // Function to check if user model exists
+  const checkModelExists = () => {
+    axios
+      .get(`http://localhost:5050/models/userModel/${userId}`)
+      .then((response) => {
+        setModelExists(response.data.exists);
+      })
+      .catch((error) => console.error("Error checking model existence:", error));
+  };
+
+  // Function to post user model data if model doesn't exist
+  const fetchingData = () => {
+    if (modelExists) return;
+
+    axios
+      .post(
+        "http://localhost:5050/models/userModel",
+        {
+          userId: userId,
+          gender: gender,
+          veinsColor: veinColor,
+          weight: weight,
+          height: height,
+          skinColor: skinColor,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Data created:", response.data);
+        setModelExists(true);
+      })
+      .catch((error) => {
+        console.error("Error creating data:", error);
+      });
+  };
+
+  useEffect(() => {
+    if (userId) {
+      checkModelExists();
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (!modelExists) {
+      fetchingData();
+    }
+  }, [modelExists]);
 
   useEffect(() => {
     fetchColorSuggestions();
@@ -107,8 +162,6 @@ function YourModel() {
     }
   };
 
-  console.log("vein and skin color=", veinColor, skinColor);
-
   const handleCalculateBMI = () => {
     const BMI = weight / (height / 100) ** 2;
     return BMI;
@@ -126,25 +179,24 @@ function YourModel() {
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
           <div className="flex basis-full lg:basis-2/3 flex-col gap-6 sm:gap-8">
             <div className="gap-4 flex flex-col border-gray-400 rounded-xl border p-4 sm:p-6 md:p-8 shadow-lg shadow-gray-300">
-              {[
-                "Click on clothing to change color",
-                "Choose your color",
-              ].map((step, i, arr) => (
-                <div key={i} className="flex flex-row items-center gap-4">
-                  <span
-                    className="text-[#EE8B48] h-8 w-8 sm:h-10 sm:w-10 font-bold rounded-full border-2 border-[#EE8B48] text-lg sm:text-xl place-items-center grid bg-[#EEE6E6] relative"
-                    style={{ zIndex: arr.length - i }}
-                  >
-                    {i !== 0 && (
-                      <span className="w-[1px] h-6 sm:h-8 bg-[#EE8B48] absolute translate-y-[-100%] top-0 right-1/2 translate-x-1/2"></span>
-                    )}
-                    {(i + 1).toString().padStart(2, "0")}
-                  </span>
-                  <span className="text-base sm:text-lg font-bold">
-                    {step}
-                  </span>
-                </div>
-              ))}
+              {["Click on clothing to change color", "Choose your color"].map(
+                (step, i, arr) => (
+                  <div key={i} className="flex flex-row items-center gap-4">
+                    <span
+                      className="text-[#EE8B48] h-8 w-8 sm:h-10 sm:w-10 font-bold rounded-full border-2 border-[#EE8B48] text-lg sm:text-xl place-items-center grid bg-[#EEE6E6] relative"
+                      style={{ zIndex: arr.length - i }}
+                    >
+                      {i !== 0 && (
+                        <span className="w-[1px] h-6 sm:h-8 bg-[#EE8B48] absolute translate-y-[-100%] top-0 right-1/2 translate-x-1/2"></span>
+                      )}
+                      {(i + 1).toString().padStart(2, "0")}
+                    </span>
+                    <span className="text-base sm:text-lg font-bold">
+                      {step}
+                    </span>
+                  </div>
+                )
+              )}
             </div>
 
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 border-gray-400 rounded-xl border p-4 shadow-lg shadow-gray-300 gap-4 items-center justify-center">
@@ -155,11 +207,11 @@ function YourModel() {
                 .map(([key, color]) => (
                   <div className="flex justify-center items-center" key={key}>
                     <span
-                      className="rounded-full w-10 h-10 border-2 border-black cursor-pointer" // تعديل الحجم هنا
+                      className="rounded-full w-10 h-10 border-2 border-black cursor-pointer"
                       style={{
                         backgroundColor: color,
                       }}
-                      onClick={() => handleColorChange(color)} // Handle color selection
+                      onClick={() => handleColorChange(color)}
                     />
                   </div>
                 ))}
@@ -190,23 +242,29 @@ function YourModel() {
                 <ManSvg3
                   colorMap={colorMap}
                   onPathClick={handlePathClick}
-                  skinColor={skinColor}
+                  skinColor={skinColor.code}
                 />
               ) : BMIValue >= 18.5 && BMIValue < 24.9 ? (
+                <>
                 <ManSvg
                   colorMap={colorMap}
                   onPathClick={handlePathClick}
-                  skinColor={skinColor}
+                  skinColor={skinColor.code}
                 />
+               {console.log(skinColor.code)}
+               </>
+                
+               
               ) : (
                 <ManSvg2
                   colorMap={colorMap}
                   onPathClick={handlePathClick}
-                  skinColor={skinColor}
+                  skinColor={skinColor.code}
                 />
               )
+              
             ) : BMIValue < 18.5 ? (
-              <GirlSvg2
+              <GirlSvg3
                 colorMap={colorMap}
                 onPathClick={handlePathClick}
                 skinColor={skinColor}
@@ -218,7 +276,7 @@ function YourModel() {
                 skinColor={skinColor}
               />
             ) : (
-              <GirlSvg3
+              <GirlSvg2
                 colorMap={colorMap}
                 onPathClick={handlePathClick}
                 skinColor={skinColor}
@@ -227,6 +285,7 @@ function YourModel() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

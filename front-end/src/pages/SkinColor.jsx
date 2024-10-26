@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 
 function SkinColor({ onNext }) {
-  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedColor, setSelectedColor] = useState({});
+
+
 
   const handleSelect = (color) => {
     setSelectedColor(color);
   };
+
 
   const colors = [
     { name: 'Fair', code: '#F4E0D9' },
@@ -46,7 +49,7 @@ function SkinColor({ onNext }) {
       <div className="container-btn mt-4 sm:mt-6 w-full flex justify-center">
         <button
           className='btn border-none bg-[#EE8B48] text-white font-bold text-lg sm:text-2xl px-6 py-3 max-sm:px-4 max-sm:py-2'
-          onClick={() => onNext(selectedColor.code)}
+          onClick={() => onNext(selectedColor)}
           disabled={!selectedColor}
         >
           Next

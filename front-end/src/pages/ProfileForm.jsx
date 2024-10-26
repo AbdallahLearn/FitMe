@@ -47,7 +47,21 @@ function ProfileForm() {
   });
 
   };
+
   //=== Get User ===//
+  const [userDataInfo, setUserDataInfo] = useState([])
+  const getPersonalData = () => {
+    axios
+      .get(`http://localhost:5050/models/userModel/${id}`)
+      .then((response) => {
+        console.log("editing by Abdullah Jhn: ",response.data)
+        setUserDataInfo(response.data);
+
+       
+      })
+      .catch((error) => console.error("Error checking model existence:", error));
+  };
+
 
   // Use Effect //
   useEffect(() => {
@@ -59,6 +73,8 @@ function ProfileForm() {
 
     // Get User Function //
     getUser();
+    getPersonalData();
+    
     //=== Get User Function ===//
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -469,37 +485,42 @@ function ProfileForm() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
           </div>
         </div>
-
+     
         <div className="border-[3px] rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
           <h1 className="text-4xl">Personal Information:</h1>
           <hr />
 
-          <div className="flex flex-row gap-4">
-            <img src={avatar} className="h-12 w-12 rounded-full" alt="Avatar" />
-            <div className="flex flex-col gap-1">
-              <span>Gender</span>
-              <span className="text-gray-400">Male</span>
+          <div className="flex flex-row gap-4 items-center">
+            <img src={avatar} className="h-12 w-12 rounded-full  " alt="Avatar" />
+            <div className="flex flex-col gap-2">
+              <p>Gender  <span className="text-gray-400">{userDataInfo.gender}</span></p>
+              <p>Height  <span className="text-gray-400">{userDataInfo.height} cm</span></p>
+              <p>Weight  <span className="text-gray-400">{userDataInfo.weight} kg</span></p>
             </div>
+           
           </div>
 
           <hr />
+          
 
           <div className="flex flex-row gap-4">
             <span className="rounded-full h-12 w-12 bg-[#5E887A]"></span>
             <div className="flex flex-col gap-1">
               <span>Vein Color</span>
-              <span className="text-gray-400">Green veins</span>
+              <span className="text-gray-400">{userDataInfo.veinsColor}</span>
             </div>
           </div>
 
           <hr />
 
           <div className="flex flex-row gap-4">
-            <span className="rounded-full h-12 w-12 bg-[#F9DEC0]"></span>
-            <div className="flex flex-col gap-1">
+          <span
+  className="rounded-full h-12 w-12"
+  style={{ backgroundColor: userDataInfo.skinColor?.code }}
+></span>            <div className="flex flex-col gap-1">
               <span>Undertone</span>
-              <span className="text-gray-400">Warm</span>
-            </div>
+              <span className="text-gray-400">{userDataInfo.skinColor?.name || "N/A"}</span>
+              </div>
           </div>
 
           <hr />
@@ -529,7 +550,7 @@ function ProfileForm() {
             </div>
           </div>
         </div>
-
+     
         <button
           onClick={handleDeleteAccount}
           className="bg-[#BE0000] text-white font-extrabold rounded-xl p-4 px-12 w-fit mx-auto"

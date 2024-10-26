@@ -70,11 +70,8 @@ export default function SignIn() {
                     console.log(typeof(result))
                     localStorage.setItem('userId', result.user._id);
                     localStorage.setItem('name', result.user.name);
-                    localStorage.setItem('email', result.user.email);
-
-                    // localStorage.setItem("token", result.token );
-
-                    navigate("/user-profile");
+                    localStorage.setItem("token", result.token );
+                    navigate("/");
                 }
             })
             .catch((error) => {
