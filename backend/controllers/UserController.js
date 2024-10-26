@@ -123,12 +123,9 @@ export const resetPassword = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-<<<<<<< HEAD
-//=== Reset Password ===//
-=======
 //=== Reset Password By Email ===//
 
-// Reset Password By Id //
+// Update Password By Id //
 export const updatePassword = async (req, res) => {
   const { id }          = req.params;
   const { newPassword } = req.body;
@@ -162,9 +159,9 @@ export const updatePassword = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-//=== Reset Password By Id ===//
+//=== Update Password By Id ===//
 
-// Reset Name //
+// Update Name //
 export const updateName = async (req, res) => {
   const { id }      = req.params;
   const { newName } = req.body;
@@ -196,9 +193,9 @@ export const updateName = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-//=== Reset Name ===//
+//=== Update Name ===//
 
-// Reset Email //
+// Update Email //
 export const updateEmail = async (req, res) => {
   const { id }        = req.params;
   const { newEmail }  = req.body;
@@ -227,7 +224,7 @@ export const updateEmail = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-//=== Reset Email ===//
+//=== Update Email ===//
 
 // Delete User //
 export const deleteUser = async (req, res) => {
@@ -249,4 +246,31 @@ export const deleteUser = async (req, res) => {
   }
 };
 //=== Delete User ===//
->>>>>>> faraj
+
+// Get User Details //
+export const getUser = async (req, res) => {
+  const { id } = req.params; // Get the user ID from the URL parameters
+
+  try {
+      // Find the user by ID, and populate any necessary fields
+      const user = await User.findById(id).select('-password'); // Exclude the password field
+
+      // If user not found, return a 404 error
+      if (!user) {
+          return res.status(404).json({ message: 'User Not Found' });
+      }
+
+      // Return the user data if found
+      res.status(200).json({ 
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          usertype: user.usertype,
+          // Add any other fields you want to return here
+      });
+  } catch (error) {
+      console.error('Error Fetching User:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+//=== Get User Details ===//

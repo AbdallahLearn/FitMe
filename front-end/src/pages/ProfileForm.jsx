@@ -11,8 +11,6 @@ import axios from "axios";
 function ProfileForm() {
   // Variables //
   const id        = localStorage.getItem("userId");
-  const theName   = localStorage.getItem("name");
-  const theEmail  = localStorage.getItem("email");
   const navigate  = useNavigate();
   //=== Variables ===//
 
@@ -32,14 +30,26 @@ function ProfileForm() {
   const [passwordErr, setPasswordErr]         = useState("");
   const [passwordCheck, setPasswordCheck]     = useState("");
   const [displayPass, setDisplayPass]         = useState("none");
-  // const [currentPassword, setCurrentPassword] = useState("");
 
   const [displayDel, setDisplayDel]           = useState("none");
   const [DeleteErr, setDeleteErr]             = useState("");
 
-
+  const [userDetails, setUserDetails]         = useState([]);
 
   //== Use State Variables ==//
+
+  // Get User //
+  const getUser = () => {
+    axios.get(`http://localhost:4000/users/user/${id}`)
+  .then((response) => {
+    setUserDetails(response.data);
+  })
+  .catch((error) => {
+    console.error('Error Fetching User Data:', error.response ? error.response.data : error.message);
+  });
+
+  };
+  //=== Get User ===//
 
   // Use Effect //
   useEffect(() => {
@@ -47,6 +57,12 @@ function ProfileForm() {
     if (localStorage.getItem("userId") === null) {
         navigate("/");
     };
+    //=== Check If User Is Logged In ===//
+
+    // Get User Function //
+    getUser();
+    //=== Get User Function ===//
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //=== Use Effect ===//
@@ -321,7 +337,7 @@ function ProfileForm() {
             <input
               type="text"
               id="name"
-              placeholder={theName}
+              placeholder={userDetails.name}
               className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
               disabled
             />
@@ -367,7 +383,7 @@ function ProfileForm() {
             <input
               type="email"
               id="email"
-              placeholder={theEmail}
+              placeholder={userDetails.email}
               className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
               disabled
             />

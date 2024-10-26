@@ -79,7 +79,7 @@ export default function SignUp() {
           setTimeout(() => setConPasswordErr(""), 3000);
         }
       } else {
-        axios.post("http://localhost:5050/users/signup", {
+        axios.post("http://localhost:4000/users/signup", {
           name: name,
           email: email,
           password: password,
