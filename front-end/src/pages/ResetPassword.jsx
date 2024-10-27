@@ -123,10 +123,11 @@ export default function ResetPassword() {
             <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
                 <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row md:gap-20">
                     <div className="flex min-h-full">
-                        <div className="w-full h-[80vh] md:w-[30rem] bg-[#1D1B1B] min-md-h-[90vh] px-10 rounded-2xl flex flex-col items-center justify-center gap-5">
+                        <div className="w-full md:w-[30rem] bg-[#1D1B1B] py-12 px-10 my-5 rounded-2xl flex flex-col items-center justify-center">
+
                             <div className="flex justify-start items-center w-full">
-                                <Link to="/signin">
-                                    <div className="w-fit p-1 border-2 border-white rounded-xl">
+                                <Link to="/signin" className="z-40">
+                                    <div className=" p-1 border-2 border-white rounded-xl">
                                         <i className="fa-solid fa-chevron-left fa-fw text-white text-xl"></i>
                                     </div>
                                 </Link>
@@ -138,7 +139,7 @@ export default function ResetPassword() {
                                 </h2>
 
                                 <div className="w-full flex justify-center items-center">
-                                    <p className="text-white max-sm:text- text-center w-72">
+                                    <p className="text-[#EE8B48] text-[0.78rem] max-sm:text-[0.6rem] text-center w-72 py-2">
                                         Please type something you’ll remember
                                     </p>
                                 </div>

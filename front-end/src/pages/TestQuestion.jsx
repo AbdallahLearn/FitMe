@@ -74,7 +74,7 @@ function TestQuestion() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#EEE6E6]">
-      <Header profile="true" />
+      <Header />
 
       <div className="py-28 flex-grow flex flex-col justify-center items-center">
         <div

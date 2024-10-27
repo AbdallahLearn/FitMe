@@ -120,7 +120,8 @@ export default function SignUp() {
       <>
         {/* Begin: Sign Up */}
         <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
-          <div className="min-w-full min-h-full flex justify-center items-center flex-wrap gap-20">
+          <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row md:gap-20">
+
             <div className="flex justify-center w-[30%] md:mr-10">
               <Link
                 to="/"
@@ -224,7 +225,7 @@ export default function SignUp() {
                       </span>
                     </div>
 
-                    <div className="flex flex-col justify-center items-center">
+                    {/* <div className="flex flex-col justify-center items-center">
                       <div>
                         <label
                           htmlFor="password"
@@ -251,7 +252,7 @@ export default function SignUp() {
                       <span style={{"display": displayConfPassErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
                         {conPasswordErr}
                       </span>
-                    </div>
+                    </div> */}
 
                     <div className="flex flex-col justify-center items-center">
                       <button

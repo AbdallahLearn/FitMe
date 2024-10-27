@@ -1,10 +1,16 @@
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 
-function Header({ blackHeader, profile }) {
-  const username = localStorage.getItem('name');
+function Header({ blackHeader }) {
+  const navigate = useNavigate();
+  const username = localStorage.getItem("name");
+
+  const handleLogOut = () => {
+    localStorage.clear();
+    navigate("/signin");
+  };
   return (
     <div
       className={`navbar ${
@@ -50,15 +56,15 @@ function Header({ blackHeader, profile }) {
               ""
             )}
             {/* {profile ? ( */}
-            {localStorage.getItem('userId') ?(
+            {localStorage.getItem("userId") ? (
               <>
                 <li className="hover:cursor-pointer">
                   <Link to="/user-profile">{username}'s Profile</Link>
                 </li>
                 <li className="hover:cursor-pointer">
-                  <Link to="/signin" className="text-red-700">
+                  <button onClick={handleLogOut} className="text-red-700">
                     Log Out
-                  </Link>
+                  </button>
                 </li>
               </>
             ) : (
@@ -97,7 +103,7 @@ function Header({ blackHeader, profile }) {
           </li>
           <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
             {/* {profile ? ( */}
-            {localStorage.getItem('userId') ?(
+            {localStorage.getItem("userId") ? (
               <>
                 <div className="hidden lg:flex">
                   <details className="dropdown">
@@ -118,9 +124,12 @@ function Header({ blackHeader, profile }) {
                       </li>
                       <li>
                         <div className="flex justify-center items-center">
-                          <Link to="/signin" className="text-red-700">
+                          <button
+                            onClick={handleLogOut}
+                            className="text-red-700"
+                          >
                             Log Out
-                          </Link>
+                          </button>
                         </div>
                       </li>
                     </ul>
