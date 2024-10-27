@@ -98,7 +98,10 @@ function TestQuestion() {
                 </div>
               </>
             ) : currentStep === "gender" ? (
-              <Gender onSelect={handleGenderSelect} />
+              <Gender 
+                onSelect={handleGenderSelect} 
+                onNext={() => setCurrentStep("weightAndHeight")} // Callback to go to next step
+              />
             ) : currentStep === "weightAndHeight" ? (
               <HeightWeight onNext={handleNextClick} /> 
             ) : currentStep === "veinColor" ? (

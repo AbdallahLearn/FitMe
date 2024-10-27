@@ -12,11 +12,12 @@ function HeightWeight({ onNext }) {
   };
 
   return (
-    <div className="card-body flex flex-col justify-center items-center w-full max-w-[80%] mx-auto p-4">
-      <h2 className="card-title text-center text-4xl mb-6  sm:text-3xl ">
-        Enter Your Weight and Height
-      </h2>
+    <div className="card-body flex flex-col justify-center items-center w-full max-w-[100%] sm:max-w-[90%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] mx-auto p-4">
+    <h2 className="card-title text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl mb-4 leading-tight whitespace-nowrap">
+      Enter Your Weight and Height
+    </h2>
 
+  
       <div className="container flex flex-col w-80 max-sm:w-56">
         <input
           type="number"
