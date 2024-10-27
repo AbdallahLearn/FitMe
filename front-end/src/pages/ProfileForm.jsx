@@ -302,9 +302,13 @@ function ProfileForm() {
         axios
           .delete(`http://localhost:5050/users/del-user/${id}`)
           .then((response) => {
-            console.log(response); 
-            Swal.fire("Deleted!", "Your Account Has Been Deleted.", "success").then(() => {
-              localStorage.clear(); 
+            console.log(response);
+            Swal.fire(
+              "Deleted!",
+              "Your Account Has Been Deleted.",
+              "success"
+            ).then(() => {
+              localStorage.clear();
               navigate("/");
             });
           })
@@ -554,94 +558,100 @@ function ProfileForm() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
           </div>
         </div>
-        
-        <div className="border-[3px] rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
-          <h1 className="text-4xl">Personal Information:</h1>
-          <hr />
+        {userDataInfo && Object.keys(userDataInfo).length > 0 ? (
+          <div className="border-[3px] rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
+            <h1 className="text-4xl">Personal Information:</h1>
+            <hr />
 
-          <div className="flex flex-row gap-4 items-center">
-            {userDataInfo.gender == "Male" ? (
+            <div className="flex flex-row gap-4 items-center">
+              {userDataInfo.gender == "Male" ? (
+                <img
+                  src={avatar}
+                  className="h-12 w-12 rounded-full  "
+                  alt="Avatar"
+                />
+              ) : (
+                <img
+                  src="./public/images/female.png"
+                  className="h-12 w-12 rounded-full  "
+                  alt="Avatar"
+                />
+              )}
+              <div className="flex flex-col gap-2">
+                <p>
+                  Gender{" "}
+                  <span className="text-gray-400">{userDataInfo.gender}</span>
+                </p>
+                <p>
+                  Height{" "}
+                  <span className="text-gray-400">
+                    {userDataInfo.height} cm
+                  </span>
+                </p>
+                <p>
+                  Weight{" "}
+                  <span className="text-gray-400">
+                    {userDataInfo.weight} kg
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className="flex flex-row gap-4">
+              <span className="rounded-full h-12 w-12 bg-[#5E887A]"></span>
+              <div className="flex flex-col gap-1">
+                <span>Vein Color</span>
+                <span className="text-gray-400">{userDataInfo.veinsColor}</span>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className="flex flex-row gap-4">
+              <span
+                className="rounded-full h-12 w-12"
+                style={{ backgroundColor: userDataInfo.skinColor?.code }}
+              ></span>{" "}
+              <div className="flex flex-col gap-1">
+                <span>Undertone</span>
+                <span className="text-gray-400">
+                  {userDataInfo.skinColor?.name || "N/A"}
+                </span>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className="flex flex-row gap-4">
               <img
-                src={avatar}
-                className="h-12 w-12 rounded-full  "
-                alt="Avatar"
+                src={colorPalette}
+                className="rounded-full h-12 w-12"
+                alt="Color Palette"
               />
-            ) : (
-              <img
-                src="./public/images/female.png"
-                className="h-12 w-12 rounded-full  "
-                alt="Avatar"
-              />
-            )}
-            <div className="flex flex-col gap-2">
-              <p>
-                Gender{" "}
-                <span className="text-gray-400">{userDataInfo.gender}</span>
-              </p>
-              <p>
-                Height{" "}
-                <span className="text-gray-400">{userDataInfo.height} cm</span>
-              </p>
-              <p>
-                Weight{" "}
-                <span className="text-gray-400">{userDataInfo.weight} kg</span>
-              </p>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="flex flex-row gap-4">
-            <span className="rounded-full h-12 w-12 bg-[#5E887A]"></span>
-            <div className="flex flex-col gap-1">
-              <span>Vein Color</span>
-              <span className="text-gray-400">{userDataInfo.veinsColor}</span>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="flex flex-row gap-4">
-            <span
-              className="rounded-full h-12 w-12"
-              style={{ backgroundColor: userDataInfo.skinColor?.code }}
-            ></span>{" "}
-            <div className="flex flex-col gap-1">
-              <span>Undertone</span>
-              <span className="text-gray-400">
-                {userDataInfo.skinColor?.name || "N/A"}
-              </span>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="flex flex-row gap-4">
-            <img
-              src={colorPalette}
-              className="rounded-full h-12 w-12"
-              alt="Color Palette"
-            />
-            <div className="flex flex-col gap-1">
-              <span>Your Colors</span>
-              <div className="flex flex-row gap-4 flex-wrap mt-2">
-                {new Array(5).fill(0).map((_, i) => (
-                  <div className="flex justify-center items-center" key={i}>
-                    <span
-                      className="rounded-full w-8 h-8 border-2"
-                      style={{
-                        backgroundColor: `#${Math.floor(
-                          Math.random() * 16777215
-                        ).toString(16)}`,
-                      }}
-                    ></span>
-                  </div>
-                ))}
+              <div className="flex flex-col gap-1">
+                <span>Your Colors</span>
+                <div className="flex flex-row gap-4 flex-wrap mt-2">
+                  {new Array(5).fill(0).map((_, i) => (
+                    <div className="flex justify-center items-center" key={i}>
+                      <span
+                        className="rounded-full w-8 h-8 border-2"
+                        style={{
+                          backgroundColor: `#${Math.floor(
+                            Math.random() * 16777215
+                          ).toString(16)}`,
+                        }}
+                      ></span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
+        ) : (
+          <p className="text-gray-500 text-2xl text-center py-10"></p>
+        )}
         <button
           onClick={handleDeleteAccount}
           className="bg-[#BE0000] text-white font-extrabold rounded-xl p-4 px-12 w-fit mx-auto"
