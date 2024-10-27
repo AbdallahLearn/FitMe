@@ -108,9 +108,9 @@ function LandingPage() {
             All-in-one platform
           </h1>
           <motion.div
-            initial={{ opacity: 0, translateY: "-100%" }}
+            initial={{ opacity: 0, translateY: "100%" }}
             whileInView={{ opacity: 1, translateY: 0 }}
-            transition={{ duration: 2 }}
+            transition={{ duration: 1 }}
             className="flex justify-center items-center gap-8 flex-wrap max-sm:flex-col"
           >
             <FeaturesBox

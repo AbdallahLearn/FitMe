@@ -10,7 +10,7 @@ export default function SignUp() {
   //=== Variables ===//
 
   // Use State Variables //
-  const [name, setName] = useState("");
+  const [fullname, setFullName] = useState("");
   const [nameErr, setNameErr] = useState("");
 
   const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ export default function SignUp() {
 
   // Sign Up Function //
   const schema = z.object({
-    name: z
+    fullname: z
       .string()
       .min(4, { message: "Name Should Be More Than 3 Characters." })
       .regex(/^[A-Za-z\u0600-\u06FF ]+$/, { message: "Name should only contain Arabic or English letters." }),
@@ -59,13 +59,13 @@ export default function SignUp() {
     });
   
     const signUp = () => {
-      const validationResult = schema.safeParse({ name, email, password, conPassword });
+      const validationResult = schema.safeParse({ fullname, email, password, conPassword });
     
       if (!validationResult.success) {
         const firstError = validationResult.error.errors[0];
         const { path, message } = firstError;
     
-        if (path[0] === "name") {
+        if (path[0] === "fullname") {
           setNameErr(message);
           setTimeout(() => setNameErr(""), 3000);
         } else if (path[0] === "email") {
@@ -80,7 +80,7 @@ export default function SignUp() {
         }
       } else {
         axios.post("http://localhost:5050/users/signup", {
-          name: name,
+          name: fullname,
           email: email,
           password: password,
         })
@@ -120,7 +120,8 @@ export default function SignUp() {
       <>
         {/* Begin: Sign Up */}
         <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
-          <div className="min-w-full min-h-full flex justify-center items-center flex-wrap gap-20">
+          <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row md:gap-20">
+
             <div className="flex justify-center w-[30%] md:mr-10">
               <Link
                 to="/"
@@ -150,8 +151,8 @@ export default function SignUp() {
 
                       <div className="mt-2 w-80">
                         <input
-                          onChange={(e) => {setName(e.target.value)}}
-                          value={name}
+                          onChange={(e) => {setFullName(e.target.value)}}
+                          value={fullname}
                           id="name"
                           name="name"
                           type="text"
@@ -224,7 +225,7 @@ export default function SignUp() {
                       </span>
                     </div>
 
-                    <div className="flex flex-col justify-center items-center">
+                    {/* <div className="flex flex-col justify-center items-center">
                       <div>
                         <label
                           htmlFor="password"
@@ -251,7 +252,7 @@ export default function SignUp() {
                       <span style={{"display": displayConfPassErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
                         {conPasswordErr}
                       </span>
-                    </div>
+                    </div> */}
 
                     <div className="flex flex-col justify-center items-center">
                       <button

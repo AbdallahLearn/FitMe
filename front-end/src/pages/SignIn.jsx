@@ -112,7 +112,8 @@ export default function SignIn() {
                     </div>
 
                     <div className="flex min-h-full">
-                        <div className="w-full h-[80vh] md:w-[30rem] bg-[#1D1B1B] min-md-h-[90vh] px-10 rounded-2xl flex flex-col items-center justify-center">
+                        <div className="w-full md:w-[30rem] bg-[#1D1B1B] py-12 px-10 my-5 rounded-2xl flex flex-col items-center justify-center">
+
                             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                                 <h2 className="text-font text-center max-sm:text-2xl md:text-4xl font-bold leading-9 tracking-tight text-white">
                                     Sign In 
@@ -174,7 +175,7 @@ export default function SignIn() {
                                         </span>
 
                                         <div className="text-sm mt-2 w-80">
-                                            <Link to="/reset-password" className="font-medium text-white max-sm:text-xs md:text-sm">
+                                            <Link to="/reset-password" className="font-medium text-[#EE8B48] max-sm:text-xs md:text-xs">
                                                 Forgot password?
                                             </Link>
                                         </div>
@@ -192,7 +193,7 @@ export default function SignIn() {
                                 </div>
 
                                 <p className="mt-5 text-center max-sm:text-xs md:text-base text-white">
-                                    have{"'"}t an account?{" "}
+                                    Don{"'"}t have an account?{" "}
                                     <Link to="/signup" className="font-semibold leading-6 text-[#EE8B48] hover:text-[#EE8B30]">
                                         Sign up
                                     </Link>
