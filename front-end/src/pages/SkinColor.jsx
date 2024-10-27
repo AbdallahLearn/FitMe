@@ -17,7 +17,7 @@ function SkinColor({ onNext, onPrevious }) {  // Accept onPrevious as a prop
   ];
 
   return (
-    <div className="card-body flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%] mx-auto p-4 box-border">
+    <div className=" flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%]  p-2 mx-auto box-border ">
       {/* Previous Step button */}
       <div className="w-full mt-4 flex justify-center lg:justify-start">
         <button onClick={onPrevious} className="z-40">
@@ -27,7 +27,7 @@ function SkinColor({ onNext, onPrevious }) {  // Accept onPrevious as a prop
         </button>
       </div>
 
-      <h2 className="card-title text-center text-2xl sm:text-4xl mb-2 sm:mb-4">
+      <h2 className="card-title text-center md:text-4xl mt-2 mb-2 sm:mb-4">
         Choose Your Skin Color:
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">

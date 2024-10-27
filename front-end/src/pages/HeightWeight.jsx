@@ -12,7 +12,7 @@ function HeightWeight({ onNext, onPrevious }) {
   };
 
   return (
-    <div className="card-body relative flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%] mx-auto p-2 sm:p-6 box-border">
+    <div className="card-body relative flex flex-col justify-center items-center    w-full  mx-auto p-2 sm:p-6 box-border">
       
       {/* Previous Step button */}
       <div className="w-full mt-4 flex justify-center lg:justify-start">
@@ -23,7 +23,7 @@ function HeightWeight({ onNext, onPrevious }) {
         </button>
       </div>
       
-      <h2 className="card-title text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl mb-4 leading-tight whitespace-nowrap">
+      <h2 className="card-title text-center text-lg sm:text-xl md:text-4xl lg:text-3xl xl:text-2xl mb-4 mt-2 leading-tight whitespace-nowrap">
         Enter Your Weight and Height
       </h2>
 
@@ -32,7 +32,7 @@ function HeightWeight({ onNext, onPrevious }) {
           type="number"
           required
           placeholder="Weight (kg)"
-          className="input mb-4 sm:mb-6"
+          className="input mb-6 sm:mb-6 "
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
         />
