@@ -34,7 +34,7 @@ function TestQuestion() {
 
   const handleGenderSelect = (gender) => {
     console.log("Selected gender:", gender);
-    setUserData((prev) => ({ ...prev, gender: gender }));
+    setUserData((prev) => ({ ...prev, gender }));
     setCurrentStep("weightAndHeight"); 
   };
 
@@ -42,8 +42,8 @@ function TestQuestion() {
     console.log("Selected height:", height, "Selected weight:", weight);
     setUserData((prev) => ({
       ...prev,
-      height: height,
-      weight: weight
+      height,
+      weight
     }));
     setCurrentStep("veinColor"); 
   };
@@ -56,21 +56,42 @@ function TestQuestion() {
 
   const handleSkinColorNextClick = (skinColor) => {
     console.log("Selected skin color:", skinColor);
-    setUserData((prev) => ({ ...prev, skinColor: skinColor }));
+    setUserData((prev) => ({ ...prev, skinColor }));
     setCurrentStep("counter"); 
   };
 
   const handleCounterEnd = () => {
     console.log("Navigating to /user-model with userData:", userData);
-    setCurrentStep("nextComponent"); 
     navigate("/user-model", {
       state: userData,
     });
   };
 
+  const handlePreviousClick = () => {
+    switch (currentStep) {
+      case "gender":
+        setCurrentStep("start");
+        break;
+      case "weightAndHeight":
+        setCurrentStep("gender");
+        break;
+      case "veinColor":
+        setCurrentStep("weightAndHeight");
+        break;
+      case "skinColor":
+        setCurrentStep("veinColor");
+        break;
+      case "counter":
+        setCurrentStep("skinColor");
+        break;
+      default:
+        setCurrentStep("start");
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [currentStep]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#EEE6E6]">
@@ -100,24 +121,21 @@ function TestQuestion() {
             ) : currentStep === "gender" ? (
               <Gender 
                 onSelect={handleGenderSelect} 
-                onNext={() => setCurrentStep("weightAndHeight")} // Callback to go to next step
+                onPrevious={handlePreviousClick}
               />
             ) : currentStep === "weightAndHeight" ? (
-              <HeightWeight onNext={handleNextClick} /> 
+              <HeightWeight onNext={handleNextClick} onPrevious={handlePreviousClick} />
             ) : currentStep === "veinColor" ? (
-              <VeinColor onNext={handleVeinNextClick} />
+              <VeinColor onNext={handleVeinNextClick} onPrevious={handlePreviousClick} />
             ) : currentStep === "skinColor" ? (
-              <SkinColor onNext={handleSkinColorNextClick} />
+              <SkinColor onNext={handleSkinColorNextClick} onPrevious={handlePreviousClick} />
             ) : currentStep === "counter" ? (
-              <Counter onEnd={handleCounterEnd} />
-            ) : (
-              navigate("/user-model")
-            )}
+              <Counter onEnd={handleCounterEnd} onPrevious={handlePreviousClick} />
+            ) : null}
           </div>
         </div>
-
-       
       </div>
+      
       <Footer />
     </div>
   );
