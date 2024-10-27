@@ -41,7 +41,9 @@ function YourModel() {
       .then((response) => {
         setModelExists(response.data.exists);
       })
-      .catch((error) => console.error("Error checking model existence:", error));
+      .catch((error) =>
+        console.error("Error checking model existence:", error)
+      );
   };
 
   // Function to post user model data if model doesn't exist
@@ -246,15 +248,13 @@ function YourModel() {
                 />
               ) : BMIValue >= 18.5 && BMIValue < 24.9 ? (
                 <>
-                <ManSvg
-                  colorMap={colorMap}
-                  onPathClick={handlePathClick}
-                  skinColor={skinColor.code}
-                />
-               {console.log(skinColor.code)}
-               </>
-                
-               
+                  <ManSvg
+                    colorMap={colorMap}
+                    onPathClick={handlePathClick}
+                    skinColor={skinColor.code}
+                  />
+                  {console.log(skinColor.code)}
+                </>
               ) : (
                 <ManSvg2
                   colorMap={colorMap}
@@ -262,9 +262,8 @@ function YourModel() {
                   skinColor={skinColor.code}
                 />
               )
-              
             ) : BMIValue < 18.5 ? (
-              <GirlSvg3
+              <GirlSvg2
                 colorMap={colorMap}
                 onPathClick={handlePathClick}
                 skinColor={skinColor}
@@ -276,7 +275,7 @@ function YourModel() {
                 skinColor={skinColor}
               />
             ) : (
-              <GirlSvg2
+              <GirlSvg3
                 colorMap={colorMap}
                 onPathClick={handlePathClick}
                 skinColor={skinColor}
@@ -285,7 +284,6 @@ function YourModel() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
