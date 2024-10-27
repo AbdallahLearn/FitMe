@@ -6,7 +6,7 @@ function Gender({ onSelect }) {
       <h2 className="card-title text-2xl sm:text-4xl text-center mb-4">
         Choose Your Gender
       </h2>
-      <div className="card-actions w-full sm:w-96 flex justify-around flex-wrap gap-4">
+      <div className="card-actions w-full sm:w-96 flex justify-around flex-wrap gap-16">
         <div className="img-container flex flex-col items-center w-1/2 sm:w-40">
           <div className="img w-20 h-24 sm:w-32 sm:h-40">
             <img src="./public/images/male.png" alt="Male" className="w-full h-full object-cover"/>

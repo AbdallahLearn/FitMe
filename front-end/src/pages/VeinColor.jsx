@@ -13,9 +13,9 @@ function VeinColor({ onNext }) {
         Choose Your Vein Color:
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap justify-center gap-8">
         <div 
-          className={`box rounded-lg text-center cursor-pointer p-2 flex flex-col items-center ${selected === 'warm' ? 'border-4 border-green-500' : 'border border-gray-400'}`}
+          className={`box rounded-lg text-center cursor-pointer px-4 p-2 flex flex-col items-center ${selected === 'warm' ? 'border-4 border-green-500' : 'border border-gray-400'}`}
           onClick={() => handleSelect('warm')}
         >
           <h1 className="text-base sm:text-lg">WARM</h1>
@@ -27,7 +27,7 @@ function VeinColor({ onNext }) {
         </div>
 
         <div 
-          className={`box rounded-lg text-center cursor-pointer p-2 flex flex-col items-center ${selected === 'cool' ? 'border-4 border-blue-500' : 'border border-gray-400'}`}
+          className={`box rounded-lg text-center cursor-pointer px-4 p-2 flex flex-col items-center ${selected === 'cool' ? 'border-4 border-blue-500' : 'border border-gray-400'}`}
           onClick={() => handleSelect('cool')}
         >
           <h1 className="text-base sm:text-lg">COOL</h1>
@@ -39,7 +39,7 @@ function VeinColor({ onNext }) {
         </div>
 
         <div 
-          className={`box rounded-lg text-center cursor-pointer p-2 flex flex-col items-center ${selected === 'neutral' ? 'border-4 border-gray-500' : 'border border-gray-400'}`}
+          className={`box rounded-lg text-center cursor-pointer px-4 p-2 flex flex-col items-center ${selected === 'neutral' ? 'border-4 border-gray-500' : 'border border-gray-400'}`}
           onClick={() => handleSelect('neutral')}
         >
           <h1 className="text-base sm:text-lg">NEUTRAL</h1>

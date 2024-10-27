@@ -227,6 +227,25 @@ export const updateEmail = async (req, res) => {
 //=== Update Email ===//
 
 // Delete User //
+export const deleteUs = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findByIdAndDelete(id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User Not Found' });
+    }
+
+    res.status(200).json({ message: 'User Deleted Successfully' });
+  } catch (error) {
+    console.error('Error During User Deletion:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+//=== Delete User ===//
+
+// Delete Model //
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
   
@@ -253,7 +272,7 @@ export const deleteUser = async (req, res) => {
       res.status(500).json({ message: 'Server Error' });
   }
 };
-//=== Delete User ===//
+//=== Delete Model ===//
 
 // Get User Details //
 export const getUser = async (req, res) => {
