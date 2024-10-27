@@ -286,11 +286,11 @@ function ProfileForm() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5050/users/delete-user/${id}`)
+          .delete(`http://localhost:5050/users/del-user/${id}`)
           .then((response) => {
             console.log(response); 
             Swal.fire("Deleted!", "Your Account Has Been Deleted.", "success").then(() => {
-              localStorage.removeItem("userId"); 
+              localStorage.clear(); 
               navigate("/");
             });
           })
