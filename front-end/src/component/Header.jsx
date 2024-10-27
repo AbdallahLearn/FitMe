@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../App.css";
 
 function Header({ blackHeader, profile }) {
+  const username = localStorage.getItem('name');
   return (
     <div
       className={`navbar ${
@@ -51,7 +52,7 @@ function Header({ blackHeader, profile }) {
             {profile ? (
               <>
                 <li className="hover:cursor-pointer">
-                  <Link to="/user-profile">Abdullah's Profile</Link>
+                  <Link to="/user-profile">{username}'s Profile</Link>
                 </li>
                 <li className="hover:cursor-pointer">
                   <Link to="/signin" className="text-red-700">
@@ -99,7 +100,7 @@ function Header({ blackHeader, profile }) {
                 <div className="hidden lg:flex">
                   <details className="dropdown">
                     <summary tabIndex={0} role="button" className=" lg:flex">
-                      <p>Hi, Abdullah</p>
+                      <p>Hi, {username}</p>
                     </summary>
                     <ul
                       tabIndex={0}

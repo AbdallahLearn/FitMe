@@ -70,7 +70,7 @@ function LandingPage() {
                 Tired of choosing colors that don't fit quite right?
               </p>
               <Link
-                to="/generate-model"
+                to= {localStorage.getItem("userId") === null ? "/signin" : "/generate-model" }
                 className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white"
               >
                 L{text6}
