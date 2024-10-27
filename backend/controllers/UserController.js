@@ -3,9 +3,10 @@ import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
 import Model from '../models/userModel.js';
+
 // Sign Up //
 const schema = z.object({
-  name: z.string() // إضافة z قبل .string()
+  name: z.string() 
     .min(4, { message: "Name should be more than 3 characters." })
     .regex(/^[A-Za-z\u0600-\u06FF ]+$/, { message: "Name should only contain Arabic or English letters." }),
 
@@ -15,7 +16,7 @@ const schema = z.object({
   password: z.string()
     .min(8, { message: "Password must be at least 8 characters long." })
     .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/, {
-      message: "Password must include uppercase, lowercase, a number, and a special character."
+      message: "Password must include uppercase, lowercase, a number, and a special haracter."
     }),
 });
 
