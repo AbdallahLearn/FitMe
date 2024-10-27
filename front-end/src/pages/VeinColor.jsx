@@ -26,11 +26,11 @@ function VeinColor({ onNext, onPrevious }) {
       <h2 className='mb-4 text-gray-500 text-center text-sm sm:text-base'><span className='text-[#EE8B48] font-bold'>Hint:</span> Look at the veins on your wrists</h2>
       
       {/* Container for the options */}
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-4 sm:gap-8">
         
         {/* Warm Option */}
         <div 
-          className={`box rounded-lg text-center cursor-pointer px-6 sm:px-8 py-2 flex flex-col items-center ${selected === 'warm' ? 'border-4 border-green-500' : 'border border-gray-400'}`}
+          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${selected === 'warm' ? 'border-4 border-green-500' : 'border border-gray-400'}`}
           onClick={() => handleSelect('warm')}
         >
           <h1 className="text-sm sm:text-lg font-extrabold">WARM</h1>
@@ -43,7 +43,7 @@ function VeinColor({ onNext, onPrevious }) {
 
         {/* Cool Option */}
         <div 
-          className={`box rounded-lg text-center cursor-pointer px-6 sm:px-8 py-2 flex flex-col items-center ${selected === 'cool' ? 'border-4 border-blue-500' : 'border border-gray-400'}`}
+          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${selected === 'cool' ? 'border-4 border-blue-500' : 'border border-gray-400'}`}
           onClick={() => handleSelect('cool')}
         >
           <h1 className="text-sm sm:text-lg font-extrabold">COOL</h1>
@@ -56,7 +56,7 @@ function VeinColor({ onNext, onPrevious }) {
 
         {/* Neutral Option */}
         <div 
-          className={`box rounded-lg text-center cursor-pointer px-6 sm:px-8 py-2 flex flex-col items-center ${selected === 'neutral' ? 'border-4 border-gray-500' : 'border border-gray-400'}`}
+          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${selected === 'neutral' ? 'border-4 border-gray-500' : 'border border-gray-400'}`}
           onClick={() => handleSelect('neutral')}
         >
           <h1 className="text-sm sm:text-lg font-extrabold">NEUTRAL</h1>
