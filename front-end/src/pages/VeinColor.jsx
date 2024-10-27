@@ -9,10 +9,10 @@ function VeinColor({ onNext }) {
 
   return (
     <div className="card-body flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%] h-auto sm:h-96 mx-auto p-4 box-border">
-      <h2 className="card-title text-center text-2xl sm:text-4xl mb-2 sm:mb-4">
+      <h2 className="card-title text-center text-2xl sm:text-4xl mb-1 sm:mb-4">
         Choose Your Vein Color:
       </h2>
-
+      <h2 className='mb-4 text-gray-500 text-center max-sm:text-[0.8rem]'><span className=' text-[#EE8B48] font-bold'>Hint:</span> Look at the veins on your wrists</h2>
       <div className="flex flex-wrap justify-center gap-8">
         <div 
           className={`box rounded-lg text-center cursor-pointer px-4 p-2 flex flex-col items-center ${selected === 'warm' ? 'border-4 border-green-500' : 'border border-gray-400'}`}
