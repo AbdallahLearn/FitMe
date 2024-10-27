@@ -10,7 +10,7 @@ export default function SignUp() {
   //=== Variables ===//
 
   // Use State Variables //
-  const [name, setName] = useState("");
+  const [fullname, setFullName] = useState("");
   const [nameErr, setNameErr] = useState("");
 
   const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ export default function SignUp() {
 
   // Sign Up Function //
   const schema = z.object({
-    name: z
+    fullname: z
       .string()
       .min(4, { message: "Name Should Be More Than 3 Characters." })
       .regex(/^[A-Za-z\u0600-\u06FF ]+$/, { message: "Name should only contain Arabic or English letters." }),
@@ -59,13 +59,13 @@ export default function SignUp() {
     });
   
     const signUp = () => {
-      const validationResult = schema.safeParse({ name, email, password, conPassword });
+      const validationResult = schema.safeParse({ fullname, email, password, conPassword });
     
       if (!validationResult.success) {
         const firstError = validationResult.error.errors[0];
         const { path, message } = firstError;
     
-        if (path[0] === "name") {
+        if (path[0] === "fullname") {
           setNameErr(message);
           setTimeout(() => setNameErr(""), 3000);
         } else if (path[0] === "email") {
@@ -80,7 +80,7 @@ export default function SignUp() {
         }
       } else {
         axios.post("http://localhost:5050/users/signup", {
-          name: name,
+          name: fullname,
           email: email,
           password: password,
         })
@@ -150,8 +150,8 @@ export default function SignUp() {
 
                       <div className="mt-2 w-80">
                         <input
-                          onChange={(e) => {setName(e.target.value)}}
-                          value={name}
+                          onChange={(e) => {setFullName(e.target.value)}}
+                          value={fullname}
                           id="name"
                           name="name"
                           type="text"
