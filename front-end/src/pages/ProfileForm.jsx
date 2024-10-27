@@ -531,7 +531,7 @@ function ProfileForm() {
             </button> */}
           </div>
 
-          <div className=" bg- bg-red-300 flex flex-col gap-4 flex-1 justify-center items-center relative">
+          <div className="flex flex-col gap-4 flex-1 justify-center items-center relative">
             <img src={man} className="h-[500px] z-20" alt="Man" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
           </div>
