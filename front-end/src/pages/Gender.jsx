@@ -5,14 +5,7 @@ function Gender({ onSelect, onNext }) {
   return (
     <div className="card-body relative flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%] mx-auto p-2 sm:p-6 box-border">
       
-      {/* Back button */}
-      <Link
-        to="/generate-model"
-        className="absolute top-4 left-4 flex items-center bg-transparent border-2 border-[#EE8B48] text-[#EE8B48] px-4 py-2 rounded-lg font-bold"
-      >
-        <span className="mr-2">←</span> {/* Left arrow */}
-        Back
-      </Link>
+  
       
       <h2 className="card-title text-2xl sm:text-4xl text-center mb-4">
         Choose Your Gender
@@ -53,12 +46,7 @@ function Gender({ onSelect, onNext }) {
       </div>
       
       {/* Next button */}
-      <Link
-        to="/generate-model"
-        className="mt-8 px-6 py-3 bg-[#EE8B48] text-white text-lg sm:text-xl font-bold rounded-lg"
-      >
-        Next
-      </Link>
+    
     </div>
   );
 }
