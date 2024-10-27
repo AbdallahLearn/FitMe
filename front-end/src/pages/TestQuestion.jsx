@@ -73,10 +73,10 @@ function TestQuestion() {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-[#EEE6E6]">
       <Header profile="true" />
 
-      <div className="bg-[#EEE6E6] pt-28">
+      <div className="py-28 flex-grow flex flex-col justify-center items-center">
         <div
           className="card w-[70%] h-[70vh] m-auto shadow-xl"
           style={{ border: "1px solid rgba(0,0,0,0.2)" }}
@@ -113,9 +113,10 @@ function TestQuestion() {
           </div>
         </div>
 
-        <Footer />
+       
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 

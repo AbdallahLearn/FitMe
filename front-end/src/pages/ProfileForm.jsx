@@ -361,7 +361,7 @@ function ProfileForm() {
   return (
     <>
       <Header profile="true" />
-      <div className="flex flex-1 flex-col gap-6 overflow-y-visible bg-[#EEE6E6] px-8 py-16">
+      <div className="flex flex-1 flex-col gap-6 overflow-y-visible bg-[#EEE6E6] px-8">
         <div className="flex lg:flex-row flex-col gap-4">
           <div className="flex flex-col gap-4 flex-1">
             <label htmlFor="name" className="text-xl font-extrabold">
@@ -654,7 +654,7 @@ function ProfileForm() {
         )}
         <button
           onClick={handleDeleteAccount}
-          className="bg-[#BE0000] text-white font-extrabold rounded-xl p-4 px-12 w-fit mx-auto"
+          className="bg-[#BE0000] text-white font-extrabold rounded-xl p-4 px-12 w-fit mx-auto mt-4"
         >
           Delete Account
         </button>
