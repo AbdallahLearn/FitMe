@@ -368,13 +368,11 @@ function ProfileForm() {
               Your Name
             </label>
 
-            <input
-              type="text"
-              id="name"
-              placeholder={userDetails.name}
-              className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
-              disabled
-            />
+            <div className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70 flex flex-row justify-between items-center">
+              <h1 className="text-[#999898]">{userDetails.name}</h1>
+
+              <i onClick={showUpName} className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"></i>
+            </div>
 
             <div style={{ display: displayName }}>
               <input
@@ -419,25 +417,17 @@ function ProfileForm() {
               </div>
             </div>
 
-            <button
-              onClick={showUpName}
-              className="border-2 mb-3 font-bold rounded-xl p-4 flex justify-center items-center bg-[#EE8B48] hover:bg-[#EE8B30]"
-            >
-              <i className="fa-solid fa-pen-to-square text-lg fa-fw"></i>
-            </button>
-
             {/* ============================================================================================================================= */}
 
             <label htmlFor="email" className="text-xl font-extrabold">
               Your Email
             </label>
-            <input
-              type="email"
-              id="email"
-              placeholder={userDetails.email}
-              className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
-              disabled
-            />
+
+            <div className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70 flex flex-row justify-between items-center">
+              <h1 className="text-[#999898]">{userDetails.email}</h1>
+
+              <i onClick={showUpEmail} className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"></i>
+            </div>
 
             <div style={{ display: displayEmail }}>
               <input
@@ -482,25 +472,17 @@ function ProfileForm() {
               </div>
             </div>
 
-            <button
-              onClick={showUpEmail}
-              className="border-2 mb-3 font-bold rounded-xl p-4 flex justify-center items-center bg-[#EE8B48] hover:bg-[#EE8B30]"
-            >
-              <i className="fa-solid fa-pen-to-square text-lg fa-fw"></i>
-            </button>
-
             {/* ============================================================================================================================= */}
 
             <label htmlFor="password" className="text-xl font-extrabold">
               Your Password
             </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="●●●●●●●●"
-              className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70"
-              disabled
-            />
+
+            <div className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70 flex flex-row justify-between items-center">
+              <h1 className="text-[#999898]">●●●●●●●●</h1>
+
+              <i onClick={showUpPass} className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"></i>
+            </div>
 
             <div style={{ display: displayPass }}>
               <input
@@ -545,12 +527,12 @@ function ProfileForm() {
               </div>
             </div>
 
-            <button
+            {/* <button
               onClick={showUpPass}
               className="border-2 font-bold rounded-xl p-4 flex justify-center items-center bg-[#EE8B48] hover:bg-[#EE8B30]"
             >
               <i className="fa-solid fa-pen-to-square text-lg fa-fw"></i>
-            </button>
+            </button> */}
           </div>
 
           <div className="flex flex-col gap-4 flex-1 justify-center items-center relative">
