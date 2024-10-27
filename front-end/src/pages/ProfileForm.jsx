@@ -365,7 +365,7 @@ function ProfileForm() {
       <Header />
       <div className="flex flex-1 flex-col gap-6 overflow-y-visible bg-[#EEE6E6] px-8">
         <div className="flex lg:flex-row flex-col gap-4">
-          <div className="flex flex-col gap-4 flex-1">
+          <div className="flex flex-col gap-4 flex-1 mt-20">
             <label htmlFor="name" className="text-xl font-extrabold">
               Your Name
             </label>
@@ -537,11 +537,11 @@ function ProfileForm() {
             </button> */}
           </div>
 
-          <div className="flex flex-col gap-4 flex-1 justify-center items-center relative">
+          <div className="flex flex-col gap-4 flex-1 -mt-20 justify-center items-center relative">
             {/* <img src={man} className="h-[500px] z-20" alt="Man" /> */}
 
                   <div
-                    className="h-[500px] z-20"
+                    className="z-20"
                     dangerouslySetInnerHTML={{ __html: userDataInfo.generatedModel }}
                     onClick={()=>{
                       navigate("/user-model", {
@@ -559,7 +559,7 @@ function ProfileForm() {
           </div>
         </div>
         {userDataInfo && Object.keys(userDataInfo).length > 0 ? (
-          <div className="border-[3px] rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
+          <div className="border-[3px] -mt-10 rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
             <h1 className="text-4xl">Personal Information:</h1>
             <hr />
 
