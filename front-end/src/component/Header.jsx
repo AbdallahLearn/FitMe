@@ -49,7 +49,8 @@ function Header({ blackHeader, profile }) {
             ) : (
               ""
             )}
-            {profile ? (
+            {/* {profile ? ( */}
+            {localStorage.getItem('userId') ?(
               <>
                 <li className="hover:cursor-pointer">
                   <Link to="/user-profile">{username}'s Profile</Link>
@@ -95,7 +96,8 @@ function Header({ blackHeader, profile }) {
             </Link>
           </li>
           <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
-            {profile ? (
+            {/* {profile ? ( */}
+            {localStorage.getItem('userId') ?(
               <>
                 <div className="hidden lg:flex">
                   <details className="dropdown">
