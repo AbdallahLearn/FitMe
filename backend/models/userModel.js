@@ -38,8 +38,8 @@ const modelSchema = new mongoose.Schema({
         type: String, // You might store the SVG string or a reference to the generated model
     },
     suitableColors: {
-        type: [String], // Array of colors suggested by the ChatGPT API
-    },
+        type: [String], // Array of color hex codes   // Default to an empty array if no colors are provided
+      },
 },
 { timestamps: true }
 );

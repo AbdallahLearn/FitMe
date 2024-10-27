@@ -52,14 +52,11 @@ export default function SignUp() {
         message: "Password must include uppercase, lowercase, a number, and a special character."
       }),
   
-    conPassword: z.string(),
-    }).refine(data => data.password === data.conPassword, {
-      message: "Passwords Do Not Match.",
-      path: ["conPassword"],
+   
     });
   
     const signUp = () => {
-      const validationResult = schema.safeParse({ fullname, email, password, conPassword });
+      const validationResult = schema.safeParse({ fullname, email, password });
     
       if (!validationResult.success) {
         const firstError = validationResult.error.errors[0];
@@ -74,10 +71,7 @@ export default function SignUp() {
         } else if (path[0] === "password") {
           setPasswordErr(message);
           setTimeout(() => setPasswordErr(""), 3000);
-        } else if (path[0] === "conPassword") {
-          setConPasswordErr(message);
-          setTimeout(() => setConPasswordErr(""), 3000);
-        }
+        } 
       } else {
         axios.post("http://localhost:5050/users/signup", {
           name: fullname,
@@ -225,34 +219,7 @@ export default function SignUp() {
                       </span>
                     </div>
 
-                    {/* <div className="flex flex-col justify-center items-center">
-                      <div>
-                        <label
-                          htmlFor="password"
-                          className="block max-sm:text-lg font-medium leading-6 text-white w-80"
-                        >
-                          Confirm Password
-                        </label>
-                      </div>
-
-                      <div className="mt-2 w-80">
-                          <input
-                              onChange={(e) => {setConPassword(e.target.value)}}
-                              value={conPassword}
-                              id="password"
-                              name="password"
-                              type="password"
-                              required
-                              autoComplete="current-password"
-                              className="pl-3 block w-80 h-12 rounded-lg border-0 py-1.5 text-blavk shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                              placeholder="Repeat Password"
-                          />
-                      </div>
-
-                      <span style={{"display": displayConfPassErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
-                        {conPasswordErr}
-                      </span>
-                    </div> */}
+                    
 
                     <div className="flex flex-col justify-center items-center">
                       <button

@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import "../App.css";
+import { renderToStaticMarkup } from 'react-dom/server';
 import ManSvg from "../svg-component/ManSvg";
 import ManSvg2 from "../svg-component/ManSvg2";
 import ManSvg3 from "../svg-component/ManSvg3";
@@ -46,36 +47,44 @@ function YourModel() {
       );
   };
 
-  // Function to post user model data if model doesn't exist
-  const fetchingData = () => {
-    if (modelExists) return;
+ 
+  // const fetchingData = () => {
+  //   if (modelExists) return;
 
-    axios
-      .post(
-        "http://localhost:5050/models/userModel",
-        {
-          userId: userId,
-          gender: gender,
-          veinsColor: veinColor,
-          weight: weight,
-          height: height,
-          skinColor: skinColor,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((response) => {
-        console.log("Data created:", response.data);
-        setModelExists(true);
-      })
-      .catch((error) => {
-        console.error("Error creating data:", error);
-      });
-  };
+  //   // Convert the generatedModel to a string
+  //   const svgString = renderToStaticMarkup(generatedModel);
+
+  //   axios
+  //     .post(
+  //       "http://localhost:5050/models/userModel",
+  //       {
+  //         userId: 'yourUserId', // Replace with actual user ID
+  //         gender: gender,
+  //         veinsColor: 'cool', // Example vein color
+  //         weight: 70, // Example weight
+  //         height: 175, // Example height
+  //         skinColor: {
+  //           name: 'Light', // Example skin color name
+  //           code: skinColor.code,
+  //         },
+  //         generatedModel: svgString, // Use the generated SVG string here
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: localStorage.getItem("token"),
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log("Data created:", response.data);
+  //       setModelExists(true);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error creating data:", error.message);
+  //     });
+  // };
+
 
   useEffect(() => {
     if (userId) {
@@ -97,20 +106,22 @@ function YourModel() {
   const fetchColorSuggestions = () => {
     setLoading(true);
     setError("");
-
+  
     const userData = {
       veinColor: veinColor,
       skinColor: skinColor,
       gender: gender,
     };
-
+  
     axios
       .post("http://localhost:5050/api/chatgpt-suggest-colors", userData)
       .then((response) => {
         const colorData = response.data.suggestions;
         const parsedColorData = JSON.parse(colorData);
+        const colorValues = Object.values(parsedColorData); // Convert to array of color values
         setSuggestions(parsedColorData);
-        console.log("userData", userData);
+        console.log("Color suggestions:", colorValues);
+        fetchingData(colorValues); // Pass color array to fetchingData
       })
       .catch((error) => {
         console.error(
@@ -123,6 +134,121 @@ function YourModel() {
         setLoading(false);
       });
   };
+  
+  // const fetchingData = (sugg) => {
+  //   if (modelExists) return;
+  
+  //   let svgString = '';
+  //   if (gender === "Male") {
+  //     svgString =
+  //       BMIValue < 18.5
+  //         ? renderToStaticMarkup(<ManSvg3 colorMap={colorMap} skinColor={skinColor.code} />)
+  //         : BMIValue < 24.9
+  //         ? renderToStaticMarkup(<ManSvg colorMap={colorMap} skinColor={skinColor.code} />)
+  //         : renderToStaticMarkup(<ManSvg2 colorMap={colorMap} skinColor={skinColor.code} />);
+  //   } else {
+  //     svgString =
+  //       BMIValue < 18.5
+  //         ? renderToStaticMarkup(<GirlSvg2 colorMap={colorMap} skinColor={skinColor.code} />)
+  //         : BMIValue < 24.9
+  //         ? renderToStaticMarkup(<GirlSvg colorMap={colorMap} skinColor={skinColor.code} />)
+  //         : renderToStaticMarkup(<GirlSvg3 colorMap={colorMap} skinColor={skinColor.code} />);
+  //   }
+  
+  //   // Verify that sugg is an array and contains color codes
+  //   // console.log("Generated model SVG:", svgString);
+  //   console.log("Suitable colors array:", sugg);
+    
+  //   axios
+  //     .post(
+  //       "http://localhost:5050/models/userModel",
+  //       {
+  //         userId: userId,
+  //         gender: gender,
+  //         veinsColor: veinColor,
+  //         weight: weight,
+  //         height: height,
+  //         skinColor: skinColor,
+  //         generatedModel: svgString,
+  //         suitableColors: sugg, // This should be an array of hex codes
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: localStorage.getItem("token"),
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log("Data created successfully in DB:", response.data);
+  //       setModelExists(true);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error creating data:", error.message);
+  //     });
+  // };
+
+  const fetchingData = (sugg) => {
+    if (modelExists) return;
+  
+    let svgString = '';
+    if (gender === "Male") {
+      svgString =
+        BMIValue < 18.5
+          ? renderToStaticMarkup(<ManSvg3 colorMap={colorMap} skinColor={skinColor.code} />)
+          : BMIValue < 24.9
+          ? renderToStaticMarkup(<ManSvg colorMap={colorMap} skinColor={skinColor.code} />)
+          : renderToStaticMarkup(<ManSvg2 colorMap={colorMap} skinColor={skinColor.code} />);
+    } else {
+      svgString =
+        BMIValue < 18.5
+          ? renderToStaticMarkup(<GirlSvg2 colorMap={colorMap} skinColor={skinColor.code} />)
+          : BMIValue < 24.9
+          ? renderToStaticMarkup(<GirlSvg colorMap={colorMap} skinColor={skinColor.code} />)
+          : renderToStaticMarkup(<GirlSvg3 colorMap={colorMap} skinColor={skinColor.code} />);
+    }
+  
+  
+    // Log suitable colors array
+    console.log("Suitable colors array:", sugg);
+  
+    // Check if sugg is an array and has at least one color
+    if (!Array.isArray(sugg) || sugg.length === 0) {
+      console.error("Suitable colors array is empty or not an array.");
+      return; // Exit if no colors are available
+    }
+  
+    axios
+      .post(
+        "http://localhost:5050/models/userModel",
+        {
+          userId: userId,
+          gender: gender,
+          veinsColor: veinColor,
+          weight: weight,
+          height: height,
+          skinColor: skinColor,
+          generatedModel: svgString,
+          suitableColors: sugg,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Data created successfully in DB:", response.data);
+        setModelExists(true);
+      })
+      .catch((error) => {
+        console.error("Error creating data:", error.message);
+      });
+  };
+  
+  
+  
 
   const fetchStyleAdvice = () => {
     setLoading(true);
@@ -169,7 +295,21 @@ function YourModel() {
     return BMI;
   };
 
+  
+
   const BMIValue = handleCalculateBMI();
+
+  const generatedModel = (() => {
+    if (gender === "Male") {
+      if (BMIValue < 18.5) return <ManSvg3 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor.code} />;
+      else if (BMIValue >= 18.5 && BMIValue < 24.9) return <ManSvg colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor.code} />;
+      else return <ManSvg2 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor.code} />;
+    } else {
+      if (BMIValue < 18.5) return <GirlSvg2 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor.code} />;
+      else if (BMIValue >= 18.5 && BMIValue < 24.9) return <GirlSvg colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor.code} />;
+      else return <GirlSvg3 colorMap={colorMap} onPathClick={handlePathClick} skinColor={skinColor.code} />;
+    }
+  })();
 
   return (
     <div className="flex flex-1 flex-col gap-4 sm:gap-6 overflow-y-visible bg-[#EEE6E6]">
@@ -218,8 +358,10 @@ function YourModel() {
                   </div>
                 ))}
             </div>
-
-            <div className="gap-4 flex flex-col border-gray-400 rounded-xl border p-4 sm:p-6 md:p-8 shadow-lg shadow-gray-300">
+            <div className="flex basis-full overflow-hidden lg:basis-1/3 flex-col lg:hidden border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
+           {generatedModel}
+          </div>
+            <div className="gap-4 flex lg:h-96 lg:overflow-auto flex-col border-gray-400 rounded-xl border p-4 sm:p-6 md:p-8 shadow-lg shadow-gray-300">
               <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#EE8B48]">
                 Style Advice
               </div>
@@ -238,49 +380,8 @@ function YourModel() {
             </div>
           </div>
 
-          <div className="flex basis-full lg:basis-1/3 flex-col border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
-            {gender === "Male" ? (
-              BMIValue < 18.5 ? (
-                <ManSvg3
-                  colorMap={colorMap}
-                  onPathClick={handlePathClick}
-                  skinColor={skinColor.code}
-                />
-              ) : BMIValue >= 18.5 && BMIValue < 24.9 ? (
-                <>
-                  <ManSvg
-                    colorMap={colorMap}
-                    onPathClick={handlePathClick}
-                    skinColor={skinColor.code}
-                  />
-                  {console.log(skinColor.code)}
-                </>
-              ) : (
-                <ManSvg2
-                  colorMap={colorMap}
-                  onPathClick={handlePathClick}
-                  skinColor={skinColor.code}
-                />
-              )
-            ) : BMIValue < 18.5 ? (
-              <GirlSvg2
-                colorMap={colorMap}
-                onPathClick={handlePathClick}
-                skinColor={skinColor}
-              />
-            ) : BMIValue >= 18.5 && BMIValue < 24.9 ? (
-              <GirlSvg
-                colorMap={colorMap}
-                onPathClick={handlePathClick}
-                skinColor={skinColor}
-              />
-            ) : (
-              <GirlSvg3
-                colorMap={colorMap}
-                onPathClick={handlePathClick}
-                skinColor={skinColor}
-              />
-            )}
+          <div className="hidden basis-full overflow-hidden lg:basis flex-col border  rounded-lg border-gray-400 p-6 lg:flex sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
+          {generatedModel}
           </div>
         </div>
       </div>

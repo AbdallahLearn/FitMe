@@ -33,6 +33,7 @@ function ProfileForm() {
 
   const [userDetails, setUserDetails] = useState([]);
 
+
   //== Use State Variables ==//
 
   // Get User //
@@ -357,6 +358,7 @@ function ProfileForm() {
     displayPassCheck = "block";
   }
   //=== Display ===//
+ 
 
   return (
     <>
@@ -536,7 +538,23 @@ function ProfileForm() {
           </div>
 
           <div className="flex flex-col gap-4 flex-1 justify-center items-center relative">
-            <img src={man} className="h-[500px] z-20" alt="Man" />
+            {/* <img src={man} className="h-[500px] z-20" alt="Man" /> */}
+
+                  <div
+                    className="h-[500px] z-20"
+                    dangerouslySetInnerHTML={{ __html: userDataInfo.generatedModel }}
+                    onClick={()=>{
+                      navigate("/user-model", {
+                        state: {
+                          veinColor: userDataInfo.veinsColor,
+                          skinColor: userDataInfo.skinColor,
+                          gender: userDataInfo.gender,
+                          height: userDataInfo.height,
+                          weight: userDataInfo.weight, 
+                        },
+                      });
+                    }}
+                  />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
           </div>
         </div>
@@ -615,14 +633,12 @@ function ProfileForm() {
               <div className="flex flex-col gap-1">
                 <span>Your Colors</span>
                 <div className="flex flex-row gap-4 flex-wrap mt-2">
-                  {new Array(5).fill(0).map((_, i) => (
+                  {userDataInfo.suitableColors.map((e, i) => (
                     <div className="flex justify-center items-center" key={i}>
                       <span
                         className="rounded-full w-8 h-8 border-2"
                         style={{
-                          backgroundColor: `#${Math.floor(
-                            Math.random() * 16777215
-                          ).toString(16)}`,
+                          backgroundColor:e
                         }}
                       ></span>
                     </div>
