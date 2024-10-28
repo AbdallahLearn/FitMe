@@ -99,13 +99,27 @@ function TestQuestion() {
 
       <div className="py-28 flex-grow flex flex-col justify-center items-center">
         <div
-          className="card w-[70%] h-[70vh] m-auto shadow-xl"
+          className="card w-[70%] h-[70vh] m-auto shadow-xl max-sm:h-[90vh] max-sm:w-[90%]"
           style={{ border: "1px solid rgba(0,0,0,0.2)" }}
         >
+
+           {/* Previous Step button */}
+           {currentStep === "start" || currentStep === "counter" ? (
+            ""
+          ) : (
+            <div className="mt-10 ml-5 w-full">
+            <button onClick={handlePreviousClick} className="z-40">
+              <div className="p-1 border-2 border-[#EE8B48] rounded-xl">
+                <i className="fa-solid fa-chevron-left fa-fw text-[#EE8B48] text-xl"></i>
+              </div>
+            </button>
+          </div>
+          )}
+
           <div className="card-body flex justify-center">
             {currentStep === "start" ? (
               <>
-                <h2 className="card-title flex justify-center text-4xl max-sm:text-lg">
+                <h2 className="card-title flex justify-center text-4xl max-sm:text-lg text-center">
                   {text}
                   <Cursor />
                 </h2>
@@ -119,6 +133,7 @@ function TestQuestion() {
                 </div>
               </>
             ) : currentStep === "gender" ? (
+
               <Gender 
                 onSelect={handleGenderSelect} 
                 onPrevious={handlePreviousClick}
@@ -133,6 +148,7 @@ function TestQuestion() {
               <Counter onEnd={handleCounterEnd} onPrevious={handlePreviousClick} />
             ) : null}
           </div>
+           
         </div>
       </div>
       
