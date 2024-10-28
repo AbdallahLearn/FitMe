@@ -10,12 +10,15 @@ import FeaturesBox from "../component/FeaturesBox";
 import WorkStepsBox from "../component/WorkStepsBox";
 import dashedLine from "../../public/images/dashedLine.png";
 import "../App.css";
+import { useState,useEffect } from "react";
+import axios from "axios";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ManSvg from "../svg-component/ManSvg";
 import ImageSlider from "./ImageSlider";
 function LandingPage() {
+  const navigate = useNavigate()
   const [text] = useTypewriter({
     words: ["it"],
     loop: 1,
@@ -38,6 +41,76 @@ function LandingPage() {
     deleteSpeed: 50,
     // delaySpeed: 1000,
   });
+  const [userDataInfo, setUserDataInfo] = useState([]);
+
+  const id = localStorage.getItem("userId");
+
+  const getPersonalData = () => {
+    axios
+        .get(`http://localhost:5050/models/userModel/${id}`)
+        .then((response) => {
+            console.log("Editing by Abdullah Jhn: ", response.data);
+            setUserDataInfo(response.data);
+        })
+        .catch((error) =>
+            console.error("Error checking model existence:", error)
+        );
+};
+
+useEffect(() => {
+  getPersonalData()
+
+  // if (
+  //     userDataInfo.gender &&
+  //     userDataInfo.veinsColor &&
+  //     userDataInfo.skinColor &&
+  //     userDataInfo.height &&
+  //     userDataInfo.weight
+  // ) {
+  //     navigate("/user-model", {
+  //         state: {
+  //             veinColor: userDataInfo.veinsColor,
+  //             skinColor: userDataInfo.skinColor,
+  //             gender: userDataInfo.gender,
+  //             height: userDataInfo.height,
+  //             weight: userDataInfo.weight,
+  //         },
+  //     });
+  //   }
+// eslint-disable-next-line react-hooks/exhaustive-deps userDataInfo, navigate
+}, [ userDataInfo, navigate]); 
+
+function checkModel(){
+    // to= {localStorage.getItem("userId") === null ? "/signin" : "/generate-model" }
+
+  if (localStorage.getItem('userId') === null){
+    navigate('/signin')
+  }
+  else{
+    if (
+      userDataInfo.gender &&
+      userDataInfo.veinsColor &&
+      userDataInfo.skinColor &&
+      userDataInfo.height &&
+      userDataInfo.weight
+  ) {
+      navigate("/user-model", {
+          state: {
+              veinColor: userDataInfo.veinsColor,
+              skinColor: userDataInfo.skinColor,
+              gender: userDataInfo.gender,
+              height: userDataInfo.height,
+              weight: userDataInfo.weight,
+          },
+      });
+    }
+    else{
+      navigate('/generate-model')
+    }
+  }
+}
+
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header blackHeader="true" />
@@ -69,12 +142,13 @@ function LandingPage() {
               <p className="text-left text-xl font-bold text-[#cccbcb] max-sm:text-[0.55rem]">
                 Tired of choosing colors that don't fit quite right?
               </p>
-              <Link
-                to= {localStorage.getItem("userId") === null ? "/signin" : "/generate-model" }
+              <button
+                // to= {localStorage.getItem("userId") === null ? "/signin" : "/generate-model" }
                 className="py-2 font-bold rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white"
+                onClick= {checkModel}
               >
                 L{text6}
-              </Link>
+              </button>
             </div>
             <div className="relative">
               <img src={circleWords} className="w-36 max-sm:w-20" />

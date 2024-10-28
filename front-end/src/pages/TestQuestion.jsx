@@ -16,42 +16,42 @@ function TestQuestion() {
     const navigate = useNavigate();
     //=== Variables ===//
 
-    const [userDataInfo, setUserDataInfo] = useState([]);
+    // const [userDataInfo, setUserDataInfo] = useState([]);
     
-    const getPersonalData = () => {
-        axios
-            .get(`http://localhost:5050/models/userModel/${id}`)
-            .then((response) => {
-                console.log("Editing by Abdullah Jhn: ", response.data);
-                setUserDataInfo(response.data);
-            })
-            .catch((error) =>
-                console.error("Error checking model existence:", error)
-            );
-    };
+    // const getPersonalData = () => {
+    //     axios
+    //         .get(`http://localhost:5050/models/userModel/${id}`)
+    //         .then((response) => {
+    //             console.log("Editing by Abdullah Jhn: ", response.data);
+    //             setUserDataInfo(response.data);
+    //         })
+    //         .catch((error) =>
+    //             console.error("Error checking model existence:", error)
+    //         );
+    // };
 
-    useEffect(() => {
-      getPersonalData()
+    // useEffect(() => {
+    //   getPersonalData()
 
-      if (
-          userDataInfo.gender &&
-          userDataInfo.veinsColor &&
-          userDataInfo.skinColor &&
-          userDataInfo.height &&
-          userDataInfo.weight
-      ) {
-          navigate("/user-model", {
-              state: {
-                  veinColor: userDataInfo.veinsColor,
-                  skinColor: userDataInfo.skinColor,
-                  gender: userDataInfo.gender,
-                  height: userDataInfo.height,
-                  weight: userDataInfo.weight,
-              },
-          });
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userDataInfo, navigate]);    
+    //   if (
+    //       userDataInfo.gender &&
+    //       userDataInfo.veinsColor &&
+    //       userDataInfo.skinColor &&
+    //       userDataInfo.height &&
+    //       userDataInfo.weight
+    //   ) {
+    //       navigate("/user-model", {
+    //           state: {
+    //               veinColor: userDataInfo.veinsColor,
+    //               skinColor: userDataInfo.skinColor,
+    //               gender: userDataInfo.gender,
+    //               height: userDataInfo.height,
+    //               weight: userDataInfo.weight,
+    //           },
+    //       });
+    //     }
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [userDataInfo, navigate]);    
 
   const [currentStep, setCurrentStep] = useState("start");
   const [userData, setUserData] = useState({
