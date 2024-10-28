@@ -257,6 +257,7 @@ function YourModel() {
     const userData = {
       weight: weight,
       height: height,
+      gender:gender
     };
 
     axios
