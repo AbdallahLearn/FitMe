@@ -6,9 +6,6 @@ console.log(`your weight is // ${weight}`);
 console.log(`your height is // ${height}`);
 console.log(`your gender is // ${gender}`);
 
-
-
-
     const prompt = `Provide fashion advice for a person with the following characteristics: 
     - Weight: ${weight} kg
     - Height: ${height} cm 
