@@ -8,9 +8,9 @@ import { useState, useEffect } from "react";
 import { z } from "zod";
 import axios from "axios";
 import Swal from "sweetalert2";
-import warm from "../../public/images/warm.png"
-import cool from "../../public/images/cool.png"
-import neutral from "../../public/images/neutral.png"
+import warm from "../../public/images/warm.png";
+import cool from "../../public/images/cool.png";
+import neutral from "../../public/images/neutral.png";
 function ProfileForm() {
   // Variables //
   const id = localStorage.getItem("userId");
@@ -34,7 +34,6 @@ function ProfileForm() {
   const [displayPass, setDisplayPass] = useState("none");
 
   const [userDetails, setUserDetails] = useState([]);
-
 
   //== Use State Variables ==//
 
@@ -360,7 +359,6 @@ function ProfileForm() {
     displayPassCheck = "block";
   }
   //=== Display ===//
- 
 
   return (
     <>
@@ -375,7 +373,10 @@ function ProfileForm() {
             <div className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70 flex flex-row justify-between items-center">
               <h1 className="text-[#999898]">{userDetails.name}</h1>
 
-              <i onClick={showUpName} className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"></i>
+              <i
+                onClick={showUpName}
+                className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"
+              ></i>
             </div>
 
             <div style={{ display: displayName }}>
@@ -430,7 +431,10 @@ function ProfileForm() {
             <div className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70 flex flex-row justify-between items-center">
               <h1 className="text-[#999898]">{userDetails.email}</h1>
 
-              <i onClick={showUpEmail} className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"></i>
+              <i
+                onClick={showUpEmail}
+                className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"
+              ></i>
             </div>
 
             <div style={{ display: displayEmail }}>
@@ -485,7 +489,10 @@ function ProfileForm() {
             <div className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70 flex flex-row justify-between items-center">
               <h1 className="text-[#999898]">●●●●●●●●</h1>
 
-              <i onClick={showUpPass} className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"></i>
+              <i
+                onClick={showUpPass}
+                className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"
+              ></i>
             </div>
 
             <div style={{ display: displayPass }}>
@@ -542,21 +549,21 @@ function ProfileForm() {
           <div className="flex flex-col gap-4 flex-1 -mt-20 justify-center items-center relative">
             {/* <img src={man} className="h-[500px] z-20" alt="Man" /> */}
 
-                  <div
-                    className="z-20"
-                    dangerouslySetInnerHTML={{ __html: userDataInfo.generatedModel }}
-                    onClick={()=>{
-                      navigate("/user-model", {
-                        state: {
-                          veinColor: userDataInfo.veinsColor,
-                          skinColor: userDataInfo.skinColor,
-                          gender: userDataInfo.gender,
-                          height: userDataInfo.height,
-                          weight: userDataInfo.weight, 
-                        },
-                      });
-                    }}
-                  />
+            <div
+              className="z-20"
+              dangerouslySetInnerHTML={{ __html: userDataInfo.generatedModel }}
+              onClick={() => {
+                navigate("/user-model", {
+                  state: {
+                    veinColor: userDataInfo.veinsColor,
+                    skinColor: userDataInfo.skinColor,
+                    gender: userDataInfo.gender,
+                    height: userDataInfo.height,
+                    weight: userDataInfo.weight,
+                  },
+                });
+              }}
+            />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
           </div>
         </div>
@@ -602,7 +609,16 @@ function ProfileForm() {
             <hr />
 
             <div className="flex flex-row gap-4">
-              <img className="rounded-full h-12 w-12 rotate-45" src={userDataInfo.veinsColor == "warm" ? warm : userDataInfo.veinsColor == "cool" ? cool : neutral}/>
+              <img
+                className="rounded-full h-12 w-12 rotate-45"
+                src={
+                  userDataInfo.veinsColor == "warm"
+                    ? warm
+                    : userDataInfo.veinsColor == "cool"
+                    ? cool
+                    : neutral
+                }
+              />
               <div className="flex flex-col gap-1">
                 <span>Vein Color</span>
                 <span className="text-gray-400">{userDataInfo.veinsColor}</span>
@@ -640,7 +656,7 @@ function ProfileForm() {
                       <span
                         className="rounded-full w-8 h-8 border-2"
                         style={{
-                          backgroundColor:e
+                          backgroundColor: e,
                         }}
                       ></span>
                     </div>
