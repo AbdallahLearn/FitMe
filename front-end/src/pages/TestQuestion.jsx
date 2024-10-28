@@ -143,7 +143,7 @@ function TestQuestion() {
             ) : currentStep === "veinColor" ? (
               <VeinColor onNext={handleVeinNextClick} onPrevious={handlePreviousClick} />
             ) : currentStep === "skinColor" ? (
-              <SkinColor onNext={handleSkinColorNextClick} onPrevious={handlePreviousClick} />
+              <SkinColor onNext={handleSkinColorNextClick} veinColor={userData.veinColor} />
             ) : currentStep === "counter" ? (
               <Counter onEnd={handleCounterEnd} onPrevious={handlePreviousClick} />
             ) : null}
