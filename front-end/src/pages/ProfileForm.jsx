@@ -8,13 +8,9 @@ import { useState, useEffect } from "react";
 import { z } from "zod";
 import axios from "axios";
 import Swal from "sweetalert2";
-<<<<<<< HEAD
 import warm from "../../public/images/warm.png";
 import cool from "../../public/images/cool.png";
 import neutral from "../../public/images/neutral.png";
-=======
-
->>>>>>> ad5e028967d5815485d941ba79b95e963fbde66a
 function ProfileForm() {
   // Variables //
   const id = localStorage.getItem("userId");
