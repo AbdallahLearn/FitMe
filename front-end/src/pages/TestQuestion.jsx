@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Gender from "./Gender";
 import HeightWeight from "./HeightWeight"; 
 import VeinColor from "./VeinColor";
@@ -8,9 +8,51 @@ import Footer from "../component/Footer";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { useNavigate } from "react-router";
 import Header from "../component/Header";
+import axios from "axios";
 
 function TestQuestion() {
-  const navigate = useNavigate();
+    // Variables //
+    const id = localStorage.getItem("userId");
+    const navigate = useNavigate();
+    //=== Variables ===//
+
+    const [userDataInfo, setUserDataInfo] = useState([]);
+    
+    const getPersonalData = () => {
+        axios
+            .get(`http://localhost:5050/models/userModel/${id}`)
+            .then((response) => {
+                console.log("Editing by Abdullah Jhn: ", response.data);
+                setUserDataInfo(response.data);
+            })
+            .catch((error) =>
+                console.error("Error checking model existence:", error)
+            );
+    };
+
+    useEffect(() => {
+      getPersonalData()
+
+      if (
+          userDataInfo.gender &&
+          userDataInfo.veinsColor &&
+          userDataInfo.skinColor &&
+          userDataInfo.height &&
+          userDataInfo.weight
+      ) {
+          navigate("/user-model", {
+              state: {
+                  veinColor: userDataInfo.veinsColor,
+                  skinColor: userDataInfo.skinColor,
+                  gender: userDataInfo.gender,
+                  height: userDataInfo.height,
+                  weight: userDataInfo.weight,
+              },
+          });
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [userDataInfo, navigate]);    
+
   const [currentStep, setCurrentStep] = useState("start");
   const [userData, setUserData] = useState({
     veinColor: null,
@@ -143,7 +185,7 @@ function TestQuestion() {
             ) : currentStep === "veinColor" ? (
               <VeinColor onNext={handleVeinNextClick} onPrevious={handlePreviousClick} />
             ) : currentStep === "skinColor" ? (
-              <SkinColor onNext={handleSkinColorNextClick} onPrevious={handlePreviousClick} />
+              <SkinColor onNext={handleSkinColorNextClick} veinColor={userData.veinColor} />
             ) : currentStep === "counter" ? (
               <Counter onEnd={handleCounterEnd} onPrevious={handlePreviousClick} />
             ) : null}
