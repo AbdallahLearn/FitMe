@@ -8,7 +8,9 @@ import { useState, useEffect } from "react";
 import { z } from "zod";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import warm from "../../public/images/warm.png"
+import cool from "../../public/images/cool.png"
+import neutral from "../../public/images/neutral.png"
 function ProfileForm() {
   // Variables //
   const id = localStorage.getItem("userId");
@@ -600,7 +602,7 @@ function ProfileForm() {
             <hr />
 
             <div className="flex flex-row gap-4">
-              <span className="rounded-full h-12 w-12 bg-[#5E887A]"></span>
+              <img className="rounded-full h-12 w-12 rotate-45" src={userDataInfo.veinsColor == "warm" ? warm : userDataInfo.veinsColor == "cool" ? cool : neutral}/>
               <div className="flex flex-col gap-1">
                 <span>Vein Color</span>
                 <span className="text-gray-400">{userDataInfo.veinsColor}</span>
