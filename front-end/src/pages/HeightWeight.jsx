@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function HeightWeight({ onNext, onPrevious }) {
+function HeightWeight({ onNext }) {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
 
@@ -12,16 +12,7 @@ function HeightWeight({ onNext, onPrevious }) {
   };
 
   return (
-    <div className="card-body relative flex flex-col justify-center items-center    w-full  mx-auto p-2 sm:p-6 box-border">
-      
-      {/* Previous Step button */}
-      <div className="w-full mt-4 flex justify-center lg:justify-start">
-        <button onClick={onPrevious} className="z-40">
-          <div className="p-1 border-2 border-[#EE8B48] rounded-xl">
-            <i className="fa-solid fa-chevron-left fa-fw text-[#EE8B48] text-xl"></i>
-          </div>
-        </button>
-      </div>
+    <div className="card-body relative flex flex-col justify-center items-center w-full  mx-auto p-2 sm:p-6 box-border">
       
       <h2 className="card-title text-center text-lg sm:text-xl md:text-4xl lg:text-3xl xl:text-2xl mb-4 mt-2 leading-tight whitespace-nowrap">
         Enter Your Weight and Height

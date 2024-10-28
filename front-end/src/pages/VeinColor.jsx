@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function VeinColor({ onNext, onPrevious }) {
+function VeinColor({ onNext}) {
   const [selected, setSelected] = useState('');
 
   const handleSelect = (colorType) => {
@@ -9,17 +9,6 @@ function VeinColor({ onNext, onPrevious }) {
 
   return (
     <div className=" flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%]  p-2 mx-auto box-border ">
-
-      
-      {/* Previous Step button */}
-      <div className="w-full mt-4 flex justify-center lg:justify-start">
-        <button onClick={onPrevious} className="z-40">
-          <div className="p-1 border-2 border-[#EE8B48] rounded-xl">
-            <i className="fa-solid fa-chevron-left fa-fw text-[#EE8B48] text-xl"></i>
-          </div>
-        </button>
-      </div>
-
       <h2 className="card-title text-center text-xl mt-2 md:text-4xl mb-1 sm:mb-4">
         Choose Your Vein Color:
       </h2>

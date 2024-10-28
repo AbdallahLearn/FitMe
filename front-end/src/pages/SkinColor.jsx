@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SkinColor({ onNext, onPrevious }) {  // Accept onPrevious as a prop
+function SkinColor({ onNext }) {  // Accept onPrevious as a prop
   const [selectedColor, setSelectedColor] = useState(null);
 
   const handleSelect = (color) => {
@@ -18,15 +18,6 @@ function SkinColor({ onNext, onPrevious }) {  // Accept onPrevious as a prop
 
   return (
     <div className=" flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%]  p-2 mx-auto box-border ">
-      {/* Previous Step button */}
-      <div className="w-full mt-4 flex justify-center lg:justify-start">
-        <button onClick={onPrevious} className="z-40">
-          <div className="p-1 border-2 border-[#EE8B48] rounded-xl">
-            <i className="fa-solid fa-chevron-left fa-fw text-[#EE8B48] text-xl"></i>
-          </div>
-        </button>
-      </div>
-
       <h2 className="card-title text-center md:text-4xl mt-2 mb-2 sm:mb-4">
         Choose Your Skin Color:
       </h2>

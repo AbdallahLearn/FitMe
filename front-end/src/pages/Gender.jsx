@@ -1,18 +1,9 @@
 import React from "react";
 
-function Gender({ onSelect, onNext, onPrevious }) {
+function Gender({ onSelect, onNext}) {
   return (
     <div className=" flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%]  p-2 mx-auto box-border ">
       
-      {/* Previous Step button */}
-      <div className="w-full  flex justify-center lg:justify-start mb-1 sm:mb-2">
-        <button onClick={onPrevious} className="z-40">
-          <div className="p-1 border-2 border-[#EE8B48] rounded-xl">
-            <i className="fa-solid fa-chevron-left fa-fw text-[#EE8B48] text-xl"></i>
-          </div>
-        </button>
-      </div>
-
       {/* Title */}
       <h2 className="card-title text-md md:text-4xl sm:text-xl text-center mb-3 sm:mb-4 mt-2 sm:mt-4">
         Choose Your Gender
