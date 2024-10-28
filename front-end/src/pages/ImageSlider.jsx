@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-// تأكد من استيراد الصور الخاصة بك هنا
-import man from "../../public/images/man.png";
-// import woman from "../../public/images/woman.png";
+import man from "../../public/images/modelman.png";
+import girl from "../../public/images/girlmode.png";
 
 const ImageSlider = () => {
-    const images = [man]; // أضف الصور التي ترغب في عرضها هنا
+    const images = [man, girl];
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 2000); // تغيير الصورة كل 2 ثانية
+        }, 3000); // Change image every 3 seconds
 
-        return () => clearInterval(interval); // تنظيف عند إلغاء التركيب
+        return () => clearInterval(interval);
     }, [images.length]);
 
     return (
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[11rem]">
             <motion.img
-                key={currentIndex} // يستخدم لضمان أن كل صورة تعرض كعنصر مختلف
+                key={currentIndex}
                 src={images[currentIndex]}
                 alt="Slideshow"
-                initial={{ opacity: 0 }} // بدءًا بالشفافية 0
-                animate={{ opacity: 1 }} // الانتقال إلى الشفافية 1
-                exit={{ opacity: 0 }} // الانتقال إلى الشفافية 0 عند التغيير
-                transition={{ duration: 0.5 }} // مدة الانتقال
+                className="w-full h-auto max-w-full object-contain rounded-lg" // Tailwind CSS classes for styling
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
             />
         </div>
     );

@@ -59,7 +59,7 @@ function LandingPage() {
           {/* <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[11rem] ">
             <img src={man} />
           </div> */}
-          <div>
+          <div >
             <ImageSlider />
         </div>
 
