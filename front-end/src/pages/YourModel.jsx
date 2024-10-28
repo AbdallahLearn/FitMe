@@ -11,7 +11,7 @@ import ManSvg3 from "../svg-component/ManSvg3";
 import GirlSvg from "../svg-component/GirlSvg";
 import GirlSvg2 from "../svg-component/GirlSvg2";
 import GirlSvg3 from "../svg-component/GirlSvg3";
-
+import { useNavigate } from "react-router-dom";
 function YourModel() {
   const location = useLocation();
   const { veinColor, skinColor, gender, height, weight } = location.state || {};
@@ -19,6 +19,7 @@ function YourModel() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [modelExists, setModelExists] = useState(false);
+  const [newModelExists, setNewModelExists] = useState('');
   const [colorMap, setColorMap] = useState({
     1: "gray",
     2: skinColor.code,
@@ -34,13 +35,15 @@ function YourModel() {
   const [selectedPath, setSelectedPath] = useState(null);
   const [styleAdvice, setStyleAdvice] = useState([]);
   const userId = localStorage.getItem("userId");
-
+  const navigate = useNavigate()
   // Function to check if user model exists
   const checkModelExists = () => {
     axios
       .get(`http://localhost:5050/models/userModel/${userId}`)
       .then((response) => {
         setModelExists(response.data.exists);
+        setNewModelExists(response.data.generatedModel);
+        console.log("newmode ", response.data.generatedModel)
       })
       .catch((error) =>
         console.error("Error checking model existence:", error)
@@ -48,43 +51,6 @@ function YourModel() {
   };
 
  
-  // const fetchingData = () => {
-  //   if (modelExists) return;
-
-  //   // Convert the generatedModel to a string
-  //   const svgString = renderToStaticMarkup(generatedModel);
-
-  //   axios
-  //     .post(
-  //       "http://localhost:5050/models/userModel",
-  //       {
-  //         userId: 'yourUserId', // Replace with actual user ID
-  //         gender: gender,
-  //         veinsColor: 'cool', // Example vein color
-  //         weight: 70, // Example weight
-  //         height: 175, // Example height
-  //         skinColor: {
-  //           name: 'Light', // Example skin color name
-  //           code: skinColor.code,
-  //         },
-  //         generatedModel: svgString, // Use the generated SVG string here
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: localStorage.getItem("token"),
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log("Data created:", response.data);
-  //       setModelExists(true);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error creating data:", error.message);
-  //     });
-  // };
-
 
   useEffect(() => {
     if (userId) {
@@ -135,63 +101,12 @@ function YourModel() {
       });
   };
   
-  // const fetchingData = (sugg) => {
-  //   if (modelExists) return;
-  
-  //   let svgString = '';
-  //   if (gender === "Male") {
-  //     svgString =
-  //       BMIValue < 18.5
-  //         ? renderToStaticMarkup(<ManSvg3 colorMap={colorMap} skinColor={skinColor.code} />)
-  //         : BMIValue < 24.9
-  //         ? renderToStaticMarkup(<ManSvg colorMap={colorMap} skinColor={skinColor.code} />)
-  //         : renderToStaticMarkup(<ManSvg2 colorMap={colorMap} skinColor={skinColor.code} />);
-  //   } else {
-  //     svgString =
-  //       BMIValue < 18.5
-  //         ? renderToStaticMarkup(<GirlSvg2 colorMap={colorMap} skinColor={skinColor.code} />)
-  //         : BMIValue < 24.9
-  //         ? renderToStaticMarkup(<GirlSvg colorMap={colorMap} skinColor={skinColor.code} />)
-  //         : renderToStaticMarkup(<GirlSvg3 colorMap={colorMap} skinColor={skinColor.code} />);
-  //   }
-  
-  //   // Verify that sugg is an array and contains color codes
-  //   // console.log("Generated model SVG:", svgString);
-  //   console.log("Suitable colors array:", sugg);
-    
-  //   axios
-  //     .post(
-  //       "http://localhost:5050/models/userModel",
-  //       {
-  //         userId: userId,
-  //         gender: gender,
-  //         veinsColor: veinColor,
-  //         weight: weight,
-  //         height: height,
-  //         skinColor: skinColor,
-  //         generatedModel: svgString,
-  //         suitableColors: sugg, // This should be an array of hex codes
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: localStorage.getItem("token"),
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log("Data created successfully in DB:", response.data);
-  //       setModelExists(true);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error creating data:", error.message);
-  //     });
-  // };
 
+  let svgString = '';
   const fetchingData = (sugg) => {
     if (modelExists) return;
   
-    let svgString = '';
+   
     if (gender === "Male") {
       svgString =
         BMIValue < 18.5
@@ -312,6 +227,62 @@ function YourModel() {
     }
   })();
 
+  function updateSvg() {
+
+    // Generate the SVG string based on gender and BMIValue
+    let svgString = '';
+    if (gender === "Male") {
+      svgString =
+        BMIValue < 18.5
+          ? renderToStaticMarkup(<ManSvg3 colorMap={colorMap} skinColor={skinColor.code} />)
+          : BMIValue < 24.9
+          ? renderToStaticMarkup(<ManSvg colorMap={colorMap} skinColor={skinColor.code} />)
+          : renderToStaticMarkup(<ManSvg2 colorMap={colorMap} skinColor={skinColor.code} />);
+    } else {
+      svgString =
+        BMIValue < 18.5
+          ? renderToStaticMarkup(<GirlSvg2 colorMap={colorMap} skinColor={skinColor.code} />)
+          : BMIValue < 24.9
+          ? renderToStaticMarkup(<GirlSvg colorMap={colorMap} skinColor={skinColor.code} />)
+          : renderToStaticMarkup(<GirlSvg3 colorMap={colorMap} skinColor={skinColor.code} />);
+    }
+  
+    // Update user's generatedModel field in the database
+    console.log("Object.entries(suggestions)",Object.values(suggestions))
+    axios
+      .put(
+        `http://localhost:5050/models/userModel/${userId}`, // Use PATCH method and include userId in URL
+        {
+          generatedModel: svgString, // Send the generated SVG string to update
+          suitableColors: Object.values(suggestions)
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Model updated successfully:", response.data);
+        setModelExists(true); // Update state if necessary
+        setNewModelExists(svgString);
+      
+        
+        setTimeout(()=>{
+          navigate('/user-profile')
+        },1000)
+
+
+      })
+      .catch((error) => {
+        console.error("Error updating model:", error.message);
+      });
+
+      
+  }
+  
+
   return (
     <div className="flex flex-1 flex-col gap-4 sm:gap-6 overflow-y-visible bg-[#EEE6E6]">
       <Header />
@@ -360,7 +331,18 @@ function YourModel() {
                 ))}
             </div>
             <div className="flex basis-full overflow-hidden lg:basis-1/3 flex-col lg:hidden border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
-           {generatedModel}
+            {modelExists ? (
+                      <div
+                        dangerouslySetInnerHTML={{ __html: newModelExists  }}
+                      />
+                     ) : ( 
+                      <>
+                        {generatedModel}
+                        <button className="btn bg-[#EE8B48] border-none m-auto mt-20 text-2xl text-white font-bold max-sm:text-sm" onClick={updateSvg}>
+                          Save
+                        </button>
+                      </>
+                     )}
           </div>
             <div className="gap-4 flex lg:h-96 lg:overflow-auto flex-col border-gray-400 rounded-xl border p-4 sm:p-6 md:p-8 shadow-lg shadow-gray-300">
               <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#EE8B48]">
@@ -381,9 +363,20 @@ function YourModel() {
             </div>
           </div>
 
-          <div className="hidden basis-full overflow-hidden lg:basis flex-col border  rounded-lg border-gray-400 p-6 lg:flex sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
-          {generatedModel}
-          </div>
+                  <div className="hidden basis-full overflow-hidden lg:basis flex-col border rounded-lg border-gray-400 p-6 lg:flex sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
+                    {modelExists ? (
+                      <div
+                        dangerouslySetInnerHTML={{ __html: newModelExists  }}
+                      />
+                     ) : ( 
+                      <>
+                        {generatedModel}
+                        <button className="btn bg-[#EE8B48] border-none m-auto text-lg text-white font-bold max-sm:text-sm" onClick={updateSvg}>
+                          Save
+                        </button>
+                      </>
+                     )}
+                  </div>
         </div>
       </div>
     </div>

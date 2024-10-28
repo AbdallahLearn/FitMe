@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 import man from "../../public/images/modelman.png";
-import girl from "../../public/images/girlmode.png";
+import girl from "../../public/images/girlmodeedit.png";
 
 const ImageSlider = () => {
     const images = [man, girl];

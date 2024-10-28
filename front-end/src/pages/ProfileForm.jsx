@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import warm from "../../public/images/warm.png";
 import cool from "../../public/images/cool.png";
 import neutral from "../../public/images/neutral.png";
+import { Link } from "react-router-dom";
 function ProfileForm() {
   // Variables //
   const id = localStorage.getItem("userId");
@@ -364,8 +365,8 @@ function ProfileForm() {
     <>
       <Header />
       <div className="flex flex-1 flex-col gap-6 overflow-y-visible bg-[#EEE6E6] px-8">
-        <div className="flex lg:flex-row flex-col gap-4">
-          <div className="flex flex-col gap-4 flex-1 mt-20">
+        <div className="flex lg:flex-row flex-col gap-4 items-center ">
+          <div className="flex flex-col gap-4 flex-1 max-sm:w-full   ">
             <label htmlFor="name" className="text-xl font-extrabold">
               Your Name
             </label>
@@ -546,25 +547,30 @@ function ProfileForm() {
             </button> */}
           </div>
 
-          <div className="flex flex-col gap-4 flex-1 -mt-20 justify-center items-center relative">
+          <div className="flex flex-col gap-4 flex-1  justify-center items-center relative">
             {/* <img src={man} className="h-[500px] z-20" alt="Man" /> */}
-
-            <div
-              className="z-20"
-              dangerouslySetInnerHTML={{ __html: userDataInfo.generatedModel }}
-              onClick={() => {
-                navigate("/user-model", {
-                  state: {
-                    veinColor: userDataInfo.veinsColor,
-                    skinColor: userDataInfo.skinColor,
-                    gender: userDataInfo.gender,
-                    height: userDataInfo.height,
-                    weight: userDataInfo.weight,
-                  },
-                });
-              }}
-            />
+            {/* <div className="w-96  flex justify-center items-center z-10 "> */}
+              <div
+                className="z-20 "
+                dangerouslySetInnerHTML={{
+                  __html: userDataInfo.generatedModel,
+                }}
+                onClick={() => {
+                  navigate("/user-model", {
+                    state: {
+                      veinColor: userDataInfo.veinsColor,
+                      skinColor: userDataInfo.skinColor,
+                      gender: userDataInfo.gender,
+                      height: userDataInfo.height,
+                      weight: userDataInfo.weight,
+                    },
+                  });
+                }}
+              />
+            {/* </div> */}
+            {userDataInfo && Object.keys(userDataInfo).length > 0 ?
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
+            : <Link to='/generate-model' className=" bg-[#EE8B48]  text-white font-extrabold rounded-xl p-4 px-7 w-fit mx-auto mt-4 max-sm:mt-10 ">Generate your Model</Link>}
           </div>
         </div>
         {userDataInfo && Object.keys(userDataInfo).length > 0 ? (
@@ -666,11 +672,11 @@ function ProfileForm() {
             </div>
           </div>
         ) : (
-          <p className="text-gray-500 text-2xl text-center py-10"></p>
+          ''
         )}
         <button
           onClick={handleDeleteAccount}
-          className="bg-[#BE0000] text-white font-extrabold rounded-xl p-4 px-12 w-fit mx-auto mt-4"
+          className="bg-[#BE0000] text-white font-extrabold rounded-xl p-4 px-12 w-fit mx-auto mt-20 max-sm:mt-0"
         >
           Delete Account
         </button>

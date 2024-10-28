@@ -66,6 +66,27 @@ export const createModel = async (req, res) => {
   }
 };
 
+export const updateModel = async (req, res) => {
+  const { userId } = req.params;
+  console.log("Fetching model for user ID:", userId);
+
+  // Find the model by userId
+  const model = await Model.findOne({ userId: new mongoose.Types.ObjectId(userId) });
+
+  if (!model) {
+    console.warn("No model found for user ID:", userId);
+    return res.status(404).json({ message: "No model found for this user" });
+  }
+
+  const { generatedModel, suitableColors } = req.body;
+  model.generatedModel = generatedModel;
+  model.suitableColors = suitableColors
+
+  await model.save();
+  return res.status(200).json({ message: "Model updated successfully" });
+};
+
+
 // Function to get the model for a user
 export const getModel = async (req, res) => {
   try {
