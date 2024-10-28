@@ -1,7 +1,23 @@
 import "../App.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PasswordChanged() {
+    // Variables //
+    const navigate = useNavigate();
+    //=== Variables ===//
+
+    // Use Effect //
+    useEffect(() => {
+        // Check If User Is Logged In //
+        if (localStorage.getItem("userId") !== null) {
+            navigate("/");
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);  
+    //=== Use Effect ===//
+    
     return (
         <>
             {/* Begin: Password Changed */}
