@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Header from "../component/Header";
-import Footer from "../component/Footer";
+// import Footer from "../component/Footer";
 import "../App.css";
 import { renderToStaticMarkup } from 'react-dom/server';
 import ManSvg from "../svg-component/ManSvg";
