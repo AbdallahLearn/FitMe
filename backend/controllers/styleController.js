@@ -6,13 +6,12 @@ console.log(`your weight is // ${weight}`);
 console.log(`your height is // ${height}`);
 console.log(`your gender is // ${gender}`);
 
-
-
-
     const prompt = `Provide fashion advice for a person with the following characteristics: 
     - Weight: ${weight} kg
     - Height: ${height} cm 
+    - The Person is ${gender}
     List 3 brief tips Based on a ${gender} with weight ${weight} and height ${height} suggest appropriate dress styles and colors that would be flattering. Provide specific recommendations for dress cuts, lengths, and color palettes. All in text format, do not use markdown.`
+
     try {
         const openai = new DeepAI({ apiKey: process.env.OPENAI_API_KEY });
 
