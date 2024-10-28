@@ -1,6 +1,6 @@
 import Header from "../component/Header";
 import "../App.css";
-import man from "../assets/man.png";
+// import man from "../assets/man.png";
 import avatar from "../assets/avatar.png";
 import colorPalette from "../assets/color-palette.png";
 import { useNavigate } from "react-router-dom";
