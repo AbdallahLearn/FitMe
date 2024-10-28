@@ -1,26 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function SkinColor({ onNext }) {  // Accept onPrevious as a prop
+function SkinColor({ onNext, veinColor }) {
   const [selectedColor, setSelectedColor] = useState(null);
+  const [colors, setColors] = useState([]);
+  const [label, setLabel] = useState("Choose Your Skin Color:");
+
+  useEffect(() => {
+    if (veinColor === 'warm') {
+      setColors([
+        { name: 'Fair', code: '#F9DEC0' },
+        { name: 'Light', code: '#EAD5A5' },
+        { name: 'Medium', code: '#DFB57E' },
+        { name: 'Tan', code: '#C48757' },
+        { name: 'Dark', code: '#895C35' },
+        { name: 'Deep', code: '#643F23' },
+      ]);
+      setLabel("Choose Your Warm Undertones:");
+    } else if (veinColor === 'neutral') {
+      setColors([
+        { name: 'Fair', code: '#F6D9C6' },
+        { name: 'Light', code: '#EAD5A5' },
+        { name: 'Medium', code: '#DFB57E' },
+        { name: 'Tan', code: '#C57A57' },
+        { name: 'Dark', code: '#7E5047' },
+        { name: 'Deep', code: '#5C332B' },
+      ]);
+      setLabel("Choose Your Neutral Undertones:");
+    } else {
+      setColors([
+        { name: 'Fair', code: '#F4E0D9' },
+        { name: 'Light', code: '#F5DEC4' },
+        { name: 'Medium', code: '#E3BA9F' },
+        { name: 'Tan', code: '#C88F71' },
+        { name: 'Dark', code: '#74504F' },
+        { name: 'Deep', code: '#493338' },
+      ]);
+      setLabel("Choose Your Cool Undertones:");
+    }
+  }, [veinColor]);
 
   const handleSelect = (color) => {
     setSelectedColor(color);
   };
 
-  const colors = [
-    { name: 'Fair', code: '#F4E0D9' },
-    { name: 'Light', code: '#F5DEC4' },
-    { name: 'Medium', code: '#E3BA9F' },
-    { name: 'Tan', code: '#C88F71' },
-    { name: 'Dark', code: '#74504F' },
-    { name: 'Deep', code: '#493338' },
-  ];
-
   return (
-    <div className=" flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%]  p-2 mx-auto box-border ">
-      <h2 className="card-title text-center md:text-4xl mt-2 mb-2 sm:mb-4">
-        Choose Your Skin Color:
-      </h2>
+    <div className="flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%] p-2 mx-auto">
+      <h2 className="card-title text-center md:text-4xl mt-2 mb-2 sm:mb-4">{label}</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {colors.map((color, index) => (
           <div
