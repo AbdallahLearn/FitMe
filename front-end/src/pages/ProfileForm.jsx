@@ -296,8 +296,8 @@ function ProfileForm() {
       text: "You Won't Be Able to Revert This!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#BE0000",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#3d9042",
+      cancelButtonColor: "#999999",
       confirmButtonText: "Yes, Delete It!",
       cancelButtonText: "Cancel",
     }).then((result) => {
@@ -306,11 +306,12 @@ function ProfileForm() {
           .delete(`http://localhost:5050/users/del-user/${id}`)
           .then((response) => {
             console.log(response);
-            Swal.fire(
-              "Deleted!",
-              "Your Account Has Been Deleted.",
-              "success"
-            ).then(() => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Account Has Been Deleted.",
+              icon: "success",
+              confirmButtonColor: "#3d9042" 
+            }).then(() => {
               localStorage.clear();
               navigate("/");
             });
