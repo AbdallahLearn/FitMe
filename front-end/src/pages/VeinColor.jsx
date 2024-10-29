@@ -9,8 +9,8 @@ function VeinColor({ onNext}) {
 
   return (
     <div className=" flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%]  p-2 mx-auto box-border ">
-      <h2 className="card-title text-center text-xl mt-2 md:text-4xl mb-1 sm:mb-4">
-        Choose Your Vein Color:
+      <h2 className="card-title text-center mt-2 text-md md:text-4xl sm:text-2xl mb-1 sm:mb-4">
+        Choose Your Vein Color
       </h2>
       <h2 className='mb-4 text-gray-500 text-center text-sm sm:text-base'><span className='text-[#EE8B48] font-bold'>Hint:</span> Look at the veins on your wrists</h2>
       
@@ -61,7 +61,7 @@ function VeinColor({ onNext}) {
       <div className="container-btn mt-4 sm:mt-6 w-full flex justify-center">
         <button 
           onClick={() => onNext(selected)}
-          className="btn border-none mb-5 bg-[#EE8B48] text-white font-bold text-sm sm:text-lg py-2 px-4"
+          className="btn border-none bg-[#EE8B48] text-white font-bold text-lg px-10"
           disabled={!selected} 
         >
           Next

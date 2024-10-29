@@ -106,7 +106,7 @@ function TestQuestion() {
 
       <div className="py-28 flex-grow flex flex-col justify-center items-center">
         <div
-          className="card w-[70%] h-[70vh] m-auto shadow-xl max-sm:h-[90vh] max-sm:w-[90%]"
+          className="card w-[70%] h-[75vh] m-auto shadow-xl max-sm:h-[90vh] max-sm:w-[90%]"
           style={{ border: "1px solid rgba(0,0,0,0.2)" }}
         >
 
@@ -123,7 +123,7 @@ function TestQuestion() {
           </div>
           )}
 
-          <div className="card-body flex justify-center">
+          <div className="card-body flex justify-center pt-0">
             {currentStep === "start" ? (
               <>
                 <h2 className="card-title flex justify-center text-4xl max-sm:text-lg text-center">
@@ -132,7 +132,7 @@ function TestQuestion() {
                 </h2>
                 <div className="card-actions justify-end">
                   <button
-                    className="btn bg-[#EE8B48] border-none m-auto mt-20 text-2xl text-white font-bold max-sm:text-sm"
+                    className="btn bg-[#EE8B48] px-16 flex justify-center items-center border-none m-auto mt-20 text-2xl text-white font-bold max-sm:mt-8 max-sm:text-sm"
                     onClick={handleStartClick}
                   >
                     Start
