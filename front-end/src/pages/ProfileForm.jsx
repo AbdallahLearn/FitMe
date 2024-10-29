@@ -489,12 +489,15 @@ function ProfileForm() {
             </label>
 
             <div className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70 flex flex-row justify-between items-center">
-              <h1 className="text-[#999898]">●●●●●●●●</h1>
-
+              <h1 className="text-[#999898]">●●●●●●●● </h1>
+             
               <i
                 onClick={showUpPass}
                 className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"
-              ></i>
+              >
+                 
+              </i>
+              
             </div>
 
             <div style={{ display: displayPass }}>
