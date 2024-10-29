@@ -107,7 +107,7 @@ function Header({ blackHeader }) {
               <>
                 <div className="hidden lg:flex">
                   <details className="dropdown">
-                    <summary tabIndex={0} role="button" className=" lg:flex">
+                    <summary tabIndex={0} role="button" className=" lg:flex rounded-md hover:bg-white hover:text-black transition-colors duration-300" style={{border:'1px solid white', padding:'5px 10px'}}>
                       <p>Hi, {username}</p>
                     </summary>
                     <ul
