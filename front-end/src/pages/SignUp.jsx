@@ -1,7 +1,7 @@
 import "../App.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { z } from 'zod';
+import { z } from "zod";
 import axios from "axios";
 
 export default function SignUp() {
@@ -19,40 +19,40 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
 
-  const [userErr, setUserErr]         = useState("");
+  const [userErr, setUserErr] = useState("");
   //== Use State Variables ==//
-  
+
   // Use Effect //
   useEffect(() => {
     // Check If User Is Logged In //
     if (localStorage.getItem("userId") !== null) {
       navigate("/");
-    };
+    }
     //== Check If User Is Logged In ==//
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);  
+  }, []);
   //=== Use Effect ===//
 
   // Sign Up Function //
-    const schema = z.object({
+  const schema = z.object({
     fullname: z
       .string()
       .min(4, { message: "Name Should Be More Than 3 Characters." })
-      .regex(/^[A-Za-z\u0600-\u06FF ]+$/, { message: "Name should only contain Arabic or English letters." }),
-    email: z
-      .string()
-      .email({ message: "Please Enter a Valid Email Address." }),
+      .regex(/^[A-Za-z\u0600-\u06FF ]+$/, {
+        message: "Name should only contain Arabic or English letters.",
+      }),
+    email: z.string().email({ message: "Please Enter a Valid Email Address." }),
     password: z
       .string()
       .min(8, { message: "Password Must Be at Least 8 Characters Long." })
       .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/, {
-        message: "Password Must Include Uppercase, Lowercase, a Number, and a Special Character."
+        message:
+          "Password Must Include Uppercase, Lowercase, a Number, and a Special Character.",
       }),
   });
-  
+
   const signUp = () => {
     const validationResult = schema.safeParse({ fullname, email, password });
-    
+
     if (!validationResult.success) {
       const firstError = validationResult.error.errors[0];
       const { path, message } = firstError;
@@ -68,29 +68,30 @@ export default function SignUp() {
         setTimeout(() => setPasswordErr(""), 3000);
       }
     } else {
-      axios.post("http://localhost:5050/users/signup", {
-        name: fullname,
-        email: email,
-        password: password,
-      })
-      .then(() => {
-        navigate('/signin');
-      })
-      .catch((error) => {
-        console.log('Error response:', error.response);
-      
-        if (error.response && error.response.data) {
-          const errorMessage = error.response.data.message;
-      
-          if (errorMessage === "User already exists") {
-            setUserErr("User Already Exists.");
-            setTimeout(() => setUserErr(""), 3000);
+      axios
+        .post("http://localhost:5050/users/signup", {
+          name: fullname,
+          email: email,
+          password: password,
+        })
+        .then(() => {
+          navigate("/signin");
+        })
+        .catch((error) => {
+          console.log("Error response:", error.response);
+
+          if (error.response && error.response.data) {
+            const errorMessage = error.response.data.message;
+
+            if (errorMessage === "User already exists") {
+              setUserErr("User Already Exists.");
+              setTimeout(() => setUserErr(""), 3000);
+            }
+          } else {
+            console.error("Unknown error:", error);
           }
-        } else {
-          console.error('Unknown error:', error);
-        }
-      });      
-    };
+        });
+    }
   };
 
   // Display //
@@ -101,19 +102,19 @@ export default function SignUp() {
 
   if (nameErr != "") {
     displayNameErr = "block";
-  };
+  }
 
   if (emailErr != "") {
     displayEmErr = "block";
-  };
+  }
 
   if (passwordErr != "") {
     displayPassErr = "block";
-  };
+  }
 
   if (userErr != "") {
     displayUserErr = "block";
-  };
+  }
 
   //=== Display ===//
 
@@ -122,7 +123,6 @@ export default function SignUp() {
       {/* Begin: Sign Up */}
       <div className="min-w-screen min-h-screen flex justify-center items-center bg-[#EEE6E6]">
         <div className="min-w-full min-h-full flex flex-col justify-center items-center md:flex-row md:gap-20">
-
           <div className="flex justify-center w-[30%] md:mr-10">
             <Link
               to="/"
@@ -141,9 +141,12 @@ export default function SignUp() {
               </div>
 
               <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-full flex flex-col items-center justify-center">
-              <span style={{"display": displayUserErr}} className="text-red-600 text-sm text-center w-72 rounded-md mb-2 p-1">
-                {userErr}
-              </span>
+                <span
+                  style={{ display: displayUserErr }}
+                  className="text-red-600 text-sm text-center w-72 rounded-md mb-2 p-1"
+                >
+                  {userErr}
+                </span>
 
                 <div className="space-y-6">
                   <div className="flex flex-col justify-center items-center">
@@ -156,20 +159,24 @@ export default function SignUp() {
 
                     <div className="mt-2 w-80">
                       <input
-                        onChange={(e) => {setFullName(e.target.value)}}
+                        onChange={(e) => {
+                          setFullName(e.target.value);
+                        }}
                         value={fullname}
                         id="name"
                         name="name"
                         type="text"
                         required
-
                         autoComplete="text"
                         className="pl-3 block w-80 h-12 rounded-lg border-0 py-1.5 text-blavk shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                         placeholder="Enter Your Name"
                       />
                     </div>
 
-                    <span style={{"display": displayNameErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                    <span
+                      style={{ display: displayNameErr }}
+                      className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1"
+                    >
                       {nameErr}
                     </span>
                   </div>
@@ -184,7 +191,9 @@ export default function SignUp() {
 
                     <div className="mt-2 w-80">
                       <input
-                        onChange={(e) => {setEmail(e.target.value)}}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                         value={email}
                         id="email"
                         name="email"
@@ -196,7 +205,10 @@ export default function SignUp() {
                       />
                     </div>
 
-                    <span style={{"display": displayEmErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                    <span
+                      style={{ display: displayEmErr }}
+                      className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1"
+                    >
                       {emailErr}
                     </span>
                   </div>
@@ -213,7 +225,9 @@ export default function SignUp() {
 
                     <div className="mt-2 w-80">
                       <input
-                        onChange={(e) => {setPassword(e.target.value)}}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                         value={password}
                         id="password"
                         name="password"
@@ -225,12 +239,13 @@ export default function SignUp() {
                       />
                     </div>
 
-                    <span style={{"display": displayPassErr}} className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1">
+                    <span
+                      style={{ display: displayPassErr }}
+                      className="text-red-600 text-sm text-center w-72 rounded-md mt-1 p-1"
+                    >
                       {passwordErr}
                     </span>
                   </div>
-
-                  
 
                   <div className="flex flex-col justify-center items-center">
                     <button
@@ -257,7 +272,6 @@ export default function SignUp() {
           </div>
         </div>
       </div>
-      {/* End: Sign Up */}
     </>
   );
-};
+}

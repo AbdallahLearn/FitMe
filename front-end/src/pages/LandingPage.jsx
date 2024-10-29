@@ -1,8 +1,5 @@
-// import React from "react";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
-// import FitMeLP from "../../public/images/FitMeLP.png";
-// import man from "../../public/images/man.png";
 import circleWords from "../../public/images/circleWords.png";
 import manImage from "../../public/images/manImage.png";
 import clothes from "../../public/images/clothes.jpg";
@@ -10,28 +7,25 @@ import FeaturesBox from "../component/FeaturesBox";
 import WorkStepsBox from "../component/WorkStepsBox";
 import dashedLine from "../../public/images/dashedLine.png";
 import "../App.css";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useTypewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-// import ManSvg from "../svg-component/ManSvg";
 import ImageSlider from "./ImageSlider";
 function LandingPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [text] = useTypewriter({
     words: ["it"],
     loop: 1,
     typeSpeed: 300,
     deleteSpeed: 50,
-    // delaySpeed: 1000,
   });
   const [text2] = useTypewriter({
     words: ["e"],
     loop: 1,
     typeSpeed: 300,
     deleteSpeed: 50,
-    // delaySpeed: 1000
   });
 
   const [text6] = useTypewriter({
@@ -39,7 +33,6 @@ function LandingPage() {
     loop: 0,
     typeSpeed: 100,
     deleteSpeed: 50,
-    // delaySpeed: 1000,
   });
   const [userDataInfo, setUserDataInfo] = useState([]);
 
@@ -47,52 +40,45 @@ function LandingPage() {
 
   const getPersonalData = () => {
     axios
-        .get(`http://localhost:5050/models/userModel/${id}`)
-        .then((response) => {
-            console.log("Editing by Abdullah Jhn: ", response.data);
-            setUserDataInfo(response.data);
-        })
-        .catch((error) =>
-            console.error("Error checking model existence:", error)
-        );
-};
+      .get(`http://localhost:5050/models/userModel/${id}`)
+      .then((response) => {
+        // console.log("Editing by Abdullah Jhn: ", response.data);
+        setUserDataInfo(response.data);
+      })
+      .catch((error) =>
+        console.error("Error checking model existence:", error)
+      );
+  };
 
-useEffect(() => {
-  getPersonalData()
+  useEffect(() => {
+    getPersonalData();
+  }, []);
 
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []); 
-
-function checkModel(){
-    // to= {localStorage.getItem("userId") === null ? "/signin" : "/generate-model" }
-
-  if (localStorage.getItem('userId') === null){
-    navigate('/signin')
-  }
-  else{
-    if (
-      userDataInfo.gender &&
-      userDataInfo.veinsColor &&
-      userDataInfo.skinColor &&
-      userDataInfo.height &&
-      userDataInfo.weight
-  ) {
-      navigate("/user-model", {
+  function checkModel() {
+    if (localStorage.getItem("userId") === null) {
+      navigate("/signin");
+    } else {
+      if (
+        userDataInfo.gender &&
+        userDataInfo.veinsColor &&
+        userDataInfo.skinColor &&
+        userDataInfo.height &&
+        userDataInfo.weight
+      ) {
+        navigate("/user-model", {
           state: {
-              veinColor: userDataInfo.veinsColor,
-              skinColor: userDataInfo.skinColor,
-              gender: userDataInfo.gender,
-              height: userDataInfo.height,
-              weight: userDataInfo.weight,
+            veinColor: userDataInfo.veinsColor,
+            skinColor: userDataInfo.skinColor,
+            gender: userDataInfo.gender,
+            height: userDataInfo.height,
+            weight: userDataInfo.weight,
           },
-      });
-    }
-    else{
-      navigate('/generate-model')
+        });
+      } else {
+        navigate("/generate-model");
+      }
     }
   }
-}
-
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -112,23 +98,18 @@ function checkModel(){
             </p>
           </div>
 
-          {/* <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[11rem] ">
-            <img src={man} />
-          </div> */}
-          <div >
+          <div>
             <ImageSlider />
-        </div>
+          </div>
 
-          
           <div className="flex justify-between items-center lg:px-16 -mt-10 max-sm:mt-0">
             <div className="flex flex-col w-60 items-start gap-3 ml-12 lg:-mt-20 max-sm:w-24 max-md:w-44 max-sm:ml-3 max-sm:justify-end">
               <p className="text-left text-xl font-bold text-[#cccbcb] max-sm:text-[0.55rem]">
                 Tired of choosing colors that don{"'"}t fit quite right?
               </p>
               <button
-                // to= {localStorage.getItem("userId") === null ? "/signin" : "/generate-model" }
                 className="start-btn py-2 font-bold   rounded-md bg-[#EE8B48] text-[1.08rem] w-48 max-sm:w-20 max-md:w-44 max-sm:text-[0.5rem] border-none text-white"
-                onClick= {checkModel}
+                onClick={checkModel}
               >
                 L{text6}
               </button>
@@ -143,7 +124,10 @@ function checkModel(){
           </div>
         </motion.div>
 
-        <div id="aboutSection" className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10">
+        <div
+          id="aboutSection"
+          className="w-full px-10 pt-12 pb-20 flex flex-col lg:flex-row lg:justify-evenly lg:items-start justify-center items-center gap-10"
+        >
           <div className="flex flex-col gap-5 lg:w-[50%] md:w-[70%] pt-28 max-sm:pt-0 max-sm:w-full justify-center items-center text-center lg:text-left">
             <h1 className="title-font text-[#EE8B48] font-abril text-7xl max-sm:text-4xl w-[82%] max-sm:w-[90%]">
               Who We Are?

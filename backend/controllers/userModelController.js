@@ -86,6 +86,23 @@ export const updateModel = async (req, res) => {
   return res.status(200).json({ message: "Model updated successfully" });
 };
 
+export const deleteModel = async (req,res)=>{
+  const { id } = req.params;
+
+  try {
+    const model = await Model.findOneAndDelete({ userId: new mongoose.Types.ObjectId(id) });
+
+    if (!model) {
+      return res.status(404).json({ message: 'model Not Found' });
+    }
+
+    res.status(200).json({ message: 'model Deleted Successfully' });
+  } catch (error) {
+    console.error('Error During model Deletion:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+}
+
 
 // Function to get the model for a user
 export const getModel = async (req, res) => {

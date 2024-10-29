@@ -296,7 +296,7 @@ function ProfileForm() {
       text: "You Won't Be Able to Revert This!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3d9042",
+      confirmButtonColor: "#BE0000",
       cancelButtonColor: "#999999",
       confirmButtonText: "Yes, Delete It!",
       cancelButtonText: "Cancel",
@@ -310,7 +310,7 @@ function ProfileForm() {
               title: "Deleted!",
               text: "Your Account Has Been Deleted.",
               icon: "success",
-              confirmButtonColor: "#3d9042" 
+              confirmButtonColor: "#3d9042",
             }).then(() => {
               localStorage.clear();
               navigate("/");
@@ -327,6 +327,51 @@ function ProfileForm() {
       }
     });
   };
+
+  const handleDeleteModel = () => {
+    if (!id) {
+      console.error("User ID is Missing");
+      Swal.fire("Error!", "User ID is Missing.", "error");
+      return;
+    }
+
+    Swal.fire({
+      title: "Are You Sure?",
+      text: "You Won't Be Able to Revert This!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#BE0000",
+      cancelButtonColor: "#999999",
+      confirmButtonText: "Yes, Delete It!",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:5050/models/delete-model/${id}`)
+          .then((response) => {
+            console.log(response);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Model Has Been Deleted.",
+              icon: "success",
+              confirmButtonColor: "#3d9042",
+            }).then(() => {
+              getPersonalData();
+              navigate("/generate-model");
+            });
+          })
+          .catch((error) => {
+            Swal.fire(
+              "Error!",
+              "There Was a Problem Deleting Your Model.",
+              "error"
+            );
+            console.error("Delete Model Error:", error);
+          });
+      }
+    });
+  };
+
   //=== Delete Account ===//
 
   // Display //
@@ -367,7 +412,9 @@ function ProfileForm() {
       <Header />
       <div className="flex flex-1 flex-col gap-6 overflow-y-visible bg-[#EEE6E6] px-8">
         <div className="flex lg:flex-row flex-col gap-4 items-center ">
-          <div className="flex flex-col gap-4 flex-1 max-sm:w-full   ">
+          
+          <div className="flex flex-col w-full gap-6 h-full lg:mt-32 flex-1 max-sm:mt-10     ">
+          <h1 className="text-4xl mb-10 ">Account</h1>
             <label htmlFor="name" className="text-xl font-extrabold">
               Your Name
             </label>
@@ -490,14 +537,11 @@ function ProfileForm() {
 
             <div className="border-2 text-lg font-bold rounded-xl p-4 bg-[#D9D9D9]/70 flex flex-row justify-between items-center">
               <h1 className="text-[#999898]">●●●●●●●● </h1>
-             
+
               <i
                 onClick={showUpPass}
                 className="cursor-pointer fa-solid fa-pen-to-square text-xl fa-fw font-bold text-[#EE8B48] hover:text-[#EE8B00]"
-              >
-                 
-              </i>
-              
+              ></i>
             </div>
 
             <div style={{ display: displayPass }}>
@@ -542,43 +586,59 @@ function ProfileForm() {
                 </button>
               </div>
             </div>
-
-            {/* <button
-              onClick={showUpPass}
-              className="border-2 font-bold rounded-xl p-4 flex justify-center items-center bg-[#EE8B48] hover:bg-[#EE8B30]"
-            >
-              <i className="fa-solid fa-pen-to-square text-lg fa-fw"></i>
-            </button> */}
           </div>
 
           <div className="flex flex-col gap-4 flex-1  justify-center items-center relative">
-            {/* <img src={man} className="h-[500px] z-20" alt="Man" /> */}
-            {/* <div className="w-96  flex justify-center items-center z-10 "> */}
-              <div
-                className="z-20 "
-                dangerouslySetInnerHTML={{
-                  __html: userDataInfo.generatedModel,
-                }}
-                onClick={() => {
-                  navigate("/user-model", {
-                    state: {
-                      veinColor: userDataInfo.veinsColor,
-                      skinColor: userDataInfo.skinColor,
-                      gender: userDataInfo.gender,
-                      height: userDataInfo.height,
-                      weight: userDataInfo.weight,
-                    },
-                  });
-                }}
-              />
-            {/* </div> */}
-            {userDataInfo && Object.keys(userDataInfo).length > 0 ?
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
-            : <Link to='/generate-model' className=" bg-[#EE8B48]  text-white font-extrabold rounded-xl p-4 px-7 w-fit mx-auto mt-4 max-sm:mt-10 ">Generate your Model</Link>}
+            <div
+              className="z-20 "
+              dangerouslySetInnerHTML={{
+                __html: userDataInfo.generatedModel,
+              }}
+              onClick={() => {
+                navigate("/user-model", {
+                  state: {
+                    veinColor: userDataInfo.veinsColor,
+                    skinColor: userDataInfo.skinColor,
+                    gender: userDataInfo.gender,
+                    height: userDataInfo.height,
+                    weight: userDataInfo.weight,
+                  },
+                });
+              }}
+            />
+            
+            {userDataInfo && Object.keys(userDataInfo).length > 0 ? (
+              <>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
+                <button
+                  onClick={handleDeleteModel}
+                  className="btn bg-[#BE0000] hover:text-black border-none text-white font-extrabold rounded-xl mb-10 w-fit mx-auto max-sm:mt-0"
+                >
+                  Delete Model{" "}
+                </button>
+              </>
+            ) : (
+              <>
+                 <Link
+                to="/generate-model"
+                className=" btn border-none bg-[#EE8B48]  hover:text-black text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-20 max-sm:mt-0 "
+              >
+                Generate Model
+              </Link>
+              <button
+              onClick={handleDeleteAccount}
+              className=" btn hover:text-black border-none  bg-[#BE0000] text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-6 max-sm:mt-0"
+            >
+              Delete Account
+            </button>
+              </>
+           
+            )}
           </div>
         </div>
         {userDataInfo && Object.keys(userDataInfo).length > 0 ? (
-          <div className="border-[3px] -mt-10 rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
+          <>
+           <div className="border-[3px] -mt-10 rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
             <h1 className="text-4xl">Personal Information:</h1>
             <hr />
 
@@ -675,15 +735,19 @@ function ProfileForm() {
               </div>
             </div>
           </div>
-        ) : (
-          ''
-        )}
-        <button
+          <button
           onClick={handleDeleteAccount}
-          className="bg-[#BE0000] text-white font-extrabold rounded-xl p-4 px-12 w-fit mx-auto mt-20 max-sm:mt-0"
+          className=" btn hover:text-black border-none  bg-[#BE0000] text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-20 max-sm:mt-0"
         >
           Delete Account
         </button>
+          </>
+         
+          
+        ) : (
+          ""
+        )}
+        
       </div>
     </>
   );

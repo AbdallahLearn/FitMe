@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function VeinColor({ onNext}) {
-  const [selected, setSelected] = useState('');
+function VeinColor({ onNext }) {
+  const [selected, setSelected] = useState("");
 
   const handleSelect = (colorType) => {
     setSelected(colorType);
@@ -12,15 +12,21 @@ function VeinColor({ onNext}) {
       <h2 className="card-title text-center mt-2 text-md md:text-4xl sm:text-2xl mb-1 sm:mb-4">
         Choose Your Vein Color
       </h2>
-      <h2 className='mb-4 text-gray-500 text-center text-sm sm:text-base'><span className='text-[#EE8B48] font-bold'>Hint:</span> Look at the veins on your wrists</h2>
-      
+      <h2 className="mb-4 text-gray-500 text-center text-sm sm:text-base">
+        <span className="text-[#EE8B48] font-bold">Hint:</span> Look at the
+        veins on your wrists
+      </h2>
+
       {/* Container for the options */}
       <div className="flex flex-col lg:flex-row justify-center items-center gap-4 sm:gap-8">
-        
         {/* Warm Option */}
-        <div 
-          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${selected === 'warm' ? 'border-4 border-green-500' : 'border border-gray-400'}`}
-          onClick={() => handleSelect('warm')}
+        <div
+          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${
+            selected === "warm"
+              ? "border-4 border-green-500"
+              : "border border-gray-400"
+          }`}
+          onClick={() => handleSelect("warm")}
         >
           <h1 className="text-sm sm:text-lg font-extrabold">WARM</h1>
           <p className="-mt-1 text-xs sm:text-sm">Green veins</p>
@@ -31,9 +37,13 @@ function VeinColor({ onNext}) {
         </div>
 
         {/* Cool Option */}
-        <div 
-          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${selected === 'cool' ? 'border-4 border-blue-500' : 'border border-gray-400'}`}
-          onClick={() => handleSelect('cool')}
+        <div
+          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${
+            selected === "cool"
+              ? "border-4 border-blue-500"
+              : "border border-gray-400"
+          }`}
+          onClick={() => handleSelect("cool")}
         >
           <h1 className="text-sm sm:text-lg font-extrabold">COOL</h1>
           <p className="-mt-1 text-xs sm:text-sm">Blue-green veins</p>
@@ -44,9 +54,13 @@ function VeinColor({ onNext}) {
         </div>
 
         {/* Neutral Option */}
-        <div 
-          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${selected === 'neutral' ? 'border-4 border-gray-500' : 'border border-gray-400'}`}
-          onClick={() => handleSelect('neutral')}
+        <div
+          className={`box rounded-lg text-center cursor-pointer lg:w-48 w-40 py-4 flex flex-col items-center ${
+            selected === "neutral"
+              ? "border-4 border-gray-500"
+              : "border border-gray-400"
+          }`}
+          onClick={() => handleSelect("neutral")}
         >
           <h1 className="text-sm sm:text-lg font-extrabold">NEUTRAL</h1>
           <p className="-mt-1 text-xs sm:text-sm">Mixed veins</p>
@@ -59,10 +73,10 @@ function VeinColor({ onNext}) {
 
       {/* Next Button */}
       <div className="container-btn mt-4 sm:mt-6 w-full flex justify-center">
-        <button 
+        <button
           onClick={() => onNext(selected)}
-          className="btn border-none bg-[#EE8B48] text-white font-bold text-lg px-10"
-          disabled={!selected} 
+          className="btn hover:text-black border-none bg-[#EE8B48] text-white font-bold text-lg px-10"
+          disabled={!selected}
         >
           Next
         </button>
