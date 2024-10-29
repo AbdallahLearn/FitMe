@@ -1,8 +1,8 @@
-import React from "react";
+// import React from "react";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
-import FitMeLP from "../../public/images/FitMeLP.png";
-import man from "../../public/images/man.png";
+// import FitMeLP from "../../public/images/FitMeLP.png";
+// import man from "../../public/images/man.png";
 import circleWords from "../../public/images/circleWords.png";
 import manImage from "../../public/images/manImage.png";
 import clothes from "../../public/images/clothes.jpg";
@@ -12,10 +12,10 @@ import dashedLine from "../../public/images/dashedLine.png";
 import "../App.css";
 import { useState,useEffect } from "react";
 import axios from "axios";
-import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useTypewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
-import ManSvg from "../svg-component/ManSvg";
+import { useNavigate } from "react-router-dom";
+// import ManSvg from "../svg-component/ManSvg";
 import ImageSlider from "./ImageSlider";
 function LandingPage() {
   const navigate = useNavigate()
@@ -60,7 +60,7 @@ function LandingPage() {
 useEffect(() => {
   getPersonalData()
 
-// eslint-disable-next-line react-hooks/exhaustive-deps dependency arr userDataInfo, navigate
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []); 
 
 function checkModel(){
@@ -123,7 +123,7 @@ function checkModel(){
           <div className="flex justify-between items-center lg:px-16 -mt-10 max-sm:mt-0">
             <div className="flex flex-col w-60 items-start gap-3 ml-12 lg:-mt-20 max-sm:w-24 max-md:w-44 max-sm:ml-3 max-sm:justify-end">
               <p className="text-left text-xl font-bold text-[#cccbcb] max-sm:text-[0.55rem]">
-                Tired of choosing colors that don't fit quite right?
+                Tired of choosing colors that don{"'"}t fit quite right?
               </p>
               <button
                 // to= {localStorage.getItem("userId") === null ? "/signin" : "/generate-model" }
