@@ -60,25 +60,8 @@ function LandingPage() {
 useEffect(() => {
   getPersonalData()
 
-  // if (
-  //     userDataInfo.gender &&
-  //     userDataInfo.veinsColor &&
-  //     userDataInfo.skinColor &&
-  //     userDataInfo.height &&
-  //     userDataInfo.weight
-  // ) {
-  //     navigate("/user-model", {
-  //         state: {
-  //             veinColor: userDataInfo.veinsColor,
-  //             skinColor: userDataInfo.skinColor,
-  //             gender: userDataInfo.gender,
-  //             height: userDataInfo.height,
-  //             weight: userDataInfo.weight,
-  //         },
-  //     });
-  //   }
-// eslint-disable-next-line react-hooks/exhaustive-deps userDataInfo, navigate
-}, [ userDataInfo, navigate]); 
+// eslint-disable-next-line react-hooks/exhaustive-deps dependency arr userDataInfo, navigate
+}, []); 
 
 function checkModel(){
     // to= {localStorage.getItem("userId") === null ? "/signin" : "/generate-model" }
