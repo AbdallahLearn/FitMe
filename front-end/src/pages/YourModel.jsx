@@ -287,8 +287,8 @@ function YourModel() {
     <div className="flex flex-1 flex-col gap-4 sm:gap-6 overflow-y-visible bg-[#EEE6E6]">
       <Header />
 
-      <div className="flex flex-1 flex-col gap-4 sm:gap-6 px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
-        <div className="text-4xl font-extrabold text-[#EE8B48]">Your Model</div>
+      <div className="flex flex-1 justify-between flex-col gap-4 sm:gap-6 px-4 sm:px-6 md:px-8 ">
+        <div className="text-4xl font-extrabold text-[#EE8B48] ">Your Model</div>
 
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
           <div className="flex basis-full lg:basis-2/3 flex-col gap-6 sm:gap-8">
@@ -330,21 +330,21 @@ function YourModel() {
                   </div>
                 ))}
             </div>
-            <div className="flex basis-full overflow-hidden lg:basis-1/3 flex-col lg:hidden border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
-            {modelExists ? (
-                      <div
-                        dangerouslySetInnerHTML={{ __html: newModelExists  }}
-                      />
-                     ) : ( 
-                      <>
-                        {generatedModel}
-                        <button className="btn bg-[#EE8B48] border-none m-auto mt-20 text-2xl text-white font-bold max-sm:text-sm" onClick={updateSvg}>
-                          Save
-                        </button>
-                      </>
-                     )}
-          </div>
-            <div className="gap-4 flex lg:h-96 lg:overflow-auto flex-col border-gray-400 rounded-xl border p-4 sm:p-6 md:p-8 shadow-lg shadow-gray-300">
+              <div className="flex basis-full overflow-hidden lg:basis-1/3 flex-col lg:hidden border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
+              {modelExists ? (
+                        <div
+                          dangerouslySetInnerHTML={{ __html: newModelExists  }}
+                        />
+                      ) : ( 
+                        <>
+                          {generatedModel}
+                          <button className="btn border-none bg-[#EE8B48] text-white font-bold text-lg px-10" onClick={updateSvg}>
+                            Save
+                          </button>
+                        </>
+                      )}
+            </div>
+            <div className="gap-4 flex lg:h-[26rem]  lg:overflow-auto flex-col border-gray-400 rounded-xl border p-4 sm:p-6 md:p-8 shadow-lg shadow-gray-300">
               <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#EE8B48]">
                 Style Advice
               </div>
@@ -371,7 +371,7 @@ function YourModel() {
                      ) : ( 
                       <>
                         {generatedModel}
-                        <button className="btn bg-[#EE8B48] border-none m-auto text-lg text-white font-bold max-sm:text-sm" onClick={updateSvg}>
+                        <button className="btn border-none bg-[#EE8B48] text-white font-bold text-lg px-10" onClick={updateSvg}>
                           Save
                         </button>
                       </>
