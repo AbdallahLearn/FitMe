@@ -331,20 +331,20 @@ function YourModel() {
                   </div>
                 ))}
             </div>
-            <div className="flex basis-full overflow-hidden lg:basis-1/3 flex-col lg:hidden border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
-            {modelExists ? (
-                      <div
-                        dangerouslySetInnerHTML={{ __html: newModelExists  }}
-                      />
-                     ) : ( 
-                      <>
-                        {generatedModel}
-                        <button className="btn bg-[#EE8B48] border-none m-auto mt-20 text-2xl text-white font-bold max-sm:text-sm" onClick={updateSvg}>
-                          Save
-                        </button>
-                      </>
-                     )}
-          </div>
+              <div className="flex basis-full overflow-hidden lg:basis-1/3 flex-col lg:hidden border rounded-lg border-gray-400 p-6 sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
+              {modelExists ? (
+                        <div
+                          dangerouslySetInnerHTML={{ __html: newModelExists  }}
+                        />
+                      ) : ( 
+                        <>
+                          {generatedModel}
+                          <button className="btn bg-[#EE8B48] border-none m-auto mt-20 text-2xl text-white font-bold max-sm:text-sm" onClick={updateSvg}>
+                            Save
+                          </button>
+                        </>
+                      )}
+            </div>
             <div className="gap-4 flex lg:h-96 lg:overflow-auto flex-col border-gray-400 rounded-xl border p-4 sm:p-6 md:p-8 shadow-lg shadow-gray-300">
               <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#EE8B48]">
                 Style Advice
@@ -364,6 +364,20 @@ function YourModel() {
             </div>
           </div>
 
+                  {/* <div className="hidden basis-full overflow-hidden lg:basis flex-col border rounded-lg border-gray-400 p-6 lg:flex sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
+                    {modelExists ? (
+                      <div
+                        dangerouslySetInnerHTML={{ __html: newModelExists  }}
+                      />
+                     ) : ( 
+                      <>
+                        {generatedModel}
+                        <button className="btn bg-[#EE8B48] border-none m-auto text-lg text-white font-bold max-sm:text-sm" onClick={updateSvg}>
+                          Save
+                        </button>
+                      </>
+                     )}
+                  </div> */}
                   <div className="hidden basis-full overflow-hidden lg:basis flex-col border rounded-lg border-gray-400 p-6 lg:flex sm:p-8 md:p-10 shadow-lg shadow-gray-300 justify-center items-center h-full">
                     {modelExists ? (
                       <div
