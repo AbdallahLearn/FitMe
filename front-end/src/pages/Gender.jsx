@@ -2,15 +2,15 @@ import React from "react";
 
 function Gender({ onSelect, onNext}) {
   return (
-    <div className=" flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%]  p-2 mx-auto box-border ">
+    <div className=" flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%] p-2 mx-auto box-border ">
       
       {/* Title */}
-      <h2 className="card-title text-md md:text-4xl sm:text-xl text-center mb-3 sm:mb-4 mt-2 sm:mt-4">
+      <h2 className="card-title text-md md:text-4xl sm:text-2xl text-center mb-3 sm:mb-4 mt-2 sm:mt-4">
         Choose Your Gender
       </h2>
 
       {/* Gender Options */}
-      <div className="card-actions w-full sm:w-96 flex flex-col sm:flex-row justify-center items-center flex-wrap gap-5 sm:gap-8 mt-4 sm:mt-5">
+      <div className="card-actions w-full min-w-full sm:w-96 flex flex-col sm:flex-row justify-center items-center flex-wrap gap-20 mt-4 sm:mt-5">
 
         {/* Male option */}
         <div className="img-container flex flex-col items-center w-full sm:w-40">

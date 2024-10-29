@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function SkinColor({ onNext, veinColor }) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [colors, setColors] = useState([]);
-  const [label, setLabel] = useState("Choose Your Skin Color:");
+  const [label, setLabel] = useState("Choose Your Skin Color");
 
   useEffect(() => {
     if (veinColor === 'warm') {
@@ -15,7 +15,7 @@ function SkinColor({ onNext, veinColor }) {
         { name: 'Dark', code: '#895C35' },
         { name: 'Deep', code: '#643F23' },
       ]);
-      setLabel("Choose Your Warm Undertones:");
+      setLabel("Choose Your Warm Undertones");
     } else if (veinColor === 'neutral') {
       setColors([
         { name: 'Fair', code: '#F6D9C6' },
@@ -25,7 +25,7 @@ function SkinColor({ onNext, veinColor }) {
         { name: 'Dark', code: '#7E5047' },
         { name: 'Deep', code: '#5C332B' },
       ]);
-      setLabel("Choose Your Neutral Undertones:");
+      setLabel("Choose Your Neutral Undertones");
     } else {
       setColors([
         { name: 'Fair', code: '#F4E0D9' },
@@ -35,7 +35,7 @@ function SkinColor({ onNext, veinColor }) {
         { name: 'Dark', code: '#74504F' },
         { name: 'Deep', code: '#493338' },
       ]);
-      setLabel("Choose Your Cool Undertones:");
+      setLabel("Choose Your Cool Undertones");
     }
   }, [veinColor]);
 
@@ -45,7 +45,7 @@ function SkinColor({ onNext, veinColor }) {
 
   return (
     <div className="flex flex-col justify-center items-center w-full max-w-full sm:max-w-[80%] p-2 mx-auto">
-      <h2 className="card-title text-center md:text-4xl mt-2 mb-2 sm:mb-4">{label}</h2>
+      <h2 className="card-title text-center text-md md:text-4xl sm:text-2xl mt-2 mb-2 sm:mb-4">{label}</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {colors.map((color, index) => (
           <div
@@ -70,7 +70,7 @@ function SkinColor({ onNext, veinColor }) {
       </div>
       <div className="container-btn mt-4 sm:mt-6 w-full flex justify-center">
         <button
-          className="btn border-none bg-[#EE8B48] text-white font-bold text-lg sm:text-2xl px-6 py-3 max-sm:px-4 max-sm:py-2"
+          className="btn border-none bg-[#EE8B48] text-white font-bold text-lg px-10"
           onClick={() => onNext(selectedColor)}
           disabled={!selectedColor}
         >

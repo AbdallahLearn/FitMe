@@ -17,7 +17,7 @@ function Counter({ onEnd }) {
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
-      <h2 className="card-title text-center text-4xl max-sm:text-lg mb-6 max-sm:w-60">
+      <h2 className="card-title text-center text-md md:text-4xl sm:text-2xl mb-6 max-sm:w-60">
         Please Wait To Generate Your Model
       </h2>
       

@@ -14,7 +14,7 @@ function HeightWeight({ onNext }) {
   return (
     <div className="card-body relative flex flex-col justify-center items-center w-full  mx-auto p-2 sm:p-6 box-border">
       
-      <h2 className="card-title text-center text-lg sm:text-xl md:text-4xl lg:text-3xl xl:text-2xl mb-4 mt-2 leading-tight whitespace-nowrap">
+      <h2 className="card-title text-center text-md md:text-4xl sm:text-2xl mb-4 mt-2 leading-tight whitespace-nowrap">
         Enter Your Weight and Height
       </h2>
 
@@ -40,7 +40,7 @@ function HeightWeight({ onNext }) {
       <div className="container-btn flex justify-center w-full mt-4">
         <button
           onClick={handleNext}
-          className='btn border-none bg-[#EE8B48] text-white font-bold text-2xl max-sm:text-lg py-2 px-4'
+          className='btn border-none bg-[#EE8B48] text-white font-bold text-lg px-10'
           disabled={!weight || !height}
         >
           Next
