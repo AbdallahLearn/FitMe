@@ -17,7 +17,7 @@ function Header({ blackHeader }) {
         blackHeader ? "bg-[#1D1B1B]" : "bg-[#EE8B48]"
       }  text-white`}
     >
-      <div className="navbar-start">
+      <div className="navbar-start  ">
         <details className="dropdown">
           <summary
             tabIndex={0}
@@ -80,12 +80,14 @@ function Header({ blackHeader }) {
           </ul>
         </details>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu-horizontal px-1 items-center gap-10 text-lg font-bold">
-          <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
+      <div className="navbar-center hidden lg:flex  w-[90%]">
+        <ul className="flex w-full justify-between px-4 items-center text-lg font-bold">
+          {/* Left section */}
+          <div className="flex items-center gap-10">
             <li className="hover:cursor-pointer">
               <Link to="/">Home</Link>
             </li>
+            {/* Using a conditional to either show "About" or an invisible placeholder */}
             {blackHeader ? (
               <li className="hover:cursor-pointer">
                 <ScrollLink to="aboutSection" smooth={true} duration={500}>
@@ -93,49 +95,52 @@ function Header({ blackHeader }) {
                 </ScrollLink>
               </li>
             ) : (
-              ""
+              <li className="invisible">About</li> // Invisible placeholder for alignment
             )}
           </div>
-          <li className="px-44">
+
+          {/* Center section */}
+          <li>
             <Link to="/" className="text-4xl title-font">
               FitMe
             </Link>
           </li>
-          <div className="flex justify-center items-center gap-10 min-w-48 max-w-48">
-            {/* {profile ? ( */}
+
+          {/* Right section */}
+          <div className="flex items-center gap-10">
             {localStorage.getItem("userId") ? (
-              <>
-                <div className="hidden lg:flex">
-                  <details className="dropdown">
-                    <summary tabIndex={0} role="button" className=" lg:flex rounded-md hover:bg-white hover:text-black transition-colors duration-300" style={{border:'1px solid white', padding:'5px 10px'}}>
-                      <p>Hi, {username}</p>
-                    </summary>
-                    <ul
-                      tabIndex={0}
-                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-36 p-2 shadow-white shadow-sm"
-                    >
-                      <li>
-                        <Link
-                          to="/user-profile"
-                          className="flex justify-center items-center text-black"
-                        >
-                          My Profile
-                        </Link>
-                      </li>
-                      <li>
-                        <div className="flex justify-center items-center">
-                          <button
-                            onClick={handleLogOut}
-                            className="text-red-700"
-                          >
-                            Log Out
-                          </button>
-                        </div>
-                      </li>
-                    </ul>
-                  </details>
-                </div>
-              </>
+              <div className="hidden lg:flex ">
+                <details className="dropdown">
+                  <summary
+                    tabIndex={0}
+                    role="button"
+                    className="rounded-md flex hover:bg-white hover:text-black transition-colors duration-300"
+                    style={{ border: "1px solid white", padding: "5px 15px" }}
+                  >
+                    <p>Hi, {username}</p>
+                  </summary>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-36 p-2 shadow-white shadow-sm"
+                  >
+                    <li>
+                      <Link
+                        to="/user-profile"
+                        className="flex justify-center items-center text-black"
+                      >
+                        My Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <div className="flex justify-center items-center">
+                        <button onClick={handleLogOut} className="text-red-700">
+                          Log Out
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </details>
+              </div>
             ) : (
               <>
                 <li className="hover:cursor-pointer">
@@ -149,6 +154,7 @@ function Header({ blackHeader }) {
           </div>
         </ul>
       </div>
+
       <div className="navbar-center lg:hidden">
         <Link to="/" className="text-4xl title-font">
           FitMe
