@@ -10,7 +10,6 @@ router.put('/update-name/:id', updateName);
 router.put('/update-email/:id', updateEmail);
 router.put('/update-password/:id', updatePassword);
 router.delete('/del-user/:id', deleteUs);
-router.delete('/delete-user/:id',authenticateToken, deleteUser);
 router.get('/user/:id', getUser);
 
 export default router;

@@ -40,13 +40,13 @@ function TestQuestion() {
   };
 
   const handleGenderSelect = (gender) => {
-    console.log("Selected gender:", gender);
+    // console.log("Selected gender:", gender);
     setUserData((prev) => ({ ...prev, gender }));
     setCurrentStep("weightAndHeight"); 
   };
 
   const handleNextClick = (height, weight) => {
-    console.log("Selected height:", height, "Selected weight:", weight);
+    // console.log("Selected height:", height, "Selected weight:", weight);
     setUserData((prev) => ({
       ...prev,
       height,
@@ -56,19 +56,19 @@ function TestQuestion() {
   };
 
   const handleVeinNextClick = (color) => {
-    console.log("Selected vein color:", color);
+    // console.log("Selected vein color:", color);
     setUserData((prev) => ({ ...prev, veinColor: color }));
     setCurrentStep("skinColor"); 
   };
 
   const handleSkinColorNextClick = (skinColor) => {
-    console.log("Selected skin color:", skinColor);
+    // console.log("Selected skin color:", skinColor);
     setUserData((prev) => ({ ...prev, skinColor }));
     setCurrentStep("counter"); 
   };
 
   const handleCounterEnd = () => {
-    console.log("Navigating to /user-model with userData:", userData);
+    // console.log("Navigating to /user-model with userData:", userData);
     navigate("/user-model", {
       state: userData,
     });
@@ -97,6 +97,9 @@ function TestQuestion() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("userId") === null) {
+      navigate("/");
+    }
     window.scrollTo(0, 0);
   }, [currentStep]);
 
@@ -116,9 +119,7 @@ function TestQuestion() {
           ) : (
             <div className="mt-10 ml-5 w-full">
             <button onClick={handlePreviousClick} className="z-40">
-              <div className="p-1 border-2 border-[#EE8B48] rounded-xl">
-                <i className="fa-solid fa-chevron-left fa-fw text-[#EE8B48] text-xl"></i>
-              </div>
+                <i className="fa-solid fa-chevron-left rounded-xl w-10   fa-fw p-1 border-2 border-[#EE8B48] text-[#EE8B48]  hover:text-white  hover:bg-[#EE8B48]  text-xl"></i>
             </button>
           </div>
           )}
@@ -132,7 +133,7 @@ function TestQuestion() {
                 </h2>
                 <div className="card-actions justify-end">
                   <button
-                    className="btn bg-[#EE8B48] px-16 flex justify-center items-center border-none m-auto mt-20 text-2xl text-white font-bold max-sm:mt-8 max-sm:text-sm"
+                    className="btn bg-[#EE8B48] hover:text-black px-16 flex justify-center items-center border-none m-auto mt-20 text-2xl text-white font-bold max-sm:mt-8 max-sm:text-sm"
                     onClick={handleStartClick}
                   >
                     Start

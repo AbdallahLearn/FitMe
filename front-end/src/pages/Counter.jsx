@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function Counter({ onEnd }) {
   const [count, setCount] = useState(3); // Start from 3
@@ -6,12 +6,12 @@ function Counter({ onEnd }) {
   useEffect(() => {
     if (count > 0) {
       const timer = setInterval(() => {
-        setCount(prevCount => prevCount - 1);
-      }, 1000); // Decrease count every 2 seconds
+        setCount((prevCount) => prevCount - 1);
+      }, 1000);
 
-      return () => clearInterval(timer); // Cleanup interval on unmount
+      return () => clearInterval(timer);
     } else {
-      onEnd(); // Call the onEnd function when count reaches 0
+      onEnd();
     }
   }, [count]);
 
@@ -20,9 +20,12 @@ function Counter({ onEnd }) {
       <h2 className="card-title text-center text-md md:text-4xl sm:text-2xl mb-6 max-sm:w-60">
         Please Wait To Generate Your Model
       </h2>
-      
-      <div className="text-7xl font-bold text-[#EE8B48] w-60 h-60 flex justify-center items-center rounded-full" style={{border: '1px solid rgba(0,0,0,0.3)'}}>
-        <h1>{count}</h1> {/* Display the count */}
+
+      <div
+        className="text-7xl font-bold text-[#EE8B48] w-60 h-60 flex justify-center items-center rounded-full"
+        style={{ border: "1px solid rgba(0,0,0,0.3)" }}
+      >
+        <h1>{count}</h1>
       </div>
       {count === 0 && (
         <div className="mt-4">
