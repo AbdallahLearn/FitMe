@@ -412,9 +412,8 @@ function ProfileForm() {
       <Header />
       <div className="flex flex-1 flex-col gap-6 overflow-y-visible bg-[#EEE6E6] px-8">
         <div className="flex lg:flex-row flex-col gap-4 items-center ">
-          
           <div className="flex flex-col w-full gap-6 h-full lg:mt-32 flex-1 max-sm:mt-10     ">
-          <h1 className="text-4xl mb-10 ">Account</h1>
+            <h1 className="text-4xl mb-10 ">Account</h1>
             <label htmlFor="name" className="text-xl font-extrabold">
               Your Name
             </label>
@@ -589,174 +588,181 @@ function ProfileForm() {
           </div>
 
           <div className="flex flex-col gap-4 flex-1  p justify-center items-center relative">
-            <div
-              className="z-20 "
-              dangerouslySetInnerHTML={{
-                __html: userDataInfo.generatedModel,
-              }}
-            
-            />
-            
+            {/* <div className="w-72 overflow-hidden"> 
+  <div
+    className="transform scale-125 origin-top-left" // Adjust scale factor as needed
+    dangerouslySetInnerHTML={{
+      __html: userDataInfo.generatedModel,
+    }}
+  />
+</div> */}
+            <div className="z-20 w-96 overflow-hidden ">
+              <div
+                className="z-20 overflow-hidden flex justify-center transform scale-150"
+                dangerouslySetInnerHTML={{
+                  __html: userDataInfo.generatedModel,
+                }}
+              ></div>
+            </div>
+
             {userDataInfo && Object.keys(userDataInfo).length > 0 ? (
               <>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
                 <div className="flex justify-center w-32">
-                <button
-                  onClick={handleDeleteModel}
-                  className="btn  hover:text-black border-none text-white font-extrabold rounded-xl mb-10 w-fit mx-auto max-sm:mt-0"
-                >
-                  {/* Delete Model{" "} */}
-                  <i class="fa-solid fa-trash text-red-400  text-2xl"></i>
-                </button>
-                <button  className="btn  hover:text-black border-none text-white font-extrabold rounded-xl mb-10 w-fit mx-auto max-sm:mt-0"
-                  onClick={() => {
-                    navigate("/user-model", {
-                      state: {
-                        veinColor: userDataInfo.veinsColor,
-                        skinColor: userDataInfo.skinColor,
-                        gender: userDataInfo.gender,
-                        height: userDataInfo.height,
-                        weight: userDataInfo.weight,
-                      },
-                    });
-                  }}
-                >
-                <i class="fa-regular fa-pen-to-square text-[#3d9042] text-2xl"></i>
-                </button>
+                  <button
+                    onClick={handleDeleteModel}
+                    className="btn  hover:text-black border-none text-white font-extrabold rounded-xl mb-10 w-fit mx-auto max-sm:mt-0"
+                  >
+                    {/* Delete Model{" "} */}
+                    <i class="fa-solid fa-trash text-red-400  text-2xl"></i>
+                  </button>
+                  <button
+                    className="btn  hover:text-black border-none text-white font-extrabold rounded-xl mb-10 w-fit mx-auto max-sm:mt-0"
+                    onClick={() => {
+                      navigate("/user-model", {
+                        state: {
+                          veinColor: userDataInfo.veinsColor,
+                          skinColor: userDataInfo.skinColor,
+                          gender: userDataInfo.gender,
+                          height: userDataInfo.height,
+                          weight: userDataInfo.weight,
+                        },
+                      });
+                    }}
+                  >
+                    <i class="fa-regular fa-pen-to-square text-[#3d9042] text-2xl"></i>
+                  </button>
                 </div>
-                
               </>
             ) : (
               <>
-                 <Link
-                to="/generate-model"
-                className=" btn border-none bg-[#EE8B48]  hover:text-black text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-20 max-sm:mt-0 "
-              >
-                Generate Model
-              </Link>
-              <button
-              onClick={handleDeleteAccount}
-              className=" btn hover:text-black border-none  bg-[#BE0000] text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-6 max-sm:mt-0"
-            >
-              Delete Account
-            </button>
+                <Link
+                  to="/generate-model"
+                  className=" btn border-none bg-[#EE8B48]  hover:text-black text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-20 max-sm:mt-0 "
+                >
+                  Generate Model
+                </Link>
+                <button
+                  onClick={handleDeleteAccount}
+                  className=" btn hover:text-black border-none  bg-[#BE0000] text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-6 max-sm:mt-0"
+                >
+                  Delete Account
+                </button>
               </>
-           
             )}
           </div>
         </div>
         {userDataInfo && Object.keys(userDataInfo).length > 0 ? (
           <>
-           <div className="border-[3px] -mt-10 rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
-            <h1 className="text-4xl">Personal Information:</h1>
-            <hr />
+            <div className="border-[3px] -mt-10 rounded-xl shadow-lg shadow-gray-300 border-gray-400 bg-white p-4 gap-4 flex flex-col">
+              <h1 className="text-4xl">Personal Information:</h1>
+              <hr />
 
-            <div className="flex flex-row gap-4 items-center">
-              {userDataInfo.gender == "Male" ? (
+              <div className="flex flex-row gap-4 items-center">
+                {userDataInfo.gender == "Male" ? (
+                  <img
+                    src={avatar}
+                    className="h-12 w-12 rounded-full  "
+                    alt="Avatar"
+                  />
+                ) : (
+                  <img
+                    src="./public/images/female.png"
+                    className="h-12 w-12 rounded-full  "
+                    alt="Avatar"
+                  />
+                )}
+                <div className="flex flex-col gap-2">
+                  <p>
+                    Gender{" "}
+                    <span className="text-gray-400">{userDataInfo.gender}</span>
+                  </p>
+                  <p>
+                    Height{" "}
+                    <span className="text-gray-400">
+                      {userDataInfo.height} cm
+                    </span>
+                  </p>
+                  <p>
+                    Weight{" "}
+                    <span className="text-gray-400">
+                      {userDataInfo.weight} kg
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              <hr />
+
+              <div className="flex flex-row gap-4">
                 <img
-                  src={avatar}
-                  className="h-12 w-12 rounded-full  "
-                  alt="Avatar"
+                  className="rounded-full h-12 w-12 rotate-45"
+                  src={
+                    userDataInfo.veinsColor == "warm"
+                      ? warm
+                      : userDataInfo.veinsColor == "cool"
+                      ? cool
+                      : neutral
+                  }
                 />
-              ) : (
+                <div className="flex flex-col gap-1">
+                  <span>Vein Color</span>
+                  <span className="text-gray-400">
+                    {userDataInfo.veinsColor}
+                  </span>
+                </div>
+              </div>
+
+              <hr />
+
+              <div className="flex flex-row gap-4">
+                <span
+                  className="rounded-full h-12 w-12"
+                  style={{ backgroundColor: userDataInfo.skinColor?.code }}
+                ></span>{" "}
+                <div className="flex flex-col gap-1">
+                  <span>Undertone</span>
+                  <span className="text-gray-400">
+                    {userDataInfo.skinColor?.name || "N/A"}
+                  </span>
+                </div>
+              </div>
+
+              <hr />
+
+              <div className="flex flex-row gap-4">
                 <img
-                  src="./public/images/female.png"
-                  className="h-12 w-12 rounded-full  "
-                  alt="Avatar"
+                  src={colorPalette}
+                  className="rounded-full h-12 w-12"
+                  alt="Color Palette"
                 />
-              )}
-              <div className="flex flex-col gap-2">
-                <p>
-                  Gender{" "}
-                  <span className="text-gray-400">{userDataInfo.gender}</span>
-                </p>
-                <p>
-                  Height{" "}
-                  <span className="text-gray-400">
-                    {userDataInfo.height} cm
-                  </span>
-                </p>
-                <p>
-                  Weight{" "}
-                  <span className="text-gray-400">
-                    {userDataInfo.weight} kg
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className="flex flex-row gap-4">
-              <img
-                className="rounded-full h-12 w-12 rotate-45"
-                src={
-                  userDataInfo.veinsColor == "warm"
-                    ? warm
-                    : userDataInfo.veinsColor == "cool"
-                    ? cool
-                    : neutral
-                }
-              />
-              <div className="flex flex-col gap-1">
-                <span>Vein Color</span>
-                <span className="text-gray-400">{userDataInfo.veinsColor}</span>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className="flex flex-row gap-4">
-              <span
-                className="rounded-full h-12 w-12"
-                style={{ backgroundColor: userDataInfo.skinColor?.code }}
-              ></span>{" "}
-              <div className="flex flex-col gap-1">
-                <span>Undertone</span>
-                <span className="text-gray-400">
-                  {userDataInfo.skinColor?.name || "N/A"}
-                </span>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className="flex flex-row gap-4">
-              <img
-                src={colorPalette}
-                className="rounded-full h-12 w-12"
-                alt="Color Palette"
-              />
-              <div className="flex flex-col gap-1">
-                <span>Your Colors</span>
-                <div className="flex flex-row gap-4 flex-wrap mt-2">
-                  {userDataInfo.suitableColors.map((e, i) => (
-                    <div className="flex justify-center items-center" key={i}>
-                      <span
-                        className="rounded-full w-8 h-8 border-2"
-                        style={{
-                          backgroundColor: e,
-                        }}
-                      ></span>
-                    </div>
-                  ))}
+                <div className="flex flex-col gap-1">
+                  <span>Your Colors</span>
+                  <div className="flex flex-row gap-4 flex-wrap mt-2">
+                    {userDataInfo.suitableColors.map((e, i) => (
+                      <div className="flex justify-center items-center" key={i}>
+                        <span
+                          className="rounded-full w-8 h-8 border-2"
+                          style={{
+                            backgroundColor: e,
+                          }}
+                        ></span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <button
-          onClick={handleDeleteAccount}
-          className=" btn hover:text-black border-none  bg-[#BE0000] text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-20 max-sm:mt-0"
-        >
-          Delete Account
-        </button>
+            <button
+              onClick={handleDeleteAccount}
+              className=" btn hover:text-black border-none  bg-[#BE0000] text-xl text-white font-extrabold  rounded-xl  min-h-16 px-14 w-fit mx-auto mt-20 max-sm:mt-0"
+            >
+              Delete Account
+            </button>
           </>
-         
-          
         ) : (
           ""
         )}
-        
       </div>
     </>
   );
