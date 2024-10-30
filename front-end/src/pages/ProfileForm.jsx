@@ -667,7 +667,7 @@ function ProfileForm() {
                   />
                 ) : (
                   <img
-                    src="./public/images/female.png"
+                    src="/images/female.png"
                     className="h-12 w-12 rounded-full  "
                     alt="Avatar"
                   />
