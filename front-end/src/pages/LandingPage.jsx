@@ -86,11 +86,25 @@ function LandingPage() {
       <div className="flex-grow flex flex-col justify-center items-center gap-5">
         <motion.div className="relative w-full bg-[#1D1B1B] text-white text-center pb-20 max-sm:pb-3">
           <hr className="border-white" />
-          <div className="flex justify-center items-center gap-56 ">
-            <p className="flex items-center text-[20rem] max-md:text-[18rem] title-font gap-60 font-bold sm:text-[12rem] max-sm:text-[6.2em] max-sm:gap-20">
+          {/* <div className="flex justify-center items-center gap-56 md:gap-32">
+            <p className="flex items-center text-[22rem] md:text-[15rem] title-font gap-60 md:gap-20 font-bold max-sm:text-[7rem] max-sm:gap-10">
               F{text}
               <span
-                className="text-black outline-white pl-4"
+                className="text-black outline-white pl-4 text-[23rem] md:text-[15rem] title-font font-bold max-sm:text-[7rem]"
+                style={{ WebkitTextStroke: "1px White" }}
+              >
+                M{text2}
+              </span>
+            </p>
+          </div> */}
+          
+
+
+          <div className="flex justify-center items-center gap-56 md:gap-20">
+            <p className="flex items-center lg:text-[22rem] md:text-[15rem] title-font lg:gap-60 md:gap-20 font-bold max-sm:text-[7rem] max-sm:gap-20">
+              F{text}
+              <span
+                className="text-black outline-white lg:text-[22rem] md:text-[15rem] title-font font-bold max-sm:text-[7rem] pl-4"
                 style={{ WebkitTextStroke: "1px White" }}
               >
                 M{text2}
