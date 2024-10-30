@@ -1,5 +1,5 @@
 # Group Members:
-- Abdullah Saad Aljohani
+- [Abdullah Saad Aljohani](https://www.linkedin.com/in/abdullahjhn/)
 - Ashwag Mubarak Alharthi
 - Faraj Basel Aldossary
 - Lama Abdullah AlAjmah
