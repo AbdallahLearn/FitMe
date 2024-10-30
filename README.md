@@ -1,7 +1,7 @@
 # Group Members:
 - [Abdullah Saad Aljohani](https://www.linkedin.com/in/abdullahjhn/)
 - Ashwag Mubarak Alharthi
-- Faraj Basel Aldossary
+- [Faraj Basel Aldossary](https://farajsaad-website.netlify.app/)
 - [Lama Abdullah AlAjmah](https://www.linkedin.com/in/lama-abdullah-679834277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 
 # Project Overview:
