@@ -588,34 +588,43 @@ function ProfileForm() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 flex-1  justify-center items-center relative">
+          <div className="flex flex-col gap-4 flex-1  p justify-center items-center relative">
             <div
               className="z-20 "
               dangerouslySetInnerHTML={{
                 __html: userDataInfo.generatedModel,
               }}
-              onClick={() => {
-                navigate("/user-model", {
-                  state: {
-                    veinColor: userDataInfo.veinsColor,
-                    skinColor: userDataInfo.skinColor,
-                    gender: userDataInfo.gender,
-                    height: userDataInfo.height,
-                    weight: userDataInfo.weight,
-                  },
-                });
-              }}
+            
             />
             
             {userDataInfo && Object.keys(userDataInfo).length > 0 ? (
               <>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gray-300"></div>
+                <div className="flex justify-center w-32">
                 <button
                   onClick={handleDeleteModel}
-                  className="btn bg-[#BE0000] hover:text-black border-none text-white font-extrabold rounded-xl mb-10 w-fit mx-auto max-sm:mt-0"
+                  className="btn  hover:text-black border-none text-white font-extrabold rounded-xl mb-10 w-fit mx-auto max-sm:mt-0"
                 >
-                  Delete Model{" "}
+                  {/* Delete Model{" "} */}
+                  <i class="fa-solid fa-trash text-red-400  text-2xl"></i>
                 </button>
+                <button  className="btn  hover:text-black border-none text-white font-extrabold rounded-xl mb-10 w-fit mx-auto max-sm:mt-0"
+                  onClick={() => {
+                    navigate("/user-model", {
+                      state: {
+                        veinColor: userDataInfo.veinsColor,
+                        skinColor: userDataInfo.skinColor,
+                        gender: userDataInfo.gender,
+                        height: userDataInfo.height,
+                        weight: userDataInfo.weight,
+                      },
+                    });
+                  }}
+                >
+                <i class="fa-regular fa-pen-to-square text-[#3d9042] text-2xl"></i>
+                </button>
+                </div>
+                
               </>
             ) : (
               <>
