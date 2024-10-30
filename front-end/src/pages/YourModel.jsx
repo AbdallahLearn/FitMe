@@ -168,7 +168,6 @@ function YourModel() {
       .then((response) => {
         console.log("Data created successfully in DB:", response.data);
         setModelExists(true);
-        checkModelExists();
       })
       .catch((error) => {
         console.error("Error creating data:", error.message);

@@ -87,10 +87,10 @@ function LandingPage() {
         <motion.div className="relative w-full bg-[#1D1B1B] text-white text-center pb-20 max-sm:pb-3">
           <hr className="border-white" />
           <div className="flex justify-center items-center gap-56 ">
-            <p className="flex items-center text-[22rem] title-font gap-60 font-bold max-sm:text-[7rem] max-sm:gap-20">
+            <p className="flex items-center text-[20rem] max-md:text-[18rem] title-font gap-60 font-bold sm:text-[12rem] max-sm:text-[6.2em] max-sm:gap-20">
               F{text}
               <span
-                className="text-black outline-white text-[23rem] title-font font-bold max-sm:text-[7rem] pl-4"
+                className="text-black outline-white pl-4"
                 style={{ WebkitTextStroke: "1px White" }}
               >
                 M{text2}
@@ -224,7 +224,7 @@ function LandingPage() {
                   </defs>
                 </svg>
               }
-              text="Get the colors that are suitable for your skin tone"
+              text="Get the suitable colors for your skin and provide style recommendations"
             />
           </motion.div>
         </div>
@@ -242,7 +242,7 @@ function LandingPage() {
             <WorkStepsBox
               step="1"
               title="Color"
-              desc="choose your skin color"
+              desc="choose your skin and veins colors"
             />
             <img
               src={dashedLine}
@@ -251,7 +251,7 @@ function LandingPage() {
             <WorkStepsBox
               step="2"
               title="Measurement"
-              desc="Enter your height and body width"
+              desc="Enter your body weight and height"
             />
             <img
               src={dashedLine}
