@@ -1,6 +1,6 @@
 import Header from "../component/Header";
 import Footer from "../component/Footer";
-import circleWords from "../../public/images/circleWords.png";
+// import circleWords from "../../public/images/circleWords.png";
 import manImage from "../../public/images/manImage.png";
 import clothes from "../../public/images/clothes.jpg";
 import FeaturesBox from "../component/FeaturesBox";
@@ -118,7 +118,8 @@ function LandingPage() {
               </button>
             </div>
             <div className="relative">
-              <img src={circleWords} className="w-36 max-sm:w-20" />
+              {/* <img src={circleWords} className="w-36 max-sm:w-20" /> */}
+              <img src="../../public/images/circleWords.png" className="w-36 max-sm:w-20" />
               <img
                 src={manImage}
                 className="absolute top-10 -left-6 w-32 max-sm:w-16"
