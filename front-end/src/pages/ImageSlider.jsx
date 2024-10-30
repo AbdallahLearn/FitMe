@@ -17,8 +17,8 @@ const ImageSlider = () => {
   }, [images.length]);
 
   return (
-    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[26rem] md:w-[20rem] max-md:w-[18rem] max-sm:w-[11rem]">
-      <motion.img
+    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[18rem] md:w-[18rem] max-md:w-[18rem] max-sm:w-[10rem]">     
+     <motion.img
         key={currentIndex}
         src={images[currentIndex]}
         alt="Slideshow"
