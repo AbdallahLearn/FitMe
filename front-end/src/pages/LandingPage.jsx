@@ -40,7 +40,7 @@ function LandingPage() {
 
   const getPersonalData = () => {
     axios
-      .get(`http://localhost:5050/models/userModel/${id}`)
+      .get(`https://fitme-4pk3.onrender.com/models/userModel/${id}`)
       .then((response) => {
         // console.log("Editing by Abdullah Jhn: ", response.data);
         setUserDataInfo(response.data);

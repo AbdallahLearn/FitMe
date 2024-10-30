@@ -69,7 +69,7 @@ export default function SignUp() {
       }
     } else {
       axios
-        .post("http://localhost:5050/users/signup", {
+        .post("https://fitme-4pk3.onrender.com/users/signup", {
           name: fullname,
           email: email,
           password: password,

@@ -41,7 +41,7 @@ function ProfileForm() {
   // Get User //
   const getUser = () => {
     axios
-      .get(`http://localhost:5050/users/user/${id}`)
+      .get(`https://fitme-4pk3.onrender.com/users/user/${id}`)
       .then((response) => {
         setUserDetails(response.data);
       })
@@ -57,7 +57,7 @@ function ProfileForm() {
   const [userDataInfo, setUserDataInfo] = useState([]);
   const getPersonalData = () => {
     axios
-      .get(`http://localhost:5050/models/userModel/${id}`)
+      .get(`https://fitme-4pk3.onrender.com/models/userModel/${id}`)
       .then((response) => {
         console.log("editing by Abdullah Jhn: ", response.data);
         setUserDataInfo(response.data);
@@ -123,7 +123,7 @@ function ProfileForm() {
       }
     } else {
       axios
-        .put(`http://localhost:5050/users/update-name/${id}`, {
+        .put(`https://fitme-4pk3.onrender.com/users/update-name/${id}`, {
           newName: name,
         })
         .then((response) => {
@@ -185,7 +185,7 @@ function ProfileForm() {
       }
     } else {
       axios
-        .put(`http://localhost:5050/users/update-email/${id}`, {
+        .put(`https://fitme-4pk3.onrender.com/users/update-email/${id}`, {
           newEmail: email,
         })
         .then((response) => {
@@ -253,7 +253,7 @@ function ProfileForm() {
       }
     } else {
       axios
-        .put(`http://localhost:5050/users/update-password/${id}`, {
+        .put(`https://fitme-4pk3.onrender.com/users/update-password/${id}`, {
           newPassword: password,
         })
         .then((response) => {
@@ -303,7 +303,7 @@ function ProfileForm() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5050/users/del-user/${id}`)
+          .delete(`https://fitme-4pk3.onrender.com/users/del-user/${id}`)
           .then((response) => {
             console.log(response);
             Swal.fire({
@@ -347,7 +347,7 @@ function ProfileForm() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5050/models/delete-model/${id}`)
+          .delete(`https://fitme-4pk3.onrender.com/models/delete-model/${id}`)
           .then((response) => {
             console.log(response);
             Swal.fire({

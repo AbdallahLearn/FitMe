@@ -10,7 +10,7 @@
     router.get('/userModel/:userId', getModel);
 
     router.put('/userModel/:userId', updateModel);
-
+    
     router.delete('/delete-model/:id', deleteModel);
     
     // Delete a model by its unique model ID

@@ -68,7 +68,7 @@ export default function ResetPassword() {
     } else {
       // Send request to reset password
       axios
-        .post("http://localhost:5050/users/reset-password", {
+        .post("https://fitme-4pk3.onrender.com/users/reset-password", {
           email: email,
           newPassword: password,
         })

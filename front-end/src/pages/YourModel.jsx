@@ -37,7 +37,7 @@ function YourModel() {
   const navigate = useNavigate();
   const checkModelExists = () => {
     axios
-      .get(`http://localhost:5050/models/userModel/${userId}`)
+      .get(`https://fitme-4pk3.onrender.com/models/userModel/${userId}`)
       .then((response) => {
         setModelExists(response.data.exists);
         setNewModelExists(response.data.generatedModel);
@@ -83,7 +83,7 @@ function YourModel() {
     };
 
     axios
-      .post("http://localhost:5050/api/chatgpt-suggest-colors", userData)
+      .post("https://fitme-4pk3.onrender.com/api/chatgpt-suggest-colors", userData)
       .then((response) => {
         const colorData = response.data.suggestions;
         const parsedColorData = JSON.parse(colorData);
@@ -147,7 +147,7 @@ function YourModel() {
 
     axios
       .post(
-        "http://localhost:5050/models/userModel",
+        "https://fitme-4pk3.onrender.com/models/userModel",
         {
           userId: userId,
           gender: gender,
@@ -185,7 +185,7 @@ function YourModel() {
     };
 
     axios
-      .post("http://localhost:5050/api/chatgpt-style-advice", userData)
+      .post("https://fitme-4pk3.onrender.com/api/chatgpt-style-advice", userData)
       .then((response) => {
         setStyleAdvice(response.data.advice.split("\n"));
       })
@@ -312,7 +312,7 @@ function YourModel() {
     // console.log("Object.entries(suggestions)", Object.values(suggestions));
     axios
       .put(
-        `http://localhost:5050/models/userModel/${userId}`, // Use PATCH method and include userId in URL
+        `https://fitme-4pk3.onrender.com/models/userModel/${userId}`, // Use PATCH method and include userId in URL
         {
           generatedModel: svgString, // Send the generated SVG string to update
           suitableColors: Object.values(suggestions),
