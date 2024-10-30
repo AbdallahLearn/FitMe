@@ -17,7 +17,7 @@ const ImageSlider = () => {
   }, [images.length]);
 
   return (
-    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 lg:w-[18rem] md:w-[18rem] max-md:w-[18rem] max-sm:w-[10rem]">     
+    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 xl:w-[24rem] lg:w-[22rem] md:w-[18rem] max-md:w-[18rem] max-sm:w-[10rem]">     
      <motion.img
         key={currentIndex}
         src={images[currentIndex]}
