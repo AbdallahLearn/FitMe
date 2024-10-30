@@ -1,10 +1,10 @@
-Group Members:
+##Group Members:
 Abdullah Saad Aljohani
 Ashwag Mubarak Alharthi
 Faraj Basel Aldossary
 Lama Abdullah AlAjmah
 
-Project Overview:
+#Project Overview:
 FitMe is an innovative website designed to empower users in their fashion choices by creating a personalized virtual character. The website enables users to select clothing colors that best suit their skin tones while providing tailored clothing recommendations based on their body shapes, heights, and weights.
 
 We aim to help users choose outfit colors that reflect their styles and enhance their confidence.
